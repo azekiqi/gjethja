@@ -1,14 +1,11 @@
 import React from 'react';
-import Post from './Post'
+import Home from 'containers/Home';
+// import Login from 'containers/Login';
 
 function App() {
   return(
-      <div className="app">
-          <Post name="Ariana" message="Kerkoj punetore!!!!!"/>
-          <Post name="Alekta"/>
-          <Post name="Aulona"/>
-          <Post name="Anita"/>
-      </div>
+      <Home />
+      // <Login />
   );
 }
 
