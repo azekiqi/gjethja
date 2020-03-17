@@ -1,12 +1,16 @@
-import React from 'react';
-import Home from 'containers/Home';
-import Navigation from 'components/navigation/Navigation';
-// import Login from 'containers/Login';
+import React, {Component} from 'react';
+import Navigation from './components/Navigation/Navigation';
+import './App.css';
 
-function App() {
+class App extends Component{
+render(){
   return(
-         <Navigation/>
+      <div className="App">
+        <Navigation/>
+      </div>
   );
 }
-
+}
 export default App;
+
+
