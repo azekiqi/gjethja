@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './styles.scss';
+import './Header.scss';
+import Logo from './../../assets/images/gjethja-logo.png';
 
 export default function Header() {
     return(
         <div class={"header"}>
             <div className="header_logo">
-                GJETHJA
+                <img src={Logo} alt="logo"/>
             </div>
             <nav className={"header_nav"}>
                 <ul>

@@ -1,8 +1,8 @@
 import React from 'react';
-import './styles.scss';
+import './Register.scss';
 import {Link} from "react-router-dom";
 
-class Login extends React.Component {
+class Register extends React.Component {
     constructor(props) {
         super(props);
 
@@ -14,8 +14,8 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <div className={"login"}>
-                    LOGIN
+                <div className={"register"}>
+                    REGISTER
                 </div>
                 <div className={"button"}>
                     <Link to={"/home"}>RETURN TO HOME</Link>
@@ -26,4 +26,4 @@ class Login extends React.Component {
 
 }
 
-export default Login;
+export default Register;

@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: #F1F1F1;
+}
+
+.navigation {
+    display: flex;
+    width: 600px;
+    margin: 30px auto 50px auto;
+
+    .navigation-link {
+        width: 200px;
+        color: #498F7A;
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 5px;
+        margin-top: 15px;
+        text-align: center;
+    }
+}
+
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    width: 85%;
+    margin: auto;
+}
+
+

@@ -1,10 +1,10 @@
 import React from 'react';
 import { HashRouter as Router, Switch, Route, Link} from "react-router-dom";
-import Header from './components/Header';
-import Landingpage from "./containers/Landingpage";
-import Home from "./containers/Home";
-import Login from "./containers/Login";
-import Register from "./containers/Register";
+import Header from './components/Header/Header';
+import Landingpage from "./containers/Landingpage/Landingpage";
+import Home from "./containers/Home/Home";
+import Login from "./containers/Login/Login";
+import Register from "./containers/Register/Register";
 import "./App.scss";
 
 export default function App() {
