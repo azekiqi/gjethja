@@ -12,13 +12,16 @@ export default function Header() {
             <nav className={"header_nav"}>
                 <ul>
                     <li>
-                        <Link to={"/home"}>Home</Link>
+                        <Link to={"/home"}>Ballina</Link>
                     </li>
                     <li>
-                        <Link to={"/login"}>Login</Link>
+                        <Link to={"/aboutUs"}>Për ne</Link>
                     </li>
                     <li>
-                        <Link to={"/register"}>Register</Link>
+                        <Link to={"/login"}>Kyçu</Link>
+                    </li>
+                    <li>
+                        <Link to={"/register"}>Regjistrohu</Link>
                     </li>
                 </ul>
             </nav>

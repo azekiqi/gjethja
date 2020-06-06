@@ -1,6 +1,6 @@
 .post {
-    width: 250px;
-    height: 290px;
+    width: 350px;
+    height: 430px;
     padding: 20px;
     margin-left: 8%;
     margin-bottom: 45px;
@@ -12,8 +12,8 @@
 }
 
 .post-image {
-    width: 55px;
-    height: 55px;
+    width: 100px;
+    height: 100px;
     margin: auto;
     border-radius: 50px;
     border: 1px solid grey;
@@ -22,8 +22,8 @@
 .post-name {
     color: #498F7A;
     font-weight: 800;
-    font-size: 12px;
-    margin-bottom: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
     margin-top: 15px;
     text-align: center;
 }
@@ -31,15 +31,16 @@
 .post-title {
     color: #F54F1B;
     font-weight: 800;
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 5px;
-    margin-top: 15px;
+    margin-top: 10px;
     text-align: center;
 }
 
 .post-description {
-    font-size: 12px;
-    margin-bottom: 5px;
-    margin-top: 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: 40px;
     text-align: center;
 }
+

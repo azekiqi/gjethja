@@ -13,12 +13,12 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className={"login"}>
-                    LOGIN
+            <div className="container">
+                <div className="login">
+                    Kyçy
                 </div>
                 <div className={"button"}>
-                    <Link to={"/home"}>RETURN TO HOME</Link>
+                    <Link to={"/home"}>Kthehu në ballinë</Link>
                 </div>
             </div>
         );
