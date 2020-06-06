@@ -5,6 +5,8 @@ import Landingpage from "./containers/Landingpage/Landingpage";
 import Home from "./containers/Home/Home";
 import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Register";
+import AboutUs from "./containers/AboutUs/AboutUs"
+import Profile from "./components/Profile/Profile";
 import "./App.scss";
 
 export default function App() {
@@ -15,9 +17,15 @@ export default function App() {
             <Route exact path="/">
                 <Landingpage />
             </Route>
+            <Route exact path="/aboutUs">
+                <AboutUs />
+            </Route>
             <Route path="/home">
                 <Home />
             </Route>
+            {/*<Route path="/home/profile">*/}
+            {/*    <Profile />*/}
+            {/*</Route>*/}
             <Route path="/login">
                 <Login />
             </Route>

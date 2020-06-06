@@ -1,40 +1,42 @@
 import React from 'react';
 import './Sidebar.scss'
+import FeatherIcon from 'feather-icons';
+
 
 export default function Sidebar() {
-    return(
-        <div className={"sidebar"}>
-            <div className="sidebar-title">
-                Categories
-            </div>
-            <div className="sidebar-link">
-                Posts
-            </div>
-            <div className="sidebar-link">
-                Profiles
-            </div>
+        return (
+            <div className={"sidebar"}>
+                <div className="sidebar-title">
+                    Kategoritë
+                </div>
+                <div className="sidebar-link">
+                    Postet
+                </div>
+                <div className="sidebar-link">
+                    Profilet
+                </div>
 
-            <div className="sidebar-title">
-                Filter
+                <div className="sidebar-title">
+                    Filtro sipas:
+                </div>
+                <div className="sidebar-link">
+                    moshës
+                </div>
+                <div className="sidebar-link">
+                    gjinisë
+                </div>
+                <div className="sidebar-link">
+                    vendndodhjes
+                </div>
+                <div className="sidebar-link">
+                    edukimit
+                </div>
+                <div className="sidebar-link">
+                    kualifikimeve
+                </div>
+                <div className="sidebar-link">
+                    vlerêsimeve
+                </div>
             </div>
-            <div className="sidebar-link">
-                by age
-            </div>
-            <div className="sidebar-link">
-                by gender
-            </div>
-            <div className="sidebar-link">
-                by qualification
-            </div>
-            <div className="sidebar-link">
-                by education
-            </div>
-            <div className="sidebar-link">
-                by location
-            </div>
-            <div className="sidebar-link">
-                by rating
-            </div>
-        </div>
-    )
-}
+        )
+    }
