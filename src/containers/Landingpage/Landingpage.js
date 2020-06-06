@@ -1,4 +1,7 @@
 import React from 'react';
+import Header from "../../components/Header/Header";
+import "./Styles.scss";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 class Landingpage extends React.Component {
     constructor(props) {
@@ -12,7 +15,17 @@ class Landingpage extends React.Component {
     render() {
         return (
             <div>
-                LANDINGPAGE
+                <Header />
+                 <div className="slideshow">
+                    SLIDESHOW
+                 </div>
+                <div className="services">
+                    SERVICES
+                </div>
+                <div className="ourValues">
+                    Our Values
+                </div>
+               {/*<Footer />*/}
             </div>
         );
     }
