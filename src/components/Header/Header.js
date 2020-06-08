@@ -12,7 +12,7 @@ export default function Header() {
             <nav className={"header_nav"}>
                 <ul>
                     <li>
-                        <Link to={"/home"}>Ballina</Link>
+                        <Link to={"/"}>Ballina</Link>
                     </li>
                     <li>
                         <Link to={"/aboutUs"}>Për ne</Link>
