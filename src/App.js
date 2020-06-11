@@ -7,6 +7,7 @@ import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Register";
 import AboutUs from "./containers/AboutUs/AboutUs"
 import Profile from "./components/Profile/Profile";
+import Footer from "./components/Footer/Footer";
 import "./App.scss";
 
 export default function App() {

@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import "./AboutUs.scss";
 import "../Home/Home.scss"
 import Landingpage from "../Landingpage/Landingpage";
+import Footer from "../../components/Footer/Footer";
 
 class AboutUs extends React.Component {
     constructor(props) {
@@ -33,6 +34,7 @@ class AboutUs extends React.Component {
                 <div className="ourpartners">
                     OUR PARTNERS
                 </div>
+                <Footer />
             </div>
 
         );
