@@ -4,8 +4,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import './Home.scss';
 import Post from "../../components/Post/Post";
 import { posts } from "../../utils/posts";
-import Profile from "../../components/Profile/Profile";
-import { profiles } from "../../utils/profiles";
+import Footer from "../../components/Footer/Footer";
 
 
 class Home extends React.Component {
@@ -13,35 +12,41 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            //
+            currentTab: "post"
         }
     }
 
+    filteredPosts = () => {
+        return posts.filter(post => {
+            return post.type == this.state.currentTab;
+        })
+    }
+
     render() {
+        const filteredPosts = this.filteredPosts(posts);
         return (
             <div>
                 <Header/>
                 <div className="container">
                     <Sidebar/>
-
                     <div className={"main_content"}>
                         <div className="navigation">
                             <div className="navigation-link">
-                                <a href="child">Kujdesi për fëmijë</a>
+                                <button
+                                    onClick={() => this.setState({ currentTab: "post" })}>
+                                    Posts
+                                </button>
                             </div>
                             <div className="navigation-link">
-                                <a href="elder">Kujdesi për të moshuarit</a>
-                            </div>
-                            <div className="navigation-link">
-                                <a href="pets">Kujdesi për kafshët</a>
-                            </div>
-                            <div className="navigation-link">
-                                <a href="housekeeping">Kujdesi për shtëpinë</a>
+                                <button
+                                    onClick={() => this.setState({ currentTab: "profile" })}>
+                                    Profiles
+                                </button>
                             </div>
                         </div>
                         <div className="posts">
                             {
-                                posts.map((post, index) => {
+                                filteredPosts.map((post, index) => {
                                     return <Post
                                         id={post.id}
                                         title={post.title}
@@ -61,6 +66,7 @@ class Home extends React.Component {
                         {/*</div>*/}
                     </div>
                 </div>
+                <Footer />
             </div>
 
         );

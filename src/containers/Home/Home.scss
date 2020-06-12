@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    height: 100vh;
+    height: 100%;
     background-color: #F1F1F1;
 }
 
@@ -11,23 +11,36 @@
     color: #249278;
 }
 
+button {
+    padding: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 7px;
+    background-color: #249278;
+    box-shadow: 10px 10px 14px -11px rgba(27, 69, 29, 1);
 
-.navigation {
-    display: flex;
-    width: 800px;
-    margin: 30px auto 50px auto;
-
-    .navigation-link {
-        width: 400px;
-        font-weight: 500;
-        font-size: 14px;
-        padding-right: 5px;
-        padding-left: 5px;
-        margin-bottom: 5px;
-        margin-top: 15px;
-        text-align: center;
+    a {
+        text-decoration: none;
+        color: white;
     }
 }
+
+    .navigation {
+        display: flex;
+        width: 800px;
+        margin: 30px auto 50px auto;
+
+        .navigation-link {
+            width: 400px;
+            font-weight: 500;
+            font-size: 14px;
+            padding-right: 5px;
+            padding-left: 5px;
+            margin-bottom: 5px;
+            margin-top: 15px;
+            text-align: center;
+        }
+    }
 
 .posts {
     display: flex;

@@ -1,20 +1,86 @@
 .slideshow{
   height: 480px;
   width: 100%;
-  background: whitesmoke;
+  background-image: url("../../assets/images/beba.jpg");
   text-align: center;
 }
 
 .services{
   height: 300px;
   width: 100%;
-  background: #249278;
+  background: whitesmoke;
   text-align: center;
+  img{
+    max-width: 150px;
+    margin: 40px;
+    padding-top: 30px;
+  }
 }
 
 .ourValues{
-  height: 700px;
+  height: 600px;
   width: 100%;
   background: white;
   text-align: center;
+  padding: 30px;
+  color: #ed8567;
+  img {
+    margin: 100px;
+  }
 }
+
+.friends {
+  width: 300px;
+  height: 400px;
+  padding: 20px;
+  margin-left: 8%;
+  margin-bottom: 60px;
+  margin-top: 60px;
+  background-color: #FFFFFF;
+  display: inline-block;
+
+  -webkit-box-shadow: 4px 4px 3px -2px rgba(36,146,120,1);
+  -moz-box-shadow: 4px 4px 3px -2px rgba(36,146,120,1);
+  box-shadow: 4px 4px 3px -2px rgba(36,146,120,1);
+}
+
+.post-image {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border-radius: 50px;
+  border: 1px solid grey;
+}
+
+.partner {
+  color: #498F7A;
+  font-weight: 800;
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.post-title {
+  color: #F54F1B;
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.post-description {
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-top: 40px;
+  text-align: center;
+  color: #333333;
+;
+}
+
+
+
+
+

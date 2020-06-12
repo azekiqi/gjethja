@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Header from './components/Header/Header';
-import Landingpage from "./containers/Landingpage/Landingpage";
+import LandingPage from "./containers/Landingpage/LandingPage";
 import Home from "./containers/Home/Home";
 import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Register";
@@ -16,7 +16,7 @@ export default function App() {
 
         <Switch>
             <Route exact path="/">
-                <Landingpage />
+                <LandingPage />
             </Route>
             <Route exact path="/aboutUs">
                 <AboutUs />
