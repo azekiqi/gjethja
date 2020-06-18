@@ -1,6 +1,9 @@
-.register {
+.container{
     height: 100%;
     background-image: url("../../assets/images/background.png");
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .button {

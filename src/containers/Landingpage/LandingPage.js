@@ -2,13 +2,13 @@ import React from 'react';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./Styles.scss";
-import Checked  from "../../assets/images/checked.png";
-import Lock  from "../../assets/images/lock.png";
-import Clock  from "../../assets/images/clock.png";
 import Baby  from "../../assets/images/baby.png";
 import Elder  from "../../assets/images/elder.png";
 import Pet from "../../assets/images/pet.png";
 import House  from "../../assets/images/house.png";
+import Slideshow from "./Slideshow";
+
+
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -23,23 +23,20 @@ class LandingPage extends React.Component {
         return (
             <div>
                 <Header />
-
-                 <div className="slideshow"></div>
+                 <div className="slideshow">
+                     <Slideshow />
+                 </div>
                 <div className="services">
                     <h1>Shërbimet tona</h1>
+                 <div className= "icons">
                     <img src={Baby}/>
                     <img src={Elder}/>
                     <img src={Pet}/>
                     <img src={House}/>
                 </div>
+                </div>
                 <div className="ourValues">
                     <h1>Çfarë thonë miqt dhe partnerët për ne</h1>
-                {/*    <div>*/}
-                {/*        <img src={Checked}/>*/}
-                {/*        <img src={Clock}/>*/}
-                {/*        <img src={Lock}/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
                 <div className="friends">
                     <div className={"post-image"} />
                     <div className={"partner"}>
@@ -76,7 +73,6 @@ class LandingPage extends React.Component {
                 </div>
              <Footer />
             </div>
-
         );
     }
 
