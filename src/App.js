@@ -20,7 +20,7 @@ export default function App() {
             </Route>
             <Route exact path="/aboutUs">
                 <AboutUs />
-            </Route>
+             </Route>
             <Route path="/home">
                 <Home />
             </Route>
@@ -38,3 +38,4 @@ export default function App() {
     </Router>
   );
 }
+
