@@ -12,13 +12,14 @@
 }
 
 button {
+    color: white;
+    border: transparent;
     padding: 10px;
     font-size: 12px;
     font-weight: bold;
     border-radius: 7px;
     background-color: #249278;
-    box-shadow: 10px 10px 14px -11px rgba(27, 69, 29, 1);
-
+    box-shadow: 10px 10px 14px -11px #1b451d;
     a {
         text-decoration: none;
         color: white;
