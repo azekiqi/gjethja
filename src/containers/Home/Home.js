@@ -29,7 +29,7 @@ class Home extends React.Component {
                 <Header/>
                 <div className="container">
                     <Sidebar/>
-                    <div className={"main_content"}>
+                    <div className="main_content">
                         <div className="navigation">
                             <div className="navigation-link">
                                 <button

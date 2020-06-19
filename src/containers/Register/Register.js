@@ -102,7 +102,7 @@ class Register extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="register">
                  <form onSubmit={this.handleSubmit} className="register-form">
                     <h1> Regjistrimi i përdoruesit </h1>
                     <label>Emri: </label>
