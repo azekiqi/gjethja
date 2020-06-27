@@ -1,6 +1,6 @@
 .sidebar {
-    width: 200px;
-    padding: 0 20px;
+    width: 250px;
+    padding: 0 40px;
     background-color: #FFFFFF;
 }
 
@@ -13,6 +13,8 @@
 }
 
 .sidebar-link {
+    width: inherit;
+    line-height: 1.7;
     color: #498F7A;
     font-weight: 400;
     font-size: 14px;

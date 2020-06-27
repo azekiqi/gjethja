@@ -10,32 +10,35 @@ export default function Sidebar() {
                     Kategoritë
                 </div>
                 <div className="sidebar-link">
-                    Postet
+                    Kujdesi për fëmijë
                 </div>
                 <div className="sidebar-link">
-                    Profilet
+                    Kujdesi për të moshuar
+                </div>
+                <div className="sidebar-link">
+                    Kujdesi për kafshët
+                </div>
+                <div className="sidebar-link">
+                    Mirëmbajtje e shtëpisë
                 </div>
 
                 <div className="sidebar-title">
                     Filtro sipas:
                 </div>
                 <div className="sidebar-link">
-                    moshës
+                    Moshës
                 </div>
                 <div className="sidebar-link">
-                    gjinisë
+                    Gjinisë
                 </div>
                 <div className="sidebar-link">
-                    vendndodhjes
+                    Vendndodhjes
                 </div>
                 <div className="sidebar-link">
-                    edukimit
+                    Edukimit
                 </div>
                 <div className="sidebar-link">
-                    kualifikimeve
-                </div>
-                <div className="sidebar-link">
-                    vlerêsimeve
+                    Vlerêsimeve
                 </div>
             </div>
         )

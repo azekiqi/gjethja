@@ -1,7 +1,7 @@
-.container {
+.home-container {
     display: flex;
     height: 100%;
-    background-color: #F1F1F1;
+    background-color: rgba(38, 144, 119, 0.05);
 }
 
 .headings{
@@ -12,14 +12,17 @@
 }
 
 button {
+    width: 80px;
     color: white;
     border: transparent;
     padding: 10px;
     font-size: 12px;
     font-weight: bold;
-    border-radius: 7px;
+    border-radius: 4px;
     background-color: #249278;
-    box-shadow: 10px 10px 14px -11px #1b451d;
+    -webkit-box-shadow: 7px 7px 19px -11px rgba(90,90,90,1);
+    -moz-box-shadow: 7px 7px 19px -11px rgba(90,90,90,1);
+    box-shadow: 7px 7px 19px -11px rgba(90,90,90,1);
     a {
         text-decoration: none;
         color: white;
@@ -28,11 +31,11 @@ button {
 
     .navigation {
         display: flex;
-        width: 800px;
+        width: 400px;
         margin: 30px auto 50px auto;
 
         .navigation-link {
-            width: 400px;
+            width: 200px;
             font-weight: 500;
             font-size: 14px;
             padding-right: 5px;

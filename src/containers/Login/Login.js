@@ -41,9 +41,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div>
-              <Header />
-            <div className="container">
+             <div className="login-container">
                 <form onSubmit={this.handleSubmit} className="login-form">
                     <h1> Kyçja e përdoruesit </h1>
 
@@ -61,9 +59,6 @@ class Login extends React.Component {
 
                     <input className="submit" type="submit" value="Submit"/>
                 </form>
-
-            </div>
-                <Footer />
             </div>
         );
     }

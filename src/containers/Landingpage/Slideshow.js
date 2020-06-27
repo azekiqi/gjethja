@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Styles.scss";
+import "./Landingpage.scss";
 import { Slide } from 'react-slideshow-image';
 import Femijet from "../../assets/images/femijet.png"
 import Gjyshja from "../../assets/images/gjyshja.png"

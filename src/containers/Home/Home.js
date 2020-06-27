@@ -5,6 +5,10 @@ import './Home.scss';
 import Post from "../../components/Post/Post";
 import { posts } from "../../utils/posts";
 import Footer from "../../components/Footer/Footer";
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+
+
 
 
 class Home extends React.Component {
@@ -27,7 +31,7 @@ class Home extends React.Component {
         return (
             <div>
                 <Header/>
-                <div className="container">
+                <div className="home-container">
                     <Sidebar/>
                     <div className="main_content">
                         <div className="navigation">
@@ -54,21 +58,13 @@ class Home extends React.Component {
                                 })
                             }
                         </div>
-                        {/*<div className="profiles">*/}
-                        {/*    {*/}
-                        {/*        profiles.map((profile, index) => {*/}
-                        {/*            return <Profile*/}
-                        {/*                id={profile.id}*/}
-                        {/*                title={profile.title}*/}
-                        {/*                description={profile.description} />*/}
-                        {/*        })*/}
-                        {/*    }*/}
-                        {/*</div>*/}
                     </div>
+                    {/*<Fab className={"add-icon"} aria-label="add">*/}
+                    {/*    <AddIcon />*/}
+                    {/*</Fab>*/}
                 </div>
                 <Footer />
             </div>
-
         );
     }
 

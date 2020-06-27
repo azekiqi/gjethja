@@ -28,7 +28,7 @@ class Register extends React.Component {
 
     formattedDateOfBirth = (date) => {
         let splitDate = date.split("-");
-        return [splitDate[2], splitDate[1], splitDate[0]].join("-");
+        return [splitDate[2], splitDate[1], splitDate[0]].join("-"); //reformat
     }
 
     firsthandler = (event) => {
@@ -126,7 +126,7 @@ class Register extends React.Component {
 
     render() {
         return (
-            <div className="register">
+            <div className="register-container">
                  <form onSubmit={this.handleSubmit} className="register-form">
                     <h1> Regjistrimi i përdoruesit </h1>
                     <label>Emri: </label>

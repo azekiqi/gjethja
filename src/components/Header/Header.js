@@ -7,7 +7,9 @@ export default function Header() {
     return(
         <div class={"header"}>
             <div className="header_logo">
-                <img src={Logo} alt="logo"/>
+                <Link to={"/"}>
+                        <img src={Logo} alt="logo"/>
+                </Link>
             </div>
             <nav className={"header_nav"}>
                 <ul>
