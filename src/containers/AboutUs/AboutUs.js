@@ -38,7 +38,8 @@ class AboutUs extends React.Component {
                 </div>
                 <div className="partners">
                     <div className="partners-cards">
-                            <div className="partners-card-img">
+                        {/*<div className="partners-card-title">Miqt e Gjethes</div>*/}
+                        <div className="partners-card-img">
                                 <img src={Ick}/>
                             </div>
                                 <div className="partners-card-img">
@@ -54,7 +55,6 @@ class AboutUs extends React.Component {
                                             <div className="partners-card-img">
                                                 <img src={Inlab}/>
                                             </div>
-
                     </div>
                 </div>
                 <Footer />

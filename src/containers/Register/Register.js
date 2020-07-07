@@ -4,7 +4,8 @@ import {PostRequest} from "../../utils/PostRequest";
 import {Link} from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import axios from 'axios';
+import { register } from '../../actions/user';
+import { connect } from "react-redux";
 
 class Register extends React.Component {
     constructor(props) {
@@ -87,47 +88,14 @@ class Register extends React.Component {
         })
     }
 
-
     handleSubmit = (event) => {
-        console.log(this.state);
-        this.setState({
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            bio: "",
-            dateOfBirth: "",
-            city: "",
-            address: "",
-            gender: "",
-            phoneNumber: ""
-        })
-        event.preventDefault()
-        axios({
-            method: 'post',
-            url: "http://localhost:8080/api/seekers/register",
-            data: {
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                email: this.state.email,
-                password: this.state.password,
-                confirmPassword: this.state.confirmPassword,
-                bio: this.state.bio,
-                dateOfBirth: this.formattedDateOfBirth(this.state.dateOfBirth),
-                city: this.state.city,
-                address: this.state.address,
-                gender: this.state.gender,
-                phoneNumber: this.state.phoneNumber
-            }
-        });
-
+        this.props.registerUser(this.state);
     }
 
     render() {
         return (
             <div className="register-container">
-                 <form onSubmit={this.handleSubmit} className="register-form">
+                 <form className="register-form">
                     <h1> Regjistrimi i përdoruesit </h1>
                     <label>Emri: </label>
                     <input type="text"
@@ -197,7 +165,7 @@ class Register extends React.Component {
                         <option value="Female">Female</option>
                     </select>
 
-                    <input className="submit" type="submit" value="Submit"/>
+                    <button type="button" onClick={() => this.handleSubmit()}>Submit</button>
                 </form>
                 <div className={"button"}>
                     <Link to={"/home"}>RETURN TO HOME</Link>
@@ -207,4 +175,14 @@ class Register extends React.Component {
     }
 }
 
-export default Register;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    };
+}
+
+const mapDispatchToProps = dispatch => ({
+    registerUser: (data) => dispatch(register(data)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

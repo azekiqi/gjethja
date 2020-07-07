@@ -1,14 +1,17 @@
 .aboutUs{
-  height: 100%;
+  height: 700px;
   width: 100%;
   background-color: rgba(38, 144, 119, 0.08);
   text-align: center;
 }
 
 .text{
-  padding: 40px 400px 0 400px;
+  font-size: 0.9rem;
+  font-weight: 300;
+  padding: 40px 400px 100px 400px;
   margin: 0;
 }
+
 
 .heading{
   color: #269077;
@@ -34,3 +37,9 @@
   }
 }
 
+//.partners-card-title{
+//  color: var(--main);
+//  font-size: 2rem;
+//  font-weight: bold;
+//  margin-bottom: 30px;
+//}

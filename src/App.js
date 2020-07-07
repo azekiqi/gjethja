@@ -6,30 +6,33 @@ import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Register";
 import AboutUs from "./containers/AboutUs/AboutUs"
 import "./App.scss";
+import { Provider } from 'react-redux';
+import {store} from "./reducers/app";
 
 export default function App() {
   return(
-    <Router>
+      <Provider store={store}>
+          <Router>
+              <Switch>
+                  <Route exact path="/">
+                      <Landingpage />
+                  </Route>
+                  <Route exact path="/aboutUs">
+                      <AboutUs />
+                  </Route>
+                  <Route path="/home">
+                      <Home />
+                  </Route>
+                  <Route path="/login">
+                      <Login />
+                  </Route>
+                  <Route path="/register">
+                      <Register />
+                  </Route>
+              </Switch>
+          </Router>
+      </Provider>
 
-        <Switch>
-            <Route exact path="/">
-                <Landingpage />
-            </Route>
-            <Route exact path="/aboutUs">
-                <AboutUs />
-             </Route>
-            <Route path="/home">
-                <Home />
-            </Route>
-            <Route path="/login">
-                <Login />
-            </Route>
-            <Route path="/register">
-                <Register />
-            </Route>
-        </Switch>
-
-    </Router>
   );
 }
 
