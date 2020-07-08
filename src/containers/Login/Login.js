@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './Login.scss';
 import {Link} from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { confirm } from "../../actions/user";
 
 class Login extends React.Component {
     constructor(props) {
@@ -13,6 +15,12 @@ class Login extends React.Component {
             password:"",
         }
         this.handleSubmit=this.handleSubmit.bind(this)
+    }
+
+    componentDidMount() {
+        const url = window.location.href;
+        const token = url.split("token=")[1];
+        this.props.confirm(token);
     }
 
 
@@ -63,4 +71,15 @@ class Login extends React.Component {
         );
     }
 }
-export default Login;
+
+const mapStateToProps = state => {
+    return {
+        //
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    confirm: data => dispatch(confirm(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

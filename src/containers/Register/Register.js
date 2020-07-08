@@ -24,7 +24,6 @@ class Register extends React.Component {
             gender: "",
             phoneNumber: ""
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     formattedDateOfBirth = (date) => {
@@ -32,64 +31,16 @@ class Register extends React.Component {
         return [splitDate[2], splitDate[1], splitDate[0]].join("-"); //reformat
     }
 
-    firsthandler = (event) => {
-        this.setState({
-            firstName: event.target.value
-        })
-    }
-    lasthandler = (event) => {
-        this.setState({
-            lastName: event.target.value
-        })
-    }
-    emailhandler = (event) => {
-        this.setState({
-            email: event.target.value
-        })
-    }
-    passwordhandler = (event) => {
-        this.setState({
-            password: event.target.value
-        })
-    }
-    confirmhandler = (event) => {
-        this.setState({
-            confirmPassword: event.target.value
-        })
-    }
-    biohandler = (event) => {
-        this.setState({
-            bio: event.target.value
-        })
-    }
-    datehandler = (event) => {
-        this.setState({
-            dateOfBirth: event.target.value
-        })
-    }
-    cityhandler = (event) => {
-        this.setState({
-            city: event.target.value
-        })
-    }
-    addresshandler = (event) => {
-        this.setState({
-            address: event.target.value
-        })
-    }
-    genderhandler = (event) => {
-        this.setState({
-            gender: event.target.value
-        })
-    }
-    phonehandler = (event) => {
-        this.setState({
-            phoneNumber: event.target.value
-        })
+    formattedState = (state) => {
+        return {
+            ...state,
+            dateOfBirth: this.formattedDateOfBirth(state.dateOfBirth),
+            url: process.env.REACT_APP_FRONT_URL
+        }
     }
 
     handleSubmit = (event) => {
-        this.props.registerUser(this.state);
+        this.props.registerUser(this.formattedState(this.state));
     }
 
     render() {
@@ -100,46 +51,54 @@ class Register extends React.Component {
                     <label>Emri: </label>
                     <input type="text"
                            value={this.state.firstName}
-                           onChange={this.firsthandler}
-                           placeholder="Emri"/>
+                           placeholder="Emri"
+                           onChange={(e) => this.setState({ firstName: e.target.value })} />
 
                     <label>Mbiemri: </label>
                     <input type="text"
                            value={this.state.lastName}
-                           onChange={this.lasthandler}
-                           placeholder="Mbiemri"/>
+                           placeholder="Mbiemri"
+                           onChange={(e) => this.setState({ lastName: e.target.value })} />
 
                     <label htmlFor="email">Email adresa:</label>
                     <input type="email"
                            value={this.state.email}
-                           onChange={this.emailhandler}
-                           placeholder="Email adresa"/>
+                           placeholder="Email adresa"
+                           onChange={(e) => this.setState({ email: e.target.value })} />
+
+                     <label htmlFor="email">Numri i telefonit:</label>
+                     <input type="text"
+                            value={this.state.phoneNumber}
+                            placeholder="Numri i telefonit"
+                            onChange={(e) => this.setState({ phoneNumber: e.target.value })} />
 
                     <label htmlFor="pwd">Fjalëkalimi: </label>
                     <input type="password" id="pwd" name="pwd"
                            value={this.state.password}
-                           onChange={this.passwordhandler}
-                           placeholder="Fjalëkalimi"/>
+                           placeholder="Fjalëkalimi"
+                           onChange={(e) => this.setState({ password: e.target.value })} />
 
                     <label>Përsërite fjalëkalimin: </label>
                     <input type="password"
                            value={this.state.confirmPassword}
-                           onChange={this.confirmhandler}
-                           placeholder="Përsërite fjalëkalimin"/>
+                           placeholder="Përsërite fjalëkalimin"
+                           onChange={(e) => this.setState({ confirmPassword: e.target.value })} />
 
                     <label>Biografi e shkurtër: </label>
                     <input type="text"
                            value={this.state.bio}
-                           onChange={this.biohandler}
-                           placeholder="Biografia"/>
+                           placeholder="Biografia"
+                           onChange={(e) => this.setState({ bio: e.target.value })} />
 
                     <label>Data e lindjes: </label>
                     <input type="date"
                            value={this.state.dateOfBirth}
-                           onChange={this.datehandler}/>
+                           onChange={(e) => this.setState({ dateOfBirth: e.target.value })} />
 
                     <label>Qyteti: </label>
-                    <select onChange={this.cityhandler} defaultValue="Zgjedh qytetin">
+                    <select
+                        onChange={(e) => this.setState({ city: e.target.value })}
+                        defaultValue="Zgjedh qytetin">
                         <option defaultValue>Zgjedh qytetin</option>
                         <option value="Prishtinë">Prishtinë</option>
                         <option value="Pejë">Pejë</option>
@@ -147,19 +106,21 @@ class Register extends React.Component {
                         <option value="Gjakovë">Gjakovë</option>
                         <option value="Fushë Kosovë">Fushë Kosovë</option>
                         <option value="Ferizaj">Ferizaj</option>
-                        <option value="Skënderaj">Skënderaj</option>
                         <option value="Vushtrri">Vushtrri</option>
                         <option value="Gjilan">Gjilan</option>
+                        <option value="Mitrovicë">Mitrovicë</option>
                     </select>
 
                     <label>Adresa: </label>
                     <input type="text"
                            value={this.state.address}
-                           onChange={this.addresshandler}
+                           onChange={(e) => this.setState({ address: e.target.value })}
                            placeholder="Adresa"/>
 
                     <label>Gjinia: </label>
-                    <select onChange={this.genderhandler} defaultValue="Zgjedh gjininë">
+                    <select
+                        onChange={(e) => this.setState({ gender: e.target.value })}
+                        defaultValue="Zgjedh gjininë">
                         <option defaultValue>Zgjedh gjininë</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
