@@ -6,7 +6,11 @@
   padding: 50px 100px;
   color: var(--main);
   flex-wrap: wrap;
-  //justify-content: space-evenly;
+
+  ul {
+    list-style: none;
+  }
+
 }
 
 .contact {
@@ -34,7 +38,16 @@
 
   .social-media-text {
     font-size: 1rem;
+  }
 
+
+  a {
+    text-decoration: none;
+    color: var(--main);
+
+    &:hover {
+      color: #185749;
+    }
   }
 }
 

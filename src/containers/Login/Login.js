@@ -4,7 +4,7 @@ import './Login.scss';
 import {Link} from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { confirm } from "../../actions/user";
+import {confirm, login} from "../../actions/user";
 
 class Login extends React.Component {
     constructor(props) {
@@ -20,53 +20,67 @@ class Login extends React.Component {
     componentDidMount() {
         const url = window.location.href;
         const token = url.split("token=")[1];
-        this.props.confirm(token);
+        this.props.confirm(token).then(res => {
+            console.log(res);
+        })
     }
 
 
-    emailhandler = (event) => {
+    emailhandler = event => {
         this.setState({
             email: event.target.value
         })
     }
-    passwordhandler = (event) => {
+    passwordhandler = event => {
         this.setState({
             password: event.target.value
         })
     }
 
 
-    handleSubmit = (event) => {
-        alert(`${this.state.firstName}' ${this.state.email} Kycja e suksesshme!`)
-        console.log(this.state);
-        this.setState({
-            email:"",
-            password:"",
+    handleSubmit = event => {
+        this.props.login(this.state).then(res => {
+            console.log(res);
         })
-        event.preventDefault()
-
     }
 
     render() {
         return (
-             <div className="login-container">
-                <form onSubmit={this.handleSubmit} className="login-form">
-                    <h1> Kyçja e përdoruesit </h1>
+             <div className="container-fluid login-container">
+                 <div className="row">
+                     <div className="col">
+                         <form onSubmit={this.handleSubmit} className="login-form">
+                             <div className="login-title"> Kyçja e përdoruesit </div>
 
-                    <label htmlFor="email">Email adresa:</label>
-                    <input type="email"
-                           value={this.state.email}
-                           onChange={this.emailhandler}
-                           placeholder="Email adresa"/>
+                             <div className="form-group">
+                                 <label htmlFor="email">Email adresa:</label>
+                                 <input type="email"
+                                        id="email-input"
+                                        className="form-control"
+                                        placeholder="Email adresa"
+                                        value={this.state.email}
+                                        onChange={this.emailhandler} />
+                             </div>
 
-                    <label htmlFor="pwd">Fjalëkalimi: </label>
-                    <input type="password" id="pwd" name="pwd"
-                           value={this.state.password}
-                           onChange={this.passwordhandler}
-                           placeholder="Fjalëkalimi"/>
+                             <div className="form-group">
+                                 <label htmlFor="password">Fjalëkalimi: </label>
+                                 <input type="password"
+                                        id="password-input"
+                                        className="form-control"
+                                        placeholder="Fjalëkalimi"
+                                        value={this.state.password}
+                                        onChange={this.passwordhandler} />
+                             </div>
 
-                    <input className="submit" type="submit" value="Submit"/>
-                </form>
+
+                             <div className="login-button">
+                                 <button type="button"
+                                         onClick={(e) => this.handleSubmit(e)}>Kyçu</button>
+                             </div>
+
+                         </form>
+                     </div>
+                 </div>
             </div>
         );
     }
@@ -79,6 +93,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
+    login: data => dispatch(login(data)),
     confirm: data => dispatch(confirm(data))
 })
 

@@ -8,13 +8,33 @@ const url = process.env.REACT_APP_BACKEND_URL;
 // in order to affect state
 export const register = data => {
     return function(dispatch) {
-        axios({
+        return axios({
             method: 'post',
             url: url + "seekers/register",
             data: data
         }).then(res => {
             console.log(res);
-            return { type: constants.REGISTER,  data: res }
+            dispatch({ type: constants.REGISTER,  data: res.data });
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+
+}
+
+export const login = data => {
+    return function(dispatch) {
+        return axios({
+            method: 'post',
+            url: url + "login",
+            data: data
+        }).then(res => {
+            console.log(res);
+            dispatch({ type: constants.LOGIN,  data: res.data });
+            return res;
+        }).catch(err => {
+            return err;
         })
     }
 
@@ -22,12 +42,15 @@ export const register = data => {
 
 export const confirm = data => {
     return function(dispatch) {
-        axios({
+        return axios({
             method: 'get',
             url: url + "confirm-account?token=" + data,
         }).then(res => {
             console.log(res);
-            return { type: constants.CONFIRM,  data: res }
+            dispatch({ type: constants.CONFIRMED,  data: res });
+            return res;
+        }).catch(err => {
+            return err;
         })
     }
 

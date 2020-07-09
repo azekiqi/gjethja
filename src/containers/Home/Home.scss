@@ -2,6 +2,11 @@
     display: flex;
     height: 100%;
     background-color: rgba(38, 144, 119, 0.05);
+    min-height: calc(100vh - 70px);
+}
+
+.main-content {
+    width: 100%;
 }
 
 .headings{
@@ -52,5 +57,4 @@ button {
     width: 85%;
     margin: auto;
 }
-
 

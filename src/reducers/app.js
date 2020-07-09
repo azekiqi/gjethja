@@ -3,7 +3,8 @@ import * as constants from '../utils/constants';
 import thunk from 'redux-thunk';
 
 const initialState = {   //initialState is a plain object that "describes" our app state
-    user: {}
+    user: {},
+    posts: []
 }
 
 // Reducer:
@@ -11,11 +12,23 @@ const initialState = {   //initialState is a plain object that "describes" our a
 // accepts data from action, affects state
 const app = function (state = initialState, action) {
     switch (action.type) {
+
         case constants.REGISTER:
-            console.log(action.data);
+            console.log(action);
             return state;
+
         case constants.LOGIN:
+            console.log(action);
+            localStorage.setItem("token", action.data.accessToken);
             return state;
+
+        case constants.GET_POSTS:
+            console.log(action);
+            return {
+                ...state,
+                posts: action.data
+            }
+
         default:
             return state;
     }

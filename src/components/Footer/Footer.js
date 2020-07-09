@@ -8,15 +8,20 @@ function Footer() {
             <div className="footer">
                 <div className="contact">
                     <div className="contact-title">Na kontaktoni:</div>
-                    <div className="contact-text">10000 Pristina, Kosovo</div>
-                    <div className="contact-text">+ 383 (0)44 111 111</div>
-                    <div className="contact-text">katrasolutions@gmail.com</div>
+                    <ul>
+                        <li className="contact-text">10000 Pristina, Kosovo</li>
+                        <li className="contact-text">+ 383 (0)44 111 111</li>
+                        <li className="contact-text">katrasolutions@gmail.com</li>
+                    </ul>
                 </div>
                 <div className="social-media">
-                    <div className="contact-title">Rrjetet Sociale:</div>
-                    <li><a href="https://www.facebook.com/katrasolutions/">Facebook</a></li>
-                    <li><a href="https://www.instagram.com/katrasolutions/">Instagram</a></li>
-                    <li><a href="https://www.linkedin.com/company/katra-solutions">LinkedIn</a></li>
+                    <div className="social-media-title">Rrjetet Sociale:</div>
+                    <ul>
+                        <li><a href="https://www.facebook.com/katrasolutions/">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/katrasolutions/">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com/company/katra-solutions">LinkedIn</a></li>
+                    </ul>
+
                 </div>
                 <div className="copyrights">
                     <p>2020 Gjethja - All Rights Reserved</p>

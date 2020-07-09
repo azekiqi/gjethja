@@ -8,6 +8,7 @@ import AboutUs from "./containers/AboutUs/AboutUs"
 import "./App.scss";
 import { Provider } from 'react-redux';
 import {store} from "./reducers/app";
+import CreatePost from "./containers/CreatePost/CreatePost";
 
 export default function App() {
   return(
@@ -28,6 +29,9 @@ export default function App() {
                   </Route>
                   <Route path="/register">
                       <Register />
+                  </Route>
+                  <Route path="/create">
+                      <CreatePost />
                   </Route>
               </Switch>
           </Router>

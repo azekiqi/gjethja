@@ -7,9 +7,8 @@ import { posts } from "../../utils/posts";
 import Footer from "../../components/Footer/Footer";
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-
-
-
+import {getPosts} from "../../actions/posts";
+import { connect } from "react-redux";
 
 class Home extends React.Component {
     constructor(props) {
@@ -20,20 +19,19 @@ class Home extends React.Component {
         }
     }
 
-    filteredPosts = () => {
-        return posts.filter(post => {
-            return post.type == this.state.currentTab;
-        })
+    componentDidMount() {
+        this.props.getPosts();
     }
 
     render() {
-        const filteredPosts = this.filteredPosts(posts);
         return (
             <div>
                 <Header/>
                 <div className="home-container">
+
                     <Sidebar/>
-                    <div className="main_content">
+
+                    <div className="main-content">
                         <div className="navigation">
                             <div className="navigation-link">
                                 <button
@@ -50,7 +48,7 @@ class Home extends React.Component {
                         </div>
                         <div className="posts">
                             {
-                                filteredPosts.map((post, index) => {
+                                this.props.posts.map((post, index) => {
                                     return <Post
                                         id={post.id}
                                         title={post.title}
@@ -59,15 +57,21 @@ class Home extends React.Component {
                             }
                         </div>
                     </div>
-                    {/*<Fab className={"add-icon"} aria-label="add">*/}
-                    {/*    <AddIcon />*/}
-                    {/*</Fab>*/}
                 </div>
-                <Footer />
             </div>
         );
     }
 
 }
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        posts: state.posts
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    getPosts: data => dispatch(getPosts())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
