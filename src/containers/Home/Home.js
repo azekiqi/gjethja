@@ -5,8 +5,6 @@ import './Home.scss';
 import Post from "../../components/Post/Post";
 import { posts } from "../../utils/posts";
 import Footer from "../../components/Footer/Footer";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import {getPosts} from "../../actions/posts";
 import { connect } from "react-redux";
 

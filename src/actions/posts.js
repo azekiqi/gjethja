@@ -22,3 +22,23 @@ export const getPosts = data => {
         })
     }
 }
+
+export const createPost = data => {
+    const token = localStorage.getItem("token");
+    return function(dispatch) {
+        return axios({
+            method: 'post',
+            url: url + "posts/",
+            data: data,
+            headers: {
+                authorization: "Bearer " + token
+            }
+        }).then(res => {
+            console.log(res);
+            dispatch({ type: constants.CREATE_POST,  data: res.data });
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+}
