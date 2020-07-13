@@ -50,6 +50,7 @@ export const createPost = data => {
             }
         }).then(res => {
             console.log(res);
+            dispatch({ type: constants.CREATE_POST,  data: res.data });
             return res;
         }).catch(err => {
             return err;
