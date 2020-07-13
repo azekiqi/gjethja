@@ -6,6 +6,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { register } from '../../actions/user';
 import { connect } from "react-redux";
+import {createPost} from "../../actions/posts";
 
 class CreatePost extends React.Component {
     constructor(props) {
@@ -16,6 +17,10 @@ class CreatePost extends React.Component {
             description: "",
             status: "",
         }
+    }
+
+    handleSubmit = () => {
+        this.props.createPost(this.state);
     }
 
     render() {
@@ -77,6 +82,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     registerUser: (data) => dispatch(register(data)),
+    createPost: data => dispatch(createPost(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);

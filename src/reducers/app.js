@@ -4,7 +4,11 @@ import thunk from 'redux-thunk';
 
 const initialState = {   //initialState is a plain object that "describes" our app state
     user: {},
-    posts: []
+    posts: [],
+    startAgeFilter: "",
+    endAgeFilter: "",
+    cityFilter: "",
+    educationFilter: "",
 }
 
 // Reducer:
@@ -27,6 +31,18 @@ const app = function (state = initialState, action) {
             return {
                 ...state,
                 posts: action.data
+            }
+
+        case constants.SET_FILTERS:
+            switch (action.payload.filter) {
+                case("startAgeFilter"):
+                    return { ...state, [action.payload.filter]: action.payload.value }
+                case("endAgeFilter"):
+                    return { ...state, [action.payload.filter]: action.payload.value }
+                case("cityFilter"):
+                    return { ...state, [action.payload.filter]: action.payload.value }
+                case("educationFilter"):
+                    return { ...state, [action.payload.filter]: action.payload.value }
             }
 
         default:

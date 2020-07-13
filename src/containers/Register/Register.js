@@ -1,11 +1,20 @@
 import React from 'react';
 import './Register.scss';
-import {PostRequest} from "../../utils/PostRequest";
-import {Link} from "react-router-dom";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import { register } from '../../actions/user';
-import { connect } from "react-redux";
+import {register} from '../../actions/user';
+import {connect} from "react-redux";
+
+// const initialState={
+//     firstNameError: "",
+//     lastNameError: "",
+//     emailError: "",
+//     passwordError: "",
+//     confPassError: "",
+//     dateOfBirthError: "",
+//     cityError: "",
+//     addressError: "",
+//     genderError: "",
+//     phoneNumberError: ""
+// }
 
 class Register extends React.Component {
     constructor(props) {
@@ -22,9 +31,20 @@ class Register extends React.Component {
             city: "",
             address: "",
             gender: "",
-            phoneNumber: ""
+            phoneNumber: "",
+            firstNameError: "",
+            lastNameError: "",
+            emailError: "",
+            passwordError: "",
+            confPassError: "",
+            dateOfBirthError: "",
+            cityError: "",
+            addressError: "",
+            genderError: "",
+            phoneNumberError: ""
         }
     }
+
 
     formattedDateOfBirth = (date) => {
         let splitDate = date.split("-");
@@ -39,8 +59,75 @@ class Register extends React.Component {
         }
     }
 
+    validate = () => {
+        let firstNameError = "";
+        let lastNameError = "";
+        let emailError = "";
+        let passwordError = "";
+        let confPassError = "";
+        let dateOfBirthError = "";
+        let cityError = "";
+        let addressError = "";
+        let genderError = "";
+        let phoneNumberError = "";
+
+        if (!this.state.firstName > 2 || (!this.state.firstName)) {
+            firstNameError = "Ky emër nuk është valid!"
+        }
+        if (!this.state.lastName > 2 || (!this.state.lastName)) {
+            lastNameError = "Ky mbiemër nuk është valid!"
+        }
+        if (!this.state.email.includes('@') || (!this.state.email)) {
+            emailError = "Kjo email adresë nuk është valide!"
+        }
+        if (!this.state.password > 8 || (!this.state.password)) {
+            passwordError = "Ky fjalëkalim nuk është valid!"
+        }
+        if (!this.state.confirmPassword > 8 || (!this.state.confirmPassword)) {    //per match
+            confPassError = "Ky fjalëkalim nuk është valid!"
+        }
+        if (!this.state.dateOfBirth) {
+            dateOfBirthError = "Kjo datë nuk është valide!"
+        }
+        if (!this.state.city) {
+            cityError = "Ky qytet nuk është valid!"
+        }
+        if (!this.state.address) {
+            addressError = "Kjo adresë nuk është valide!"
+        }
+        if (!this.state.gender) {
+            genderError = "Kjo gjini nuk është valide!"
+        }
+        if (!this.state.phoneNumber) {
+            phoneNumberError = "Ky nr. telefoni nuk është valid!"
+        }
+        if (emailError || firstNameError || lastNameError || passwordError || confPassError || dateOfBirthError
+            || cityError || addressError || genderError || phoneNumberError) {
+            this.setState({
+                emailError,
+                firstNameError,
+                lastNameError,
+                passwordError,
+                confPassError,
+                dateOfBirthError,
+                cityError,
+                addressError,
+                genderError,
+                phoneNumberError
+            });
+            return false;
+        }
+        return true;
+    }
+
+
     handleSubmit = (event) => {
         this.props.registerUser(this.formattedState(this.state));
+        const isValid = this.validate();
+        if (isValid) {
+            console.log(this.state)
+        }
+        // this.setState(initialState);
     }
 
     render() {
@@ -50,7 +137,7 @@ class Register extends React.Component {
                 <div className="row">
                     <div className="col">
                         <form className="register-form">
-                            <div className="register-title"> Regjistrohu! </div>
+                            <div className="register-title"> Regjistrohu!</div>
 
                             <div className="form-row">
                                 <div className="col">
@@ -61,7 +148,9 @@ class Register extends React.Component {
                                                className="form-control"
                                                placeholder="Emri"
                                                value={this.state.firstName}
-                                               onChange={(e) => this.setState({firstName: e.target.value})}/></div>
+                                               onChange={(e) => this.setState({firstName: e.target.value})}/>
+                                        <div className="error-style">{this.state.firstNameError}</div>
+                                    </div>
                                 </div>
                                 <div className="col">
                                     <div className="form-group">
@@ -71,7 +160,9 @@ class Register extends React.Component {
                                                className="form-control"
                                                placeholder="Mbiemri"
                                                value={this.state.lastName}
-                                               onChange={(e) => this.setState({lastName: e.target.value})}/></div>
+                                               onChange={(e) => this.setState({lastName: e.target.value})}/>
+                                        <div className="error-style">{this.state.lastNameError}</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -82,7 +173,9 @@ class Register extends React.Component {
                                        className="form-control"
                                        placeholder="Email adresa"
                                        value={this.state.email}
-                                       onChange={(e) => this.setState({ email: e.target.value })} /></div>
+                                       onChange={(e) => this.setState({email: e.target.value})}/>
+                                <div className="error-style">{this.state.emailError}</div>
+                            </div>
 
                             <div className="form-group">
                                 <label htmlFor="phone">Numri i telefonit:</label>
@@ -91,7 +184,9 @@ class Register extends React.Component {
                                        className="form-control"
                                        placeholder="Numri i telefonit"
                                        value={this.state.phoneNumber}
-                                       onChange={(e) => this.setState({ phoneNumber: e.target.value })} /></div>
+                                       onChange={(e) => this.setState({phoneNumber: e.target.value})}/>
+                                <div className="error-style">{this.state.phoneNumberError}</div>
+                            </div>
 
 
                             <div className="form-row">
@@ -103,7 +198,9 @@ class Register extends React.Component {
                                                className="form-control"
                                                placeholder="Fjalëkalimi"
                                                value={this.state.password}
-                                               onChange={(e) => this.setState({ password: e.target.value })} /></div>
+                                               onChange={(e) => this.setState({password: e.target.value})}/>
+                                        <div className="error-style">{this.state.passwordError}</div>
+                                    </div>
                                 </div>
                                 <div className="col">
                                     <div className="form-group">
@@ -113,7 +210,9 @@ class Register extends React.Component {
                                                className="form-control"
                                                value={this.state.confirmPassword}
                                                placeholder="Përsërite fjalëkalimin"
-                                               onChange={(e) => this.setState({ confirmPassword: e.target.value })} /></div>
+                                               onChange={(e) => this.setState({confirmPassword: e.target.value})}/>
+                                        <div className="error-style">{this.state.confPassError}</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -124,19 +223,22 @@ class Register extends React.Component {
                                        className="form-control"
                                        placeholder="wtf"
                                        value={this.state.dateOfBirth}
-                                       onChange={(e) => this.setState({ dateOfBirth: e.target.value })} /></div>
+                                       onChange={(e) => this.setState({dateOfBirth: e.target.value})}/>
+                                <div className="error-style">{this.state.dateOfBirthError}</div>
+                            </div>
 
                             <div className="form-group">
                                 <label htmlFor="gender-input">Gjinia: </label>
                                 <select
                                     id="gender-input"
                                     className="form-control"
-                                    onChange={(e) => this.setState({ gender: e.target.value })}
+                                    onChange={(e) => this.setState({gender: e.target.value})}
                                     defaultValue="Zgjedh gjininë">
                                     <option defaultValue>Zgjedh gjininë</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
+                                <div className="error-style">{this.state.genderError}</div>
                             </div>
 
                             <div className="form-row">
@@ -146,7 +248,7 @@ class Register extends React.Component {
                                         <select
                                             id="city-input"
                                             className="form-control"
-                                            onChange={(e) => this.setState({ city: e.target.value })}
+                                            onChange={(e) => this.setState({city: e.target.value})}
                                             defaultValue="Zgjedh qytetin">
                                             <option defaultValue>Zgjedh qytetin</option>
                                             <option value="Prishtinë">Prishtinë</option>
@@ -159,6 +261,7 @@ class Register extends React.Component {
                                             <option value="Gjilan">Gjilan</option>
                                             <option value="Mitrovicë">Mitrovicë</option>
                                         </select>
+                                        <div className="error-style">{this.state.cityError}</div>
                                     </div>
                                 </div>
                                 <div className="col">
@@ -168,8 +271,10 @@ class Register extends React.Component {
                                                id="address-input"
                                                className="form-control"
                                                value={this.state.address}
-                                               onChange={(e) => this.setState({ address: e.target.value })}
-                                               placeholder="Adresa"/></div>
+                                               onChange={(e) => this.setState({address: e.target.value})}
+                                               placeholder="Adresa"/>
+                                        <div className="error-style">{this.state.addressError}</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -180,7 +285,7 @@ class Register extends React.Component {
                                        className="form-control"
                                        placeholder="Biografia"
                                        value={this.state.bio}
-                                       onChange={(e) => this.setState({ bio: e.target.value })} /></div>
+                                       onChange={(e) => this.setState({bio: e.target.value})}/></div>
 
                             <div className="register-button">
                                 <button type="button" onClick={() => this.handleSubmit()}>Submit</button>

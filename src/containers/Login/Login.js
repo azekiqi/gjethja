@@ -13,6 +13,8 @@ class Login extends React.Component {
         this.state = {
             email:"",
             password:"",
+            emailError: "",
+            passwordError: "",
         }
         this.handleSubmit=this.handleSubmit.bind(this)
     }
@@ -37,11 +39,31 @@ class Login extends React.Component {
         })
     }
 
+    validate = () => {
+        let emailError = "";
+        let passwordError = "";
+
+        if (!this.state.email.includes('@') || (!this.state.email)) {
+            emailError = "Kjo email adresë nuk është valide!"
+        }
+        if (!this.state.password > 8 || (!this.state.password)) {
+            passwordError = "Ky fjalëkalim nuk është valid!"
+        }
+        if (emailError || passwordError) {
+            this.setState({emailError, passwordError})
+            return true;
+        }
+    }
+
 
     handleSubmit = event => {
         this.props.login(this.state).then(res => {
             console.log(res);
         })
+            const isValid = this.validate();
+            if(isValid){
+                console.log(this.state)
+            }
     }
 
     render() {
@@ -60,6 +82,8 @@ class Login extends React.Component {
                                         placeholder="Email adresa"
                                         value={this.state.email}
                                         onChange={this.emailhandler} />
+                                        <div className="error-style">{this.state.emailError}</div>
+
                              </div>
 
                              <div className="form-group">
@@ -70,6 +94,8 @@ class Login extends React.Component {
                                         placeholder="Fjalëkalimi"
                                         value={this.state.password}
                                         onChange={this.passwordhandler} />
+                                 <div className="error-style">{this.state.passwordError}</div>
+
                              </div>
 
 

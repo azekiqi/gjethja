@@ -3,10 +3,6 @@ import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import './Home.scss';
 import Post from "../../components/Post/Post";
-import { posts } from "../../utils/posts";
-import Footer from "../../components/Footer/Footer";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import {getPosts} from "../../actions/posts";
 import { connect } from "react-redux";
 
@@ -71,7 +67,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getPosts: data => dispatch(getPosts())
+    getPosts: filterByAge => dispatch(getPosts(filterByAge))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
