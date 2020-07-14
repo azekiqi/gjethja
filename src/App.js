@@ -1,31 +1,46 @@
 import React from 'react';
-import { HashRouter as Router, Switch, Route, Link} from "react-router-dom";
-import Header from './components/Header/Header';
+import { HashRouter as Router, Switch, Route} from "react-router-dom";
 import Landingpage from "./containers/Landingpage/Landingpage";
 import Home from "./containers/Home/Home";
 import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Register";
+import AboutUs from "./containers/AboutUs/AboutUs";
+import ProviderRegister from "./containers/ProviderRegister/ProviderRegister";
 import "./App.scss";
+import { Provider } from 'react-redux';
+import {store} from "./reducers/app";
+import CreatePost from "./containers/CreatePost/CreatePost;
+
 
 export default function App() {
   return(
-    <Router>
+      <Provider store={store}>
+          <Router>
+              <Switch>
+                  <Route exact path="/">
+                      <Landingpage />
+                  </Route>
+                  <Route exact path="/aboutUs">
+                      <AboutUs />
+                  </Route>
+                  <Route path="/home">
+                      <Home />
+                  </Route>
+                  <Route path="/login">
+                      <Login />
+                  </Route>
+                  <Route path="/register">
+                      <Register />
+                  </Route>
+                  <Route path="/create">
+                      <CreatePost />
+                  </Route>
+                  <Route path="/pregister">
+                      <ProviderRegister />
+                  </Route>
+              </Switch>
+          </Router>
+      </Provider>
 
-        <Switch>
-            <Route exact path="/">
-                <Landingpage />
-            </Route>
-            <Route path="/home">
-                <Home />
-            </Route>
-            <Route path="/login">
-                <Login />
-            </Route>
-            <Route path="/register">
-                <Register />
-            </Route>
-        </Switch>
-
-    </Router>
   );
 }
