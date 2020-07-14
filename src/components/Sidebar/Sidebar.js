@@ -16,21 +16,6 @@ function Sidebar(props) {
 
     return (
         <div className={"sidebar"}>
-            <div className="sidebar-title">
-                Kategoritë
-            </div>
-            <div className="sidebar-link">
-                Kujdesi për fëmijë
-            </div>
-            <div className="sidebar-link">
-                Kujdesi për të moshuar
-            </div>
-            <div className="sidebar-link">
-                Kujdesi për kafshët
-            </div>
-            <div className="sidebar-link">
-                Mirëmbajtje e shtëpisë
-            </div>
 
             <div className="sidebar-title">
                 Filtro sipas:
@@ -46,6 +31,7 @@ function Sidebar(props) {
                            value={startAgeFilter}
                            onChange={(e) => filter("startAgeFilter", e.target.value)}/>
                 </div>
+                <div className="mt-2">-</div>
                 <div className="col">
                     <input type="text"
                            className="form-control"
@@ -60,11 +46,15 @@ function Sidebar(props) {
             </div>
             <div className="row">
                 <div className="col">
-                    <input type="text"
-                           className="form-control"
-                           placeholder="Qyteti"
-                           value={cityFilter}
-                           onChange={(e) => filter("cityFilter", e.target.value)}/>
+                       <select type="text"
+                               className="form-control"
+                               placeholder="Qyteti"
+                               onChange={(e) => filter("cityFilter", e.target.value)}>
+                            <option></option>
+                            <option>Prishtinë</option>
+                            <option>Prizren</option>
+                            <option>Mitrovicë</option>
+                       </select>
                 </div>
             </div>
 
@@ -73,11 +63,15 @@ function Sidebar(props) {
             </div>
             <div className="row">
                 <div className="col">
-                    <input type="text"
-                           className="form-control"
-                           placeholder="Edukimi"
-                           value={educationFilter}
-                           onChange={(e) => filter("educationFilter", e.target.value)}/>
+                    <select type="text"
+                            className="form-control"
+                            placeholder="Edukimi"
+                            onChange={(e) => filter("educationFilter", e.target.value)}>
+                        <option></option>
+                        <option>Fillor</option>
+                        <option>Mesëm</option>
+                        <option>Lartë</option>
+                    </select>
                 </div>
             </div>
         </div>
