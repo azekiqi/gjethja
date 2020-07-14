@@ -7,18 +7,23 @@ export default function Header() {
     return(
         <div class={"header"}>
             <div className="header_logo">
-                <img src={Logo} alt="logo"/>
+                <Link to={"/"}>
+                        <img src={Logo} alt="logo"/>
+                </Link>
             </div>
             <nav className={"header_nav"}>
                 <ul>
                     <li>
-                        <Link to={"/home"}>Home</Link>
+                        <Link to={"/"}>Ballina</Link>
                     </li>
                     <li>
-                        <Link to={"/login"}>Login</Link>
+                        <Link to={"/aboutUs"}>Për ne</Link>
                     </li>
                     <li>
-                        <Link to={"/register"}>Register</Link>
+                        <Link to={"/login"}>Kyçu</Link>
+                    </li>
+                    <li>
+                        <Link to={"/register"}>Regjistrohu</Link>
                     </li>
                 </ul>
             </nav>

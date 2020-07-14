@@ -4,13 +4,12 @@ import Landingpage from "./containers/Landingpage/Landingpage";
 import Home from "./containers/Home/Home";
 import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Register";
-import AboutUs from "./containers/AboutUs/AboutUs";
-import ProviderRegister from "./containers/ProviderRegister/ProviderRegister";
+import AboutUs from "./containers/AboutUs/AboutUs"
 import "./App.scss";
 import { Provider } from 'react-redux';
 import {store} from "./reducers/app";
-import CreatePost from "./containers/CreatePost/CreatePost;
-
+import CreatePost from "./containers/CreatePost/CreatePost";
+import ProviderRegister from "./containers/ProviderRegister/ProviderRegister";
 
 export default function App() {
   return(
@@ -38,9 +37,11 @@ export default function App() {
                   <Route path="/pregister">
                       <ProviderRegister />
                   </Route>
+
               </Switch>
           </Router>
       </Provider>
 
   );
 }
+

@@ -1,40 +1,101 @@
 import React from 'react';
 import './Sidebar.scss'
+import FeatherIcon from 'feather-icons';
+import {setFilter} from "../../actions";
+import { connect } from "react-redux";
+import {getPosts} from "../../actions/posts";
 
-export default function Sidebar() {
-    return(
+function Sidebar(props) {
+    const { startAgeFilter, endAgeFilter, cityFilter, educationFilter, setFilter, getPosts } = props;
+
+    const filter = (filter, value) => {
+        setFilter(filter, value);
+        const filters = { startAgeFilter, endAgeFilter, cityFilter, educationFilter };
+        getPosts(filters);
+    }
+
+    return (
         <div className={"sidebar"}>
             <div className="sidebar-title">
-                Categories
+                Kategoritë
             </div>
             <div className="sidebar-link">
-                Posts
+                Kujdesi për fëmijë
             </div>
             <div className="sidebar-link">
-                Profiles
+                Kujdesi për të moshuar
+            </div>
+            <div className="sidebar-link">
+                Kujdesi për kafshët
+            </div>
+            <div className="sidebar-link">
+                Mirëmbajtje e shtëpisë
             </div>
 
             <div className="sidebar-title">
-                Filter
+                Filtro sipas:
             </div>
             <div className="sidebar-link">
-                by age
+                Moshës
             </div>
-            <div className="sidebar-link">
-                by gender
+            <div className="row">
+                <div className="col">
+                    <input type="text"
+                           className="form-control"
+                           placeholder="Prej"
+                           value={startAgeFilter}
+                           onChange={(e) => filter("startAgeFilter", e.target.value)}/>
+                </div>
+                <div className="col">
+                    <input type="text"
+                           className="form-control"
+                           placeholder="Deri"
+                           value={endAgeFilter}
+                           onChange={(e) => filter("endAgeFilter", e.target.value)}/>
+                </div>
             </div>
+
             <div className="sidebar-link">
-                by qualification
+                Qytetit
             </div>
-            <div className="sidebar-link">
-                by education
+            <div className="row">
+                <div className="col">
+                    <input type="text"
+                           className="form-control"
+                           placeholder="Qyteti"
+                           value={cityFilter}
+                           onChange={(e) => filter("cityFilter", e.target.value)}/>
+                </div>
             </div>
+
             <div className="sidebar-link">
-                by location
+                Edukimit
             </div>
-            <div className="sidebar-link">
-                by rating
+            <div className="row">
+                <div className="col">
+                    <input type="text"
+                           className="form-control"
+                           placeholder="Edukimi"
+                           value={educationFilter}
+                           onChange={(e) => filter("educationFilter", e.target.value)}/>
+                </div>
             </div>
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        startAgeFilter: state.startAgeFilter,
+        endAgeFilter: state.endAgeFilter,
+        cityFilter: state.cityFilter,
+        educationFilter: state.educationFilter,
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    getPosts: data => dispatch(getPosts(data)),
+    setFilter: (filter, value) => dispatch(setFilter(filter, value))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

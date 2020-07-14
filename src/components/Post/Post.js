@@ -1,5 +1,7 @@
 import React from 'react';
 import './Post.scss';
+import FeatherIcon from 'feather-icons';
+
 
 export default function Post({id, title, description}) {
     return(
@@ -14,9 +16,7 @@ export default function Post({id, title, description}) {
             <div className={"post-description"}>
                 { description }
             </div>
-            <div className={"post-favorite"}>
-                icon
-            </div>
         </div>
     )
 }
+
