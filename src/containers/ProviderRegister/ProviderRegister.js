@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from "react";
+import MultiSelect from "react-multi-select-component";
 import axios from 'axios';
 import './ProviderRegister.scss';
 import {PostRequest} from "../../utils/PostRequest";
@@ -64,6 +65,17 @@ class ProviderRegister extends React.Component {
         }
     };
 
+    // const: React.FC = () => {
+//     const options = [
+//         { label: "Kujdesi për fëmijë", value: "children" },
+//         { label: "Kujdesi për të moshuar", value: "elder" },
+//         { label: "Kujdesi për kafshët", value: "pet" },
+//         { label: "Mirëmbajtja e shtëpisë", value: "house" },
+//     ];
+//
+//     const [selected, setSelected] = useState([]);
+// };
+
 handleSubmit = (event) => {
         this.props.registerUser(this.formattedState(this.state));
     }
@@ -110,7 +122,16 @@ handleSubmit = (event) => {
                                        placeholder="Jobs"
                                        value={this.state.bio}
                                        onChange={(e) => this.setState({ bio: e.target.value })} /></div>
-
+                            {/*<div>*/}
+                            {/*    <h1>Zgjedh shërbimin:</h1>*/}
+                            {/*    <pre>{JSON.stringify(selected)}</pre>*/}
+                            {/*    <MultiSelect*/}
+                            {/*        options={options}*/}
+                            {/*        value={selected}*/}
+                            {/*        onChange={setSelected}*/}
+                            {/*        labelledBy={"Select"}*/}
+                            {/*    />*/}
+                            {/*</div>*/}
 
                             <div>
                                 <label htmlFor="bio-input">Certifikata: </label>
