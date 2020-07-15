@@ -35,6 +35,7 @@ class ProvidersRegister extends React.Component {
             gender: "",
             phoneNumber: "",
             jobs: [],
+            education: "",
             firstNameError: "",
             lastNameError: "",
             emailError: "",
@@ -44,7 +45,8 @@ class ProvidersRegister extends React.Component {
             cityError: "",
             addressError: "",
             genderError: "",
-            phoneNumberError: ""
+            phoneNumberError: "",
+            educationError: ""
         }
     }
 
@@ -296,14 +298,21 @@ class ProvidersRegister extends React.Component {
                                        onChange={(e) => this.setState({bio: e.target.value})}/></div>
 
                             <div className="form-group">
-                                <label htmlFor="bio-input">Edukimi: </label>
-                                <input type="text"
-                                       id="bio-input"
-                                       className="form-control"
-                                       placeholder="Edukimi"
-                                       value={this.state.education}
-                                       onChange={(e) => this.setState({bio: e.target.value})}/></div>
+                                <label htmlFor="bio-input">Edukimi:  </label>
+                                <select
+                                    id="education-input"
+                                    className="form-control"
+                                    onChange={(e) => this.setState({education: e.target.value})}
+                                    defaultValue="Zgjedh edukimin">
+                                    <option defaultValue>Zgjedh edukimin</option>
+                                    <option value="Ulet">I ulët</option>
+                                    <option value="Mesem">I mesëm</option>
+                                    <option value="Larte">I lartë</option>
+                                </select>
+                                <div className="error-style">{this.state.educationError}</div>
+                            </div>
 
+                            
                             <div className="form-group">
                                 <label>Shërbimet: </label>
                                 <MultiSelect

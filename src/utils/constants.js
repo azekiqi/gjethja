@@ -17,14 +17,9 @@ export const HomeTabs = {
 }
 
 export const options = [
-    { label: "Grapes 🍇", value: "grapes" },
-    { label: "Mango 🥭", value: "mango" },
-    { label: "Strawberry 🍓", value: "strawberry", disabled: true },
-    { label: "Watermelon 🍉", value: "watermelon" },
-    { label: "Pear 🍐", value: "pear" },
-    { label: "Apple 🍎", value: "apple" },
-    { label: "Tangerine 🍊", value: "tangerine" },
-    { label: "Pineapple 🍍", value: "pineapple" },
-    { label: "Peach 🍑", value: "peach" },
+    { label: "Kujdesi për fëmijë", value: "1" },
+    { label: "Kujdesi për të moshuar", value: "2" },
+    { label: "Kujdesi për kafshët", value: "3" },
+    { label: "Mirëmbajtje e shtëpisë", value: "3" },
 ];
 
