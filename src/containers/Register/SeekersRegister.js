@@ -1,6 +1,6 @@
 import React from 'react';
 import './Register.scss';
-import {register} from '../../actions/user';
+import {seekerRegister} from '../../actions/user';
 import {connect} from "react-redux";
 
 // const initialState={
@@ -16,7 +16,7 @@ import {connect} from "react-redux";
 //     phoneNumberError: ""
 // }
 
-class Register extends React.Component {
+class SeekersRegister extends React.Component {
     constructor(props) {
         super(props);
 
@@ -306,7 +306,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    registerUser: (data) => dispatch(register(data)),
+    registerUser: (data) => dispatch(seekerRegister(data)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(SeekersRegister);

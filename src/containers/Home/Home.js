@@ -5,18 +5,34 @@ import './Home.scss';
 import Post from "../../components/Post/Post";
 import {deletePost, getPosts} from "../../actions/posts";
 import { connect } from "react-redux";
+import {HomeTabs} from "../../utils/constants";
+import {getProfiles} from "../../actions/profiles";
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            currentTab: "post"
+            currentTab: HomeTabs.Posts
         }
     }
 
     componentDidMount() {
-        this.props.getPosts();
+        const { currentTab } = this.state;
+        if(currentTab == HomeTabs.Posts) {
+            this.props.getPosts();
+        } else {
+            this.props.getProfiles();
+        }
+    }
+
+    switchTab = (tab) => {
+        if(tab == HomeTabs.Posts) {
+            this.props.getPosts();
+        } else {
+            this.props.getProfiles();
+        }
+        this.setState({ currentTab: tab });
     }
 
     render() {
@@ -31,13 +47,13 @@ class Home extends React.Component {
                         <div className="navigation">
                             <div className="navigation-link">
                                 <button
-                                    onClick={() => this.setState({ currentTab: "post" })}>
+                                    onClick={() => this.switchTab(HomeTabs.Posts)}>
                                     Posts
                                 </button>
                             </div>
                             <div className="navigation-link">
                                 <button
-                                    onClick={() => this.setState({ currentTab: "profile" })}>
+                                    onClick={() => this.switchTab(HomeTabs.Profiles)}>
                                     Profiles
                                 </button>
                             </div>
@@ -52,6 +68,16 @@ class Home extends React.Component {
                                 })
                             }
                         </div>
+                        <div className="profiles">
+                            {
+                                this.props.profiles.map((profile, index) => {
+                                    return <Post
+                                        id={profile.id}
+                                        title={profile.title}
+                                        description={profile.description} />
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,12 +88,14 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        posts: state.posts
+        posts: state.posts,
+        profiles: state.profiles
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    getPosts: filterByAge => dispatch(getPosts(filterByAge)),
+    getPosts: data => dispatch(getPosts()),
+    getProfiles: data => dispatch(getProfiles()),
     deletePost: (data) => dispatch(deletePost(data)),
 })
 

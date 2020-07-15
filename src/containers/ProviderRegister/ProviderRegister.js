@@ -122,16 +122,6 @@ handleSubmit = (event) => {
                                        placeholder="Jobs"
                                        value={this.state.bio}
                                        onChange={(e) => this.setState({ bio: e.target.value })} /></div>
-                            {/*<div>*/}
-                            {/*    <h1>Zgjedh shërbimin:</h1>*/}
-                            {/*    <pre>{JSON.stringify(selected)}</pre>*/}
-                            {/*    <MultiSelect*/}
-                            {/*        options={options}*/}
-                            {/*        value={selected}*/}
-                            {/*        onChange={setSelected}*/}
-                            {/*        labelledBy={"Select"}*/}
-                            {/*    />*/}
-                            {/*</div>*/}
 
                             <div>
                                 <label htmlFor="bio-input">Certifikata: </label>
