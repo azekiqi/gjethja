@@ -7,6 +7,11 @@ const url = process.env.REACT_APP_BACKEND_URL;
 // whenever it is needed to activate reducer
 // in order to affect state
 
+export const logOut = data => ({
+    type: constants.LOGOUT,
+    payload: data
+})
+
 export const providerRegister = data => {
     return function(dispatch) {
         return axios({

@@ -36,6 +36,7 @@ class Home extends React.Component {
     }
 
     render() {
+        const { currentTab } = this.state;
         return (
             <div>
                 <Header/>
@@ -58,7 +59,7 @@ class Home extends React.Component {
                                 </button>
                             </div>
                         </div>
-                        <div className="posts">
+                        {currentTab == HomeTabs.Posts && <div className="posts">
                             {
                                 this.props.posts.map((post, index) => {
                                     return <Post
@@ -67,17 +68,17 @@ class Home extends React.Component {
                                         description={post.description} />
                                 })
                             }
-                        </div>
-                        <div className="profiles">
+                        </div>}
+                        {currentTab == HomeTabs.Profiles && <div className="profiles">
                             {
                                 this.props.profiles.map((profile, index) => {
                                     return <Post
                                         id={profile.id}
-                                        title={profile.title}
+                                        title={profile.firstName + " " + profile.lastName}
                                         description={profile.description} />
                                 })
                             }
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>

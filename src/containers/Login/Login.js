@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import {confirm, login} from "../../actions/user";
+import { withRouter } from "react-router-dom";
 
 class Login extends React.Component {
     constructor(props) {
@@ -16,15 +17,17 @@ class Login extends React.Component {
             emailError: "",
             passwordError: "",
         }
-        this.handleSubmit=this.handleSubmit.bind(this)
     }
 
     componentDidMount() {
         const url = window.location.href;
         const token = url.split("token=")[1];
-        this.props.confirm(token).then(res => {
-            console.log(res);
-        })
+        if(token) {
+            this.props.confirm(token).then(res => {
+                alert("Email confirmed successfully");
+                console.log(res);
+            })
+        }
     }
 
 
@@ -58,7 +61,9 @@ class Login extends React.Component {
 
     handleSubmit = event => {
         this.props.login(this.state).then(res => {
-            console.log(res);
+            setTimeout(() => {
+                this.props.history.push("/home");
+            }, 500)
         })
             const isValid = this.validate();
             if(isValid){
@@ -123,4 +128,4 @@ const mapDispatchToProps = dispatch => ({
     confirm: data => dispatch(confirm(data))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

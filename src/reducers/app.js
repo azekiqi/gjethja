@@ -27,6 +27,11 @@ const app = function (state = initialState, action) {
             localStorage.setItem("token", action.data.accessToken);
             return state;
 
+        case constants.LOGOUT:
+            console.log(action);
+            localStorage.removeItem("token");
+            return state;
+
         case constants.GET_POSTS:
             console.log(action);
             return {

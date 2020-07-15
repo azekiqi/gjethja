@@ -8,46 +8,31 @@ import "./App.scss";
 import { Provider } from 'react-redux';
 import {store} from "./reducers/app";
 import CreatePost from "./containers/CreatePost/CreatePost";
-<<<<<<< Updated upstream
-=======
 import ProvidersRegister from "./containers/Register/ProvidersRegister";
 import SeekersRegister from "./containers/Register/SeekersRegister";
->>>>>>> Stashed changes
+import AuthenticatedRoute from "./components/Routes/AuthenticatedRoute";
+import {logOut} from "./actions/user";
 
 export default function App() {
-  return(
+    const token = localStorage.getItem("token");
+    return(
       <Provider store={store}>
           <Router>
               <Switch>
-                  <Route exact path="/">
-                      <Landingpage />
-                  </Route>
-                  <Route exact path="/aboutUs">
-                      <AboutUs />
-                  </Route>
-                  <Route path="/home">
-                      <Home />
-                  </Route>
-                  <Route path="/login">
-                      <Login />
-                  </Route>
-                  <Route path="/register/seeker">
-                      <SeekersRegister />
-                  </Route>
-                  <Route path="/register/provider">
-                      <ProvidersRegister />
-                  </Route>
-                  <Route path="/create">
-                      <CreatePost />
-                  </Route>
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
+                  <Route exact path="/" component={Landingpage} />
+                  <Route exact path="/aboutUs" component={AboutUs} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/register/seeker" component={SeekersRegister} />
+                  <Route path="/register/provider" component={ProvidersRegister} />
+
+                  <AuthenticatedRoute path="/home" component={Home} token={token} />
+                  <AuthenticatedRoute path="/create" component={CreatePost} token={token} />
+
               </Switch>
           </Router>
       </Provider>
 
-  );
+    );
 }
 

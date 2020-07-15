@@ -1,5 +1,6 @@
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 export const CONFIRMED = "CONFIRMED";
 
 export const GET_POSTS = "GET_POSTS";
@@ -15,13 +16,8 @@ export const HomeTabs = {
 }
 
 export const options = [
-    { label: "Grapes 🍇", value: "grapes" },
-    { label: "Mango 🥭", value: "mango" },
-    { label: "Strawberry 🍓", value: "strawberry", disabled: true },
-    { label: "Watermelon 🍉", value: "watermelon" },
-    { label: "Pear 🍐", value: "pear" },
-    { label: "Apple 🍎", value: "apple" },
-    { label: "Tangerine 🍊", value: "tangerine" },
-    { label: "Pineapple 🍍", value: "pineapple" },
-    { label: "Peach 🍑", value: "peach" },
+    { label: "Kujdes për fëmijë", value: "babysitter" },
+    { label: "Kujdes për të moshuar", value: "eldercare" },
+    { label: "Kujdes për kafshët shtëpiake", value: "petcare" },
+    { label: "Mirëmbajtës i shtëpisë", value: "housekeeper" },
 ];
