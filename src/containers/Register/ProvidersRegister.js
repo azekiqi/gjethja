@@ -308,11 +308,13 @@ class ProvidersRegister extends React.Component {
                                     <option value="Ulet">I ulët</option>
                                     <option value="Mesem">I mesëm</option>
                                     <option value="Larte">I lartë</option>
+                                    <option value="Bachelor">Bachelor</option>
+                                    <option value="Master">Master</option>
                                 </select>
                                 <div className="error-style">{this.state.educationError}</div>
                             </div>
 
-                            
+
                             <div className="form-group">
                                 <label>Shërbimet: </label>
                                 <MultiSelect

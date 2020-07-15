@@ -20,6 +20,6 @@ export const options = [
     { label: "Kujdesi për fëmijë", value: "1" },
     { label: "Kujdesi për të moshuar", value: "2" },
     { label: "Kujdesi për kafshët", value: "3" },
-    { label: "Mirëmbajtje e shtëpisë", value: "3" },
+    { label: "Mirëmbajtje e shtëpisë", value: "4" },
 ];
 

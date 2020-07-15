@@ -4,6 +4,7 @@ import {createPost} from "../../actions/posts";
 import { register } from '../../actions/user';
 import { connect } from "react-redux";
 
+
 class CreatePost extends React.Component {
     constructor(props) {
         super(props);

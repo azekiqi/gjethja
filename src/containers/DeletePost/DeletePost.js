@@ -52,7 +52,7 @@ const mapStateToProps = state => {
 // }
 
 const mapDispatchToProps = dispatch => ({
-    deletePost: (data) => dispatch(deletePost(data)),
+    deletePost: (data, id) => dispatch(deletePost(data, id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeletePost);
