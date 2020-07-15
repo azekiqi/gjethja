@@ -3,11 +3,12 @@ import axios from 'axios';
 
 const url = process.env.REACT_APP_BACKEND_URL;
 
-export const getProfiles = (filters) => {
+export const getProfiles = data => {
+    const token = localStorage.getItem("token");
     return function(dispatch) {
         return axios({
             method: 'get',
-            url: url + `profiles`,
+            url: url + `providers`,
             headers: {
                 authorization: "Bearer " + token
             }

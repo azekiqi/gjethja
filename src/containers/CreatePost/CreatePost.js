@@ -81,7 +81,6 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    registerUser: (data) => dispatch(register(data)),
     createPost: (data) => dispatch(createPost(data)),
 })
 
