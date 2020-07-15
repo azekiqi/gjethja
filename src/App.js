@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import {store} from "./reducers/app";
 import CreatePost from "./containers/CreatePost/CreatePost";
 import ProviderRegister from "./containers/ProviderRegister/ProviderRegister";
+import DeletePost from "./containers/DeletePost/DeletePost";
 
 export default function App() {
   return(
@@ -31,12 +32,16 @@ export default function App() {
                   <Route path="/register">
                       <Register />
                   </Route>
-                  <Route path="/create">
-                      <CreatePost />
-                  </Route>
                   <Route path="/pregister">
                       <ProviderRegister />
                   </Route>
+                  <Route path="/create">
+                      <CreatePost />
+                  </Route>
+                  <Route path="/delete">
+                      <DeletePost />
+                  </Route>
+
 
               </Switch>
           </Router>

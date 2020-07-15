@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import './Home.scss';
 import Post from "../../components/Post/Post";
-import {getPosts} from "../../actions/posts";
+import {deletePost, getPosts} from "../../actions/posts";
 import { connect } from "react-redux";
 
 class Home extends React.Component {
@@ -67,7 +67,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getPosts: filterByAge => dispatch(getPosts(filterByAge))
+    getPosts: filterByAge => dispatch(getPosts(filterByAge)),
+    deletePost: (data) => dispatch(deletePost(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

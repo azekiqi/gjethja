@@ -8,3 +8,4 @@ export const GET_PROFILES = "GET_PROFILES";
 export const SET_FILTERS = "SET_FILTERS";
 
 export const CREATE_POST = "CREATE_POST";
+export const DELETE_POST = "DELETE_POST";
