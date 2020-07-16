@@ -65,16 +65,6 @@ class ProviderRegister extends React.Component {
         }
     };
 
-    // const: React.FC = () => {
-//     const options = [
-//         { label: "Kujdesi për fëmijë", value: "children" },
-//         { label: "Kujdesi për të moshuar", value: "elder" },
-//         { label: "Kujdesi për kafshët", value: "pet" },
-//         { label: "Mirëmbajtja e shtëpisë", value: "house" },
-//     ];
-//
-//     const [selected, setSelected] = useState([]);
-// };
 
 handleSubmit = (event) => {
         this.props.registerUser(this.formattedState(this.state));

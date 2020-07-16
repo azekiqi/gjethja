@@ -3,19 +3,6 @@ import './Register.scss';
 import {seekerRegister} from '../../actions/user';
 import {connect} from "react-redux";
 
-// const initialState={
-//     firstNameError: "",
-//     lastNameError: "",
-//     emailError: "",
-//     passwordError: "",
-//     confPassError: "",
-//     dateOfBirthError: "",
-//     cityError: "",
-//     addressError: "",
-//     genderError: "",
-//     phoneNumberError: ""
-// }
-
 class SeekersRegister extends React.Component {
     constructor(props) {
         super(props);
@@ -127,7 +114,6 @@ class SeekersRegister extends React.Component {
         if (isValid) {
             console.log(this.state)
         }
-        // this.setState(initialState);
     }
 
     render() {

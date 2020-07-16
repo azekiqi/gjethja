@@ -5,18 +5,6 @@ import {connect} from "react-redux";
 import MultiSelect from "react-multi-select-component";
 import {options} from "../../utils/constants";
 
-// const initialState={
-//     firstNameError: "",
-//     lastNameError: "",
-//     emailError: "",
-//     passwordError: "",
-//     confPassError: "",
-//     dateOfBirthError: "",
-//     cityError: "",
-//     addressError: "",
-//     genderError: "",
-//     phoneNumberError: ""
-// }
 
 class ProvidersRegister extends React.Component {
     constructor(props) {
@@ -34,6 +22,7 @@ class ProvidersRegister extends React.Component {
             address: "",
             gender: "",
             phoneNumber: "",
+            education: "",
             jobs: [],
             education: "",
             firstNameError: "",
@@ -46,7 +35,8 @@ class ProvidersRegister extends React.Component {
             addressError: "",
             genderError: "",
             phoneNumberError: "",
-            educationError: ""
+            educationError: "",
+            jobsError: ""
         }
     }
 
@@ -80,6 +70,8 @@ class ProvidersRegister extends React.Component {
         let addressError = "";
         let genderError = "";
         let phoneNumberError = "";
+        let educationError= "";
+        let jobsError = "";
 
         if (!this.state.firstName > 2 || (!this.state.firstName)) {
             firstNameError = "Ky emër nuk është valid!"
@@ -111,8 +103,14 @@ class ProvidersRegister extends React.Component {
         if (!this.state.phoneNumber) {
             phoneNumberError = "Ky nr. telefoni nuk është valid!"
         }
+        if (!this.state.educationError) {
+            educationError = "Kjo e dhëneë nuk është valide!"
+        }
+        if (!this.state.jobsError) {
+            jobsError = "Ky shërbim nuk është valid!"
+        }
         if (emailError || firstNameError || lastNameError || passwordError || confPassError || dateOfBirthError
-            || cityError || addressError || genderError || phoneNumberError) {
+            || cityError || addressError || genderError || phoneNumberError || educationError || jobsError) {
             this.setState({
                 emailError,
                 firstNameError,
@@ -123,7 +121,9 @@ class ProvidersRegister extends React.Component {
                 cityError,
                 addressError,
                 genderError,
-                phoneNumberError
+                phoneNumberError,
+                educationError,
+                jobsError
             });
             return false;
         }
@@ -298,22 +298,18 @@ class ProvidersRegister extends React.Component {
                                        onChange={(e) => this.setState({bio: e.target.value})}/></div>
 
                             <div className="form-group">
-                                <label htmlFor="bio-input">Edukimi:  </label>
+                                <label htmlFor="education-input">Edukimi: </label>
                                 <select
                                     id="education-input"
                                     className="form-control"
-                                    onChange={(e) => this.setState({education: e.target.value})}
+                                    onChange={(e) => this.setState({ education: e.target.value })}
                                     defaultValue="Zgjedh edukimin">
                                     <option defaultValue>Zgjedh edukimin</option>
                                     <option value="Ulet">I ulët</option>
                                     <option value="Mesem">I mesëm</option>
                                     <option value="Larte">I lartë</option>
-                                    <option value="Bachelor">Bachelor</option>
-                                    <option value="Master">Master</option>
                                 </select>
-                                <div className="error-style">{this.state.educationError}</div>
                             </div>
-
 
                             <div className="form-group">
                                 <label>Shërbimet: </label>
@@ -323,6 +319,7 @@ class ProvidersRegister extends React.Component {
                                     onChange={this.setSelectedJobs}
                                     labelledBy={"Select"}
                                 />
+                                <div className="error-style">{this.state.jobsError}</div>
                             </div>
 
                             <div className="register-button">

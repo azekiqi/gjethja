@@ -1,9 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter  } from 'react-router-dom';
 import './Header.scss';
 import Logo from './../../assets/images/gjethja-logo.png';
+import { connect } from "react-redux";
+import {logOut} from "../../actions/user";
 
-export default function Header() {
+const token = localStorage.getItem("token");
+
+function Header(props) {
     return(
         <div class={"header"}>
             <div className="header_logo">
@@ -19,14 +23,37 @@ export default function Header() {
                     <li>
                         <Link to={"/aboutUs"}>Për ne</Link>
                     </li>
-                    <li>
-                        <Link to={"/login"}>Kyçu</Link>
-                    </li>
-                    <li>
-                        <Link to={"/register"}>Regjistrohu</Link>
-                    </li>
+                    {
+                        !token ?
+                            <>
+                                <li>
+                                    <Link to={"/login"}>Kyçu</Link>
+                                </li>
+                                <li>
+                                    <Link to={"/register"}>Regjistrohu</Link>
+                                </li>
+
+                            </> :
+                            <>
+                                <button className="btn btn-primary"
+                                        onClick={() => props.history.push("/create")}>
+                                    Create Post
+                                </button>
+                                <button className="btn btn-primary"
+                                        onClick={() => props.logOut()}>
+                                    Logout
+                                </button>
+                            </>
+
+                    }
                 </ul>
             </nav>
         </div>
     )
 }
+
+const mapDispatchToProps = dispatch => ({
+    logOut: data => dispatch(logOut())
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(Header));

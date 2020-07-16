@@ -1,5 +1,6 @@
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 export const CONFIRMED = "CONFIRMED";
 
 export const GET_POSTS = "GET_POSTS";
@@ -17,9 +18,8 @@ export const HomeTabs = {
 }
 
 export const options = [
-    { label: "Kujdesi për fëmijë", value: "1" },
-    { label: "Kujdesi për të moshuar", value: "2" },
-    { label: "Kujdesi për kafshët", value: "3" },
-    { label: "Mirëmbajtje e shtëpisë", value: "4" },
+    { label: "Kujdes për fëmijë", value: "babysitter" },
+    { label: "Kujdes për të moshuar", value: "eldercare" },
+    { label: "Kujdes për kafshët shtëpiake", value: "petcare" },
+    { label: "Mirëmbajtës i shtëpisë", value: "housekeeper" },
 ];
-
