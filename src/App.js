@@ -12,6 +12,7 @@ import ProvidersRegister from "./containers/Register/ProvidersRegister";
 import SeekersRegister from "./containers/Register/SeekersRegister";
 import AuthenticatedRoute from "./components/Routes/AuthenticatedRoute";
 import {logOut} from "./actions/user";
+import Popup from "./containers/Landingpage/Popup";
 
 export default function App() {
     const token = localStorage.getItem("token");
@@ -19,7 +20,7 @@ export default function App() {
       <Provider store={store}>
           <Router>
               <Switch>
-
+                  <Route path="/popup" component={Popup}/>
                   <Route exact path="/" component={Landingpage} />
                   <Route exact path="/aboutUs" component={AboutUs} />
                   <Route path="/login" component={Login} />
@@ -32,7 +33,6 @@ export default function App() {
               </Switch>
           </Router>
       </Provider>
-
     );
 }
 
