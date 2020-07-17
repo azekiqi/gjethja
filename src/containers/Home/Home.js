@@ -5,15 +5,24 @@ import './Home.scss';
 import Post from "../../components/Post/Post";
 import {getPosts} from "../../actions/posts";
 import { connect } from "react-redux";
-import {HomeTabs} from "../../utils/constants";
+import {CARD_OPTIONS, HomeTabs} from "../../utils/constants";
 import {getProfiles} from "../../actions/profiles";
+import Modal from 'react-modal';
+import { CardElement, Elements, useStripe, useElements } from '@stripe/react-stripe-js';
+import {injectStripe, StripeProvider} from "react-stripe-elements";
+import Stripe from "../../components/Stripe/Stripe";
+import {Switch} from "react-router-dom";
+import {loadStripe} from "@stripe/stripe-js";
+const stripePromise = loadStripe('pk_test_51H1teeE9l7621wtln7yA1DXyqVAQ4Ld6FJwB2iLYNZKtmluZEZ93jeg2ycwuKRGOj71C7awnuQBN5qDYrDkodgp100Xdajq8Lw');
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            currentTab: HomeTabs.Posts
+            currentTab: HomeTabs.Posts,
+            isModalOpen: false,
+            modalId: null,
         }
     }
 
@@ -35,14 +44,36 @@ class Home extends React.Component {
         this.setState({ currentTab: tab });
     }
 
+    closeModal = () => {
+        this.setState({ isModalOpen: false });
+    }
+
+    openModal = (id) => {
+        this.setState({ isModalOpen: true, modalId: id });
+    }
+
     render() {
-        const { currentTab } = this.state;
+        const { currentTab, isModalOpen, modalId } = this.state;
         return (
             <div>
                 <Header/>
                 <div className="home-container">
 
                     <Sidebar/>
+
+                    <Modal
+                        isOpen={isModalOpen}
+                        onRequestClose={this.closeModal}
+                        contentLabel="Payment Modal"
+                        className="custom-modal"
+                        overlayClassName="custom-modal-overlay">
+
+                        <Elements stripe={stripePromise}>
+                            <Stripe id={modalId} onPaymentFinish={() => this.closeModal()} />
+                        </Elements>
+
+                    </Modal>
+
 
                     <div className="main-content">
                         <div className="navigation">
@@ -65,7 +96,8 @@ class Home extends React.Component {
                                     return <Post
                                         id={post.id}
                                         title={post.title}
-                                        description={post.description} />
+                                        description={post.description}
+                                        handlePay={() => this.openModal(post.id)}/>
                                 })
                             }
                         </div>}
@@ -75,7 +107,8 @@ class Home extends React.Component {
                                     return <Post
                                         id={profile.id}
                                         title={profile.firstName + " " + profile.lastName}
-                                        description={profile.description} />
+                                        description={profile.description}
+                                        handlePay={() => this.openModal(profile.id)}/>
                                 })
                             }
                         </div>}

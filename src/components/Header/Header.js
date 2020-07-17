@@ -41,7 +41,7 @@ function Header(props) {
                                 </button>
                                 <button className="btn btn-primary"
                                         onClick={() => props.logOut()}>
-                                    Logout
+                                    Log out
                                 </button>
                             </>
 

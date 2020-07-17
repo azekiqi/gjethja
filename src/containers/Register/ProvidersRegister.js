@@ -63,7 +63,7 @@ class ProvidersRegister extends React.Component {
         this.setState({ jobs: jobs })
     }
 
-    validate = () => {
+    validate = () => {    //qitu
         let firstNameError = "";
         let lastNameError = "";
         let emailError = "";
@@ -133,6 +133,7 @@ class ProvidersRegister extends React.Component {
         }
         return true;
     }
+
 
     onFileChange = event => {
         this.setState({ selectedFile: event.target.files[0] });
@@ -376,7 +377,7 @@ class ProvidersRegister extends React.Component {
                                     onChange={this.setSelectedJobs}
                                     labelledBy={"Select"}
                                 />
-                                <div className="error-style">{this.state.jobsError}</div>
+                                {/*<div className="error-style">{this.state.jobsError}</div>*/}
                             </div>
 
                             <div>
