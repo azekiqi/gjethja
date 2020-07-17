@@ -33,6 +33,7 @@ function App() {
                     <Route path="/login" component={Login} />
                     <Route path="/register/seeker" component={SeekersRegister} />
                     <Route path="/register/provider" component={ProvidersRegister} />
+                    <Route path="/myprofile" component={myProfile} />
 
                      <AuthenticatedRoute path="/home" component={Home} token={token} />
                      <AuthenticatedRoute path="/create" component={CreatePost} token={token} />

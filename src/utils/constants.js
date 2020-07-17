@@ -24,6 +24,10 @@ export const options = [
     { label: "Mirëmbajtës i shtëpisë", value: "housekeeper" },
 ];
 
+export const GetPosts = {
+    "Posts": "posts",
+}
+
 export const CARD_OPTIONS = {
     iconStyle: 'solid',
     style: {
