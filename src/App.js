@@ -30,6 +30,7 @@ function App() {
       
                     <Route exact path="/" component={Landingpage} />
                     <Route exact path="/aboutUs" component={AboutUs} />
+                    <Route exact path="/register" component={Register} />
                     <Route path="/login" component={Login} />
                     <Route path="/register/seeker" component={SeekersRegister} />
                     <Route path="/register/provider" component={ProvidersRegister} />
