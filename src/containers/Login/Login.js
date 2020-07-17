@@ -61,9 +61,7 @@ class Login extends React.Component {
 
     handleSubmit = event => {
         this.props.login(this.state).then(res => {
-            setTimeout(() => {
-                this.props.history.push("/home");
-            }, 500)
+            this.props.history.push("/home");
         })
             const isValid = this.validate();
             if(isValid){

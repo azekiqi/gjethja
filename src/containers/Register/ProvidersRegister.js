@@ -58,7 +58,7 @@ class ProvidersRegister extends React.Component {
         this.setState({ jobs: jobs })
     }
 
-    validate = () => {
+    validate = () => {    //qitu
         let firstNameError = "";
         let lastNameError = "";
         let emailError = "";
@@ -128,7 +128,7 @@ class ProvidersRegister extends React.Component {
         }
         return true;
     }
-
+//deri qitu
 
     handleSubmit = (event) => {
         this.props.registerUser(this.formattedState(this.state));
@@ -318,7 +318,7 @@ class ProvidersRegister extends React.Component {
                                     onChange={this.setSelectedJobs}
                                     labelledBy={"Select"}
                                 />
-                                <div className="error-style">{this.state.jobsError}</div>
+                                {/*<div className="error-style">{this.state.jobsError}</div>*/}
                             </div>
 
                             <div className="register-button">
