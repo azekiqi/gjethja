@@ -24,21 +24,20 @@ function App() {
         <Provider store={store}>
             <HashRouter>
                 <Switch>
+      
                     <Route exact path="/" component={Landingpage} />
                     <Route exact path="/aboutUs" component={AboutUs} />
                     <Route path="/login" component={Login} />
                     <Route path="/register/seeker" component={SeekersRegister} />
                     <Route path="/register/provider" component={ProvidersRegister} />
 
-
-                        <AuthenticatedRoute path="/home" component={Home} token={token} />
-
-
-                    <AuthenticatedRoute path="/create" component={CreatePost} token={token} />
-                </Switch>
-            </HashRouter>
-        </Provider>
-
+                     <AuthenticatedRoute path="/home" component={Home} token={token} />
+                     <AuthenticatedRoute path="/create" component={CreatePost} token={token} />
+       
+              </Switch>
+          </HashRouter>
+      </Provider>
+      
     );
 }
 

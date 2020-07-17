@@ -86,7 +86,6 @@ class Login extends React.Component {
                                         value={this.state.email}
                                         onChange={this.emailhandler} />
                                         <div className="error-style">{this.state.emailError}</div>
-
                              </div>
 
                              <div className="form-group">
@@ -98,9 +97,7 @@ class Login extends React.Component {
                                         value={this.state.password}
                                         onChange={this.passwordhandler} />
                                  <div className="error-style">{this.state.passwordError}</div>
-
                              </div>
-
 
                              <div className="login-button">
                                  <button type="button"

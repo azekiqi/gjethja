@@ -5,6 +5,8 @@ import Femijet from "../../assets/images/femijet.png"
 import Gjyshja from "../../assets/images/gjyshja.png"
 import Qeni from "../../assets/images/qeni.png"
 
+
+
 const props = {
     duration: 3000,
     transitionDuration: 500,

@@ -4,6 +4,7 @@ import {providerRegister} from '../../actions/user';
 import {connect} from "react-redux";
 import MultiSelect from "react-multi-select-component";
 import {options} from "../../utils/constants";
+import axios from 'axios';
 
 
 class ProvidersRegister extends React.Component {
@@ -11,6 +12,7 @@ class ProvidersRegister extends React.Component {
         super(props);
 
         this.state = {
+            profilePicture: "",
             firstName: "",
             lastName: "",
             email: "",
@@ -24,6 +26,8 @@ class ProvidersRegister extends React.Component {
             phoneNumber: "",
             education: "",
             jobs: [],
+            certificate: null,
+            profilePictureError: "",
             firstNameError: "",
             lastNameError: "",
             emailError: "",
@@ -35,7 +39,8 @@ class ProvidersRegister extends React.Component {
             genderError: "",
             phoneNumberError: "",
             educationError: "",
-            jobsError: ""
+            jobsError: "",
+            certificateError: ""
         }
     }
 
@@ -128,7 +133,50 @@ class ProvidersRegister extends React.Component {
         }
         return true;
     }
-//deri qitu
+
+
+    onFileChange = event => {
+        this.setState({ selectedFile: event.target.files[0] });
+    };
+
+
+    onFileUpload = () => {
+        const formData = new FormData();
+
+        formData.append(
+            "myFile",
+            this.state.selectedFile,
+            this.state.selectedFile.name
+        );
+
+        console.log(this.state.selectedFile);
+
+        axios.post("api/uploadfile", formData);
+    };
+
+    fileData = () => {
+
+        if (this.state.selectedFile) {
+
+            return (
+                <div>
+                    <h2>File Details:</h2>
+                    <p>File Name: {this.state.selectedFile.name}</p>
+                    <p>File Type: {this.state.selectedFile.type}</p>
+                    <p>
+                        Last Modified:{" "}
+                        {this.state.selectedFile.lastModifiedDate.toDateString()}
+                    </p>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <br />
+                </div>
+            );
+        }
+    };
 
     handleSubmit = (event) => {
         this.props.registerUser(this.formattedState(this.state));
@@ -147,6 +195,17 @@ class ProvidersRegister extends React.Component {
                     <div className="col">
                         <form className="register-form">
                             <div className="register-title"> Regjistrohu!</div>
+
+                            <div className="col">
+                                <div className="form-group">
+                                    <label htmlFor="name-input">Profile Picture: </label>
+                                    <input
+                                        type="file"
+                                        id="imageFile"
+                                        name='imageFile'
+                                        value={this.state.profilePicture}
+                                        onChange={this.imageUpload}/></div>
+                            </div>
 
                             <div className="form-row">
                                 <div className="col">
@@ -319,6 +378,17 @@ class ProvidersRegister extends React.Component {
                                     labelledBy={"Select"}
                                 />
                                 {/*<div className="error-style">{this.state.jobsError}</div>*/}
+                            </div>
+
+                            <div>
+                                <label htmlFor="bio-input">Certifikata: </label>
+                                <div>
+                                    <input type="file" onChange={this.onFileChange} />
+                                    <button onClick={this.onFileUpload}>
+                                        Upload!
+                                    </button>
+                                </div>
+                                {this.fileData()}
                             </div>
 
                             <div className="register-button">
