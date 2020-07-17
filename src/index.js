@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import {store} from "./reducers/app";
+import App from "./App";
+import {HashRouter, Switch, Route} from "react-router-dom";
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

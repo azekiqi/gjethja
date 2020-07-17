@@ -9,8 +9,26 @@ const url = process.env.REACT_APP_BACKEND_URL;
 
 export const logOut = data => ({
     type: constants.LOGOUT,
-    payload: data
+    data: data
 })
+
+export const getUser = data => {
+    const token = localStorage.getItem("token");
+    return function(dispatch) {
+        return axios({
+            method: 'get',
+            url: url + "current",
+            headers: {
+                authorization: "Bearer " + token
+            }
+        }).then(res => {
+            console.log(res);
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+}
 
 export const providerRegister = data => {
     return function(dispatch) {
@@ -76,5 +94,4 @@ export const confirm = data => {
             return err;
         })
     }
-
 }
