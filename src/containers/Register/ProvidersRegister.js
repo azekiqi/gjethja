@@ -39,7 +39,7 @@ class ProvidersRegister extends React.Component {
             genderError: "",
             phoneNumberError: "",
             educationError: "",
-            jobsError: "",
+            // jobsError: "",
             certificateError: ""
         }
     }
@@ -75,7 +75,7 @@ class ProvidersRegister extends React.Component {
         let genderError = "";
         let phoneNumberError = "";
         let educationError= "";
-        let jobsError = "";
+        // let jobsError = "";
 
         if (!this.state.firstName > 2 || (!this.state.firstName)) {
             firstNameError = "Ky emër nuk është valid!"
@@ -110,11 +110,11 @@ class ProvidersRegister extends React.Component {
         if (!this.state.educationError) {
             educationError = "Kjo e dhëneë nuk është valide!"
         }
-        if (!this.state.jobsError) {
-            jobsError = "Ky shërbim nuk është valid!"
-        }
+        // if (!this.state.jobsError) {
+        //     jobsError = "Ky shërbim nuk është valid!"
+        // }
         if (emailError || firstNameError || lastNameError || passwordError || confPassError || dateOfBirthError
-            || cityError || addressError || genderError || phoneNumberError || educationError || jobsError) {
+            || cityError || addressError || genderError || phoneNumberError || educationError ) {
             this.setState({
                 emailError,
                 firstNameError,
@@ -127,7 +127,7 @@ class ProvidersRegister extends React.Component {
                 genderError,
                 phoneNumberError,
                 educationError,
-                jobsError
+                // jobsError
             });
             return false;
         }
@@ -191,7 +191,7 @@ class ProvidersRegister extends React.Component {
             <div className="container-fluid register-container">
 
                 <div className="row">
-                    <div className="col">
+                    <div className="col register-form-container">
                         <form className="register-form">
                             <div className="register-title"> Regjistrohu!</div>
 
@@ -376,7 +376,7 @@ class ProvidersRegister extends React.Component {
                                     onChange={this.setSelectedJobs}
                                     labelledBy={"Select"}
                                 />
-                                <div className="error-style">{this.state.jobsError}</div>
+                                {/*<div className="error-style">{this.state.jobsError}</div>*/}
                             </div>
 
                             <div>

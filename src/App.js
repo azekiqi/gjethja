@@ -20,10 +20,11 @@ export default function App() {
       <Provider store={store}>
           <Router>
               <Switch>
+
+                  <Route path="/login" component={Login} />
                   <Route exact path="/" component={Landingpage} />
                   <Route exact path="/aboutUs" component={AboutUs} />
                   <Route exact path="/myProfile" component={myProfile} />
-                  <Route path="/login" component={Login} />
                   <Route path="/register/seeker" component={SeekersRegister} />
                   <Route path="/register/provider" component={ProvidersRegister} />
 
