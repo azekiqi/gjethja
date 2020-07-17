@@ -95,3 +95,20 @@ export const confirm = data => {
         })
     }
 }
+
+export const editProfile = data => {
+    return function(dispatch) {
+        return axios({
+            method: 'post',
+            url: url + "myProfile",
+            data: data
+        }).then(res => {
+            console.log(res);
+            dispatch({ type: constants.GET_PROFILES,  data: res.data });
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+
+}

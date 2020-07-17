@@ -2,28 +2,33 @@ import SeekersRegister from "../Register/SeekersRegister";
 import {render} from "react-dom";
 import React from "react";
 import ProvidersRegister from "../Register/ProvidersRegister";
+import {GetPosts} from "../../utils/constants";
 import MultiSelect from "react-multi-select-component";
-import {options} from "../../utils/constants";
+import {HomeTabs, options} from "../../utils/constants";
 import { connect } from "react-redux";
-import {getUser} from "../../actions/user";
+import {editProfile, getUser, seekerRegister} from "../../actions/user";
+import Post from "../../components/Post/Post";
+import Slideshow from "../Landingpage/Slideshow";
+import {getPosts} from "../../actions/posts";
 
 class myProfile extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user: {}
+            user: {},
         }
     }
 
     componentDidMount() {
-        this.props.getUser().then(res => {
+        this.props.editProfile().then(res => {
             this.setState({ res });
         })
+        this.props.getPosts();
     }
 
     handleSubmit = (event) => {
-        this.props.registerUser(this.formattedState(this.state));
+        this.props.editProfile(this.formattedState(this.state));
         const isValid = this.validate();
         if (isValid) {
             console.log(this.state)
@@ -52,6 +57,7 @@ class myProfile extends React.Component {
 
     render() {
         return (
+            <div>
             <div className="container-fluid register-container">
 
                 <div className="row">
@@ -67,7 +73,7 @@ class myProfile extends React.Component {
                                                id="name-input"
                                                className="form-control"
                                                placeholder="Emri"
-                                               value={this.state.firstName}
+                                               value={this.state.user}
                                                onChange={(e) => this.setState({firstName: e.target.value})}/>
                                         <div className="error-style">{this.state.firstNameError}</div>
                                     </div>
@@ -79,7 +85,7 @@ class myProfile extends React.Component {
                                                id="lastname-input"
                                                className="form-control"
                                                placeholder="Mbiemri"
-                                               value={this.state.lastName}
+                                               value={this.state.user}
                                                onChange={(e) => this.setState({lastName: e.target.value})}/>
                                         <div className="error-style">{this.state.lastNameError}</div>
                                     </div>
@@ -92,7 +98,7 @@ class myProfile extends React.Component {
                                        id="email-input"
                                        className="form-control"
                                        placeholder="Email adresa"
-                                       value={this.state.email}
+                                       value={this.state.user}
                                        onChange={(e) => this.setState({email: e.target.value})}/>
                                 <div className="error-style">{this.state.emailError}</div>
                             </div>
@@ -103,7 +109,7 @@ class myProfile extends React.Component {
                                        id="phone-input"
                                        className="form-control"
                                        placeholder="Numri i telefonit"
-                                       value={this.state.phoneNumber}
+                                       value={this.state.user}
                                        onChange={(e) => this.setState({phoneNumber: e.target.value})}/>
                                 <div className="error-style">{this.state.phoneNumberError}</div>
                             </div>
@@ -117,7 +123,7 @@ class myProfile extends React.Component {
                                                id="password-input"
                                                className="form-control"
                                                placeholder="Fjalëkalimi"
-                                               value={this.state.password}
+                                               value={this.state.user}
                                                onChange={(e) => this.setState({password: e.target.value})}/>
                                         <div className="error-style">{this.state.passwordError}</div>
                                     </div>
@@ -128,7 +134,7 @@ class myProfile extends React.Component {
                                         <input type="password"
                                                id="confirm-password-input"
                                                className="form-control"
-                                               value={this.state.confirmPassword}
+                                               value={this.state.user}
                                                placeholder="Përsërite fjalëkalimin"
                                                onChange={(e) => this.setState({confirmPassword: e.target.value})}/>
                                         <div className="error-style">{this.state.confPassError}</div>
@@ -142,7 +148,7 @@ class myProfile extends React.Component {
                                        id="birthday-input"
                                        className="form-control"
                                        placeholder="wtf"
-                                       value={this.state.dateOfBirth}
+                                       value={this.state.user}
                                        onChange={(e) => this.setState({dateOfBirth: e.target.value})}/>
                                 <div className="error-style">{this.state.dateOfBirthError}</div>
                             </div>
@@ -190,7 +196,7 @@ class myProfile extends React.Component {
                                         <input type="text"
                                                id="address-input"
                                                className="form-control"
-                                               value={this.state.address}
+                                               value={this.state.user}
                                                onChange={(e) => this.setState({address: e.target.value})}
                                                placeholder="Adresa"/>
                                         <div className="error-style">{this.state.addressError}</div>
@@ -204,7 +210,7 @@ class myProfile extends React.Component {
                                        id="bio-input"
                                        className="form-control"
                                        placeholder="Biografia"
-                                       value={this.state.bio}
+                                       value={this.state.user}
                                        onChange={(e) => this.setState({bio: e.target.value})}/></div>
 
                             <div className="form-group">
@@ -234,12 +240,23 @@ class myProfile extends React.Component {
 
 
                             <div className="register-button">
-                                <button type="button" onClick={() => this.handleSubmit()}>Submit</button>
+                                <button type="button" onClick={() => this.handleSubmit()}>Edit Profile</button>
                             </div>
                         </form>
                     </div>
                 </div>
-
+            </div>
+                {/*{GetPosts && <div className="posts">*/}
+                <div className="posts">
+                    {
+                        this.props.posts && this.props.posts.map((post, index) => {
+                            return <Post
+                                id={post.id}
+                                title={post.title}
+                                description={post.description}/>
+                        })
+                    }
+                </div>
             </div>
         )
     }
@@ -247,12 +264,15 @@ class myProfile extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        posts: state.myPosts
+        user: state.user,
+        posts: state.posts,
     };
 }
 
 const mapDispatchToProps = dispatch => ({
-    getUser: data => dispatch(getUser())
+    getUser: data => dispatch(getUser()),
+    getPosts: data => dispatch(getPosts()),
+    editProfile: (data) => dispatch(editProfile(data)),
 })
 
 export default connect(null, mapDispatchToProps)(myProfile);
