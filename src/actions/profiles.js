@@ -7,23 +7,23 @@ export const getProfiles = filters => {
     const token = localStorage.getItem("token");
 
     let path = "";
-    if(filters) {
-        const { startAgeFilter, endAgeFilter, cityFilter, educationFilter } = filters;
-        if(startAgeFilter) {
+    if (filters) {
+        const {startAgeFilter, endAgeFilter, cityFilter, educationFilter} = filters;
+        if (startAgeFilter) {
             path = `/filter?startAge=${startAgeFilter}`;
         }
-        if(endAgeFilter) {
+        if (endAgeFilter) {
             path += `&endAge=${endAgeFilter}`;
         }
-        if(cityFilter) {
+        if (cityFilter) {
             path += `&city=${cityFilter}`;
         }
-        if(educationFilter) {
+        if (educationFilter) {
             path += `&education=${educationFilter}`;
         }
     }
 
-    return function(dispatch) {
+    return function (dispatch) {
         return axios({
             method: 'get',
             url: url + `providers` + path,
@@ -32,7 +32,7 @@ export const getProfiles = filters => {
             }
         }).then(res => {
             console.log(res);
-            dispatch({ type: constants.GET_PROFILES,  data: res.data });
+            dispatch({type: constants.GET_PROFILES, data: res.data});
             return res;
         }).catch(err => {
             return err;

@@ -1,49 +1,35 @@
-import React from 'react';
-import './Register.scss';
-import {providerRegister} from '../../actions/user';
-import {connect} from "react-redux";
+import SeekersRegister from "../Register/SeekersRegister";
+import {render} from "react-dom";
+import React from "react";
+import ProvidersRegister from "../Register/ProvidersRegister";
 import MultiSelect from "react-multi-select-component";
 import {options} from "../../utils/constants";
-import axios from 'axios';
+import { connect } from "react-redux";
+import {getUser} from "../../actions/user";
 
-
-class ProvidersRegister extends React.Component {
+class myProfile extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            profilePicture: "",
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            bio: "",
-            dateOfBirth: "",
-            city: "",
-            address: "",
-            gender: "",
-            phoneNumber: "",
-            education: "",
-            jobs: [],
-            certificate: null,
-            profilePictureError: "",
-            firstNameError: "",
-            lastNameError: "",
-            emailError: "",
-            passwordError: "",
-            confPassError: "",
-            dateOfBirthError: "",
-            cityError: "",
-            addressError: "",
-            genderError: "",
-            phoneNumberError: "",
-            educationError: "",
-            // jobsError: "",
-            certificateError: ""
+            user: {}
         }
     }
 
+    componentDidMount() {
+        this.props.getUser().then(res => {
+            this.setState({ res });
+        })
+    }
+
+    handleSubmit = (event) => {
+        this.props.registerUser(this.formattedState(this.state));
+        const isValid = this.validate();
+        if (isValid) {
+            console.log(this.state)
+        }
+        // this.setState(initialState);
+    }
 
     formattedDateOfBirth = (date) => {
         let splitDate = date.split("-");
@@ -63,129 +49,6 @@ class ProvidersRegister extends React.Component {
         this.setState({ jobs: jobs })
     }
 
-    validate = () => {    //qitu
-        let firstNameError = "";
-        let lastNameError = "";
-        let emailError = "";
-        let passwordError = "";
-        let confPassError = "";
-        let dateOfBirthError = "";
-        let cityError = "";
-        let addressError = "";
-        let genderError = "";
-        let phoneNumberError = "";
-        let educationError= "";
-        // let jobsError = "";
-
-        if (!this.state.firstName > 2 || (!this.state.firstName)) {
-            firstNameError = "Ky emër nuk është valid!"
-        }
-        if (!this.state.lastName > 2 || (!this.state.lastName)) {
-            lastNameError = "Ky mbiemër nuk është valid!"
-        }
-        if (!this.state.email.includes('@') || (!this.state.email)) {
-            emailError = "Kjo email adresë nuk është valide!"
-        }
-        if (!this.state.password > 8 || (!this.state.password)) {
-            passwordError = "Ky fjalëkalim nuk është valid!"
-        }
-        if (!this.state.confirmPassword > 8 || (!this.state.confirmPassword)) {    //per match
-            confPassError = "Ky fjalëkalim nuk është valid!"
-        }
-        if (!this.state.dateOfBirth) {
-            dateOfBirthError = "Kjo datë nuk është valide!"
-        }
-        if (!this.state.city) {
-            cityError = "Ky qytet nuk është valid!"
-        }
-        if (!this.state.address) {
-            addressError = "Kjo adresë nuk është valide!"
-        }
-        if (!this.state.gender) {
-            genderError = "Kjo gjini nuk është valide!"
-        }
-        if (!this.state.phoneNumber) {
-            phoneNumberError = "Ky nr. telefoni nuk është valid!"
-        }
-        if (!this.state.educationError) {
-            educationError = "Kjo e dhëneë nuk është valide!"
-        }
-        // if (!this.state.jobsError) {
-        //     jobsError = "Ky shërbim nuk është valid!"
-        // }
-        if (emailError || firstNameError || lastNameError || passwordError || confPassError || dateOfBirthError
-            || cityError || addressError || genderError || phoneNumberError || educationError ) {
-            this.setState({
-                emailError,
-                firstNameError,
-                lastNameError,
-                passwordError,
-                confPassError,
-                dateOfBirthError,
-                cityError,
-                addressError,
-                genderError,
-                phoneNumberError,
-                educationError,
-                // jobsError
-            });
-            return false;
-        }
-        return true;
-    }
-
-
-    onFileChange = event => {
-        this.setState({ selectedFile: event.target.files[0] });
-    };
-
-
-    onFileUpload = () => {
-        const formData = new FormData();
-
-        formData.append(
-            "myFile",
-            this.state.selectedFile,
-            this.state.selectedFile.name
-        );
-
-        console.log(this.state.selectedFile);
-
-        axios.post("api/uploadfile", formData);
-    };
-
-    fileData = () => {
-
-        if (this.state.selectedFile) {
-
-            return (
-                <div>
-                    <h2>File Details:</h2>
-                    <p>File Name: {this.state.selectedFile.name}</p>
-                    <p>File Type: {this.state.selectedFile.type}</p>
-                    <p>
-                        Last Modified:{" "}
-                        {this.state.selectedFile.lastModifiedDate.toDateString()}
-                    </p>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <br />
-                </div>
-            );
-        }
-    };
-
-    handleSubmit = (event) => {
-        this.props.registerUser(this.formattedState(this.state));
-        const isValid = this.validate();
-        if (isValid) {
-            console.log(this.state)
-        }
-        // this.setState(initialState);
-    }
 
     render() {
         return (
@@ -194,18 +57,7 @@ class ProvidersRegister extends React.Component {
                 <div className="row">
                     <div className="col register-form-container">
                         <form className="register-form">
-                            <div className="register-title"> Regjistrohu!</div>
-
-                            <div className="col">
-                                <div className="form-group">
-                                    <label htmlFor="name-input">Profile Picture: </label>
-                                    <input
-                                        type="file"
-                                        id="imageFile"
-                                        name='imageFile'
-                                        value={this.state.profilePicture}
-                                        onChange={this.imageUpload}/></div>
-                            </div>
+                            <div className="register-title"> My Profile!</div>
 
                             <div className="form-row">
                                 <div className="col">
@@ -380,16 +232,6 @@ class ProvidersRegister extends React.Component {
                                 {/*<div className="error-style">{this.state.jobsError}</div>*/}
                             </div>
 
-                            <div>
-                                <label htmlFor="bio-input">Certifikata: </label>
-                                <div>
-                                    <input type="file" onChange={this.onFileChange} />
-                                    <button onClick={this.onFileUpload}>
-                                        Upload!
-                                    </button>
-                                </div>
-                                {this.fileData()}
-                            </div>
 
                             <div className="register-button">
                                 <button type="button" onClick={() => this.handleSubmit()}>Submit</button>
@@ -399,18 +241,18 @@ class ProvidersRegister extends React.Component {
                 </div>
 
             </div>
-        );
+        )
     }
 }
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        posts: state.myPosts
     };
 }
 
 const mapDispatchToProps = dispatch => ({
-    registerUser: (data) => dispatch(providerRegister(data)),
+    getUser: data => dispatch(getUser())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProvidersRegister);
+export default connect(null, mapDispatchToProps)(myProfile);

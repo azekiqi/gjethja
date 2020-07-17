@@ -12,6 +12,24 @@ export const logOut = data => ({
     data: data
 })
 
+export const getUser = data => {
+    const token = localStorage.getItem("token");
+    return function(dispatch) {
+        return axios({
+            method: 'get',
+            url: url + "current",
+            headers: {
+                authorization: "Bearer " + token
+            }
+        }).then(res => {
+            console.log(res);
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+}
+
 export const providerRegister = data => {
     return function(dispatch) {
         return axios({
@@ -76,5 +94,4 @@ export const confirm = data => {
             return err;
         })
     }
-
 }
