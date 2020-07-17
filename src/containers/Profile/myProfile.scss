@@ -71,3 +71,10 @@
   font-size: .7rem;
   font-weight: 300;
 }
+
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+  width: 85%;
+  margin: auto;
+}

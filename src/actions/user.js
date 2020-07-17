@@ -100,7 +100,7 @@ export const editProfile = data => {
     return function(dispatch) {
         return axios({
             method: 'post',
-            url: url + "myProfile",
+            url: url + "editProfile",
             data: data
         }).then(res => {
             console.log(res);
