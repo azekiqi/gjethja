@@ -8,6 +8,7 @@ import "./App.scss";
 import { Provider } from 'react-redux';
 import {store} from "./reducers/app";
 import CreatePost from "./containers/CreatePost/CreatePost";
+import Register from "./containers/Register/Register";
 import ProvidersRegister from "./containers/Register/ProvidersRegister";
 import SeekersRegister from "./containers/Register/SeekersRegister";
 import AuthenticatedRoute from "./components/Routes/AuthenticatedRoute";
@@ -23,6 +24,7 @@ export default function App() {
                   <Route exact path="/" component={Landingpage} />
                   <Route exact path="/aboutUs" component={AboutUs} />
                   <Route path="/login" component={Login} />
+                  <Route path="/register" component={Register} />
                   <Route path="/register/seeker" component={SeekersRegister} />
                   <Route path="/register/provider" component={ProvidersRegister} />
 
