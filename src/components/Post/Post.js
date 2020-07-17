@@ -3,7 +3,7 @@ import './Post.scss';
 import FeatherIcon from 'feather-icons';
 
 
-export default function Post({id, title, description}) {
+export default function Post({ id, title, description, handlePay }) {
     return(
         <div className="post">
             <div className={"post-image"} />
@@ -16,6 +16,10 @@ export default function Post({id, title, description}) {
             <div className={"post-description"}>
                 { description }
             </div>
+            <button className="btn btn-primary"
+                    onClick={handlePay}>
+                Pay
+            </button>
         </div>
     )
 }

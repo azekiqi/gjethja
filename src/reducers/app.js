@@ -10,12 +10,15 @@ const initialState = {   //initialState is a plain object that "describes" our a
     endAgeFilter: "",
     cityFilter: "",
     educationFilter: "",
+    authentication: {
+        token: localStorage.getItem("token")
+    }
 }
 
 // Reducer:
 // interceptor between action and store/state
 // accepts data from action, affects state
-const app = function (state = initialState, action) {
+export const app = function (state = initialState, action) {
     switch (action.type) {
 
         case constants.REGISTER:
@@ -23,14 +26,23 @@ const app = function (state = initialState, action) {
             return state;
 
         case constants.LOGIN:
-            console.log(action);
             localStorage.setItem("token", action.data.accessToken);
-            return state;
+            return {
+                ...state,
+                authentication: {
+                    token: action.data.accessToken
+                }
+            }
 
         case constants.LOGOUT:
             console.log(action);
             localStorage.removeItem("token");
-            return state;
+            return {
+                ...state,
+                authentication: {
+                    token: null
+                }
+            }
 
         case constants.GET_POSTS:
             console.log(action);

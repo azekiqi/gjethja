@@ -9,7 +9,7 @@ const url = process.env.REACT_APP_BACKEND_URL;
 
 export const logOut = data => ({
     type: constants.LOGOUT,
-    payload: data
+    data: data
 })
 
 export const getUser = data => {
