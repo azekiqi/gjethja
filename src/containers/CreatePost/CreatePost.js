@@ -5,6 +5,7 @@ import { register } from '../../actions/user';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
+
 class CreatePost extends React.Component {
     constructor(props) {
         super(props);

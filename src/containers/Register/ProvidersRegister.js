@@ -26,6 +26,7 @@ class ProvidersRegister extends React.Component {
             phoneNumber: "",
             education: "",
             jobs: [],
+            education: "",
             certificate: null,
             profilePictureError: "",
             firstNameError: "",

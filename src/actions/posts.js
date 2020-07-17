@@ -41,3 +41,23 @@ export const createPost = data => {
         })
     }
 }
+
+export const deletePost = ( data, id ) => {
+    const token = localStorage.getItem("token");
+    return function(dispatch) {
+        return axios({
+            method: 'delete',
+            url: url + "posts/" + id,
+            data: data,
+            headers: {
+                authorization: "Bearer " + token
+            }
+        }).then(res => {
+            console.log(res);
+            dispatch({ type: constants.DELETE_POST,  data: res.data });
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+}

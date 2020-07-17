@@ -9,7 +9,6 @@ import House  from "../../assets/images/house.png";
 import Slideshow from "./Slideshow";
 
 
-
 class Landingpage extends React.Component {
     constructor(props) {
         super(props);

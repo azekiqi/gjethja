@@ -6,6 +6,7 @@ import Login from "./containers/Login/Login";
 import AboutUs from "./containers/AboutUs/AboutUs"
 import "./App.scss";
 import CreatePost from "./containers/CreatePost/CreatePost";
+import Register from "./containers/Register/Register";
 import ProvidersRegister from "./containers/Register/ProvidersRegister";
 import SeekersRegister from "./containers/Register/SeekersRegister";
 import AuthenticatedRoute from "./components/Routes/AuthenticatedRoute";
@@ -19,6 +20,7 @@ import {store} from "./reducers/app";
 // pk_test_51H1teeE9l7621wtln7yA1DXyqVAQ4Ld6FJwB2iLYNZKtmluZEZ93jeg2ycwuKRGOj71C7awnuQBN5qDYrDkodgp100Xdajq8Lw
 
 
+
 function App() {
     const token = store.getState().authentication.token;
     return(
@@ -28,6 +30,7 @@ function App() {
       
                     <Route exact path="/" component={Landingpage} />
                     <Route exact path="/aboutUs" component={AboutUs} />
+                    <Route exact path="/register" component={Register} />
                     <Route path="/login" component={Login} />
                     <Route path="/register/seeker" component={SeekersRegister} />
                     <Route path="/register/provider" component={ProvidersRegister} />
@@ -36,6 +39,7 @@ function App() {
                      <AuthenticatedRoute path="/home" component={Home} token={token} />
                      <AuthenticatedRoute path="/create" component={CreatePost} token={token} />
        
+
               </Switch>
           </HashRouter>
       </Provider>
