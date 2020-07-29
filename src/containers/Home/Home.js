@@ -62,6 +62,7 @@ class Home extends React.Component {
                     <Sidebar/>
 
                     <Modal
+
                         isOpen={isModalOpen}
                         onRequestClose={this.closeModal}
                         contentLabel="Payment Modal"
@@ -96,8 +97,7 @@ class Home extends React.Component {
                                     return <Post
                                         id={post.id}
                                         title={post.title}
-                                        description={post.description}
-                                        handlePay={() => this.openModal(post.id)}/>
+                                        description={post.description}/>
                                 })
                             }
                         </div>}
@@ -107,8 +107,7 @@ class Home extends React.Component {
                                     return <Post
                                         id={profile.id}
                                         title={profile.firstName + " " + profile.lastName}
-                                        description={profile.description}
-                                        handlePay={() => this.openModal(profile.id)}/>
+                                        description={profile.description}/>
                                 })
                             }
                         </div>}

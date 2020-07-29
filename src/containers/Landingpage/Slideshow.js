@@ -9,7 +9,7 @@ import Qeni from "../../assets/images/qeni.png"
 
 const props = {
     duration: 3000,
-    transitionDuration: 500,
+    transitionDuration: 550,
     infinite: true,
     pauseOnHover: true,
 }

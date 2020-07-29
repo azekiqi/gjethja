@@ -5,8 +5,6 @@ import Logo from './../../assets/images/gjethja-logo.png';
 import { connect } from "react-redux";
 import {logOut} from "../../actions/user";
 
-const token = localStorage.getItem("token");
-
 function Header(props) {
     return(
         <div class={"header"}>
@@ -23,28 +21,35 @@ function Header(props) {
                     <li>
                         <Link to={"/aboutUs"}>Për ne</Link>
                     </li>
+                    <li>
+                        <Link to={"/profile"}>Profili</Link>
+                    </li>
+
+
                     {
-                        !token ?
+                        !props.token ?
                             <>
                                 <li>
                                     <Link to={"/login"}>Kyçu</Link>
                                 </li>
-                                <li>
+                                <button className="btn btn-primary">
                                     <Link to={"/register"}>Regjistrohu</Link>
-                                </li>
-
+                                </button>
                             </> :
                             <>
+                                <li>
+                                    <a href="#"
+                                       to={"/profile"}
+                                       onClick={(e) => {
+                                           e.preventDefault();
+                                           props.logOut();
+                                       }}>Çkyçu</a>
+                                </li>
                                 <button className="btn btn-primary"
                                         onClick={() => props.history.push("/create")}>
                                     Create Post
                                 </button>
-                                <button className="btn btn-primary"
-                                        onClick={() => props.logOut()}>
-                                    Log out
-                                </button>
                             </>
-
                     }
                 </ul>
             </nav>
@@ -52,8 +57,14 @@ function Header(props) {
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        token: state.token
+    }
+}
+
 const mapDispatchToProps = dispatch => ({
     logOut: data => dispatch(logOut())
 })
 
-export default withRouter(connect(null, mapDispatchToProps)(Header));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

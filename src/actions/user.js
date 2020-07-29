@@ -110,5 +110,19 @@ export const editProfile = data => {
             return err;
         })
     }
+}
 
+export const saveFeedback = data => {
+    return function(dispatch) {
+        return axios({
+            method: 'post',
+            url: url + "/feedback",
+            data: data
+        }).then(res => {
+            console.log(res);
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
 }

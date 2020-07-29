@@ -50,4 +50,4 @@ class Register extends React.Component {
 
 export default Register;
 
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register));
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterSeeker));

@@ -1,6 +1,6 @@
 import React from 'react';
 import './CreatePost.scss';
-import {createPost} from "../../actions/posts";
+import { createPost } from "../../actions/posts";
 import { register } from '../../actions/user';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";

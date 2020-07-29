@@ -7,24 +7,47 @@ import Elder  from "../../assets/images/elder.png";
 import Pet from "../../assets/images/pet.png";
 import House  from "../../assets/images/house.png";
 import Slideshow from "./Slideshow";
-
+import {Elements} from "@stripe/react-stripe-js";
+import Stripe from "../../components/Stripe/Stripe";
+import Modal from "react-modal";
+import { saveFeedback } from "../../actions/user";
+import { connect } from "react-redux";
 
 class Landingpage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            //
+            isModalOpen: false,
+            modalId: null,
+            feedback: ""
         }
     }
 
+    closeModal = () => {
+        this.setState({ isModalOpen: false });
+    }
+
+    openModal = (id) => {
+        this.setState({ isModalOpen: true });
+    }
+
+    handleSubmit = () => {
+        this.props.saveFeedback(this.state.feedback).then(() => {
+
+        })
+    }
+
     render() {
+        const { isModalOpen } = this.state;
         return (
             <div>
                 <Header />
                  <div className="slideshow">
                      <Slideshow />
                  </div>
+
+
 
 
                 <div className="services">
@@ -103,9 +126,32 @@ class Landingpage extends React.Component {
                             </div>
                         </div>
                     </div>
+
+                    <Modal
+                        isOpen={isModalOpen}
+                        onRequestClose={this.closeModal}
+                        contentLabel="Payment Modal"
+                        className="custom-modal"
+                        overlayClassName="custom-modal-overlay">
+
+                        <div className="form-group">
+                            <label htmlFor="feedback-input">Feedback: </label>
+                            <textarea type="text"
+                                   id="feedback-input"
+                                   className="form-control"
+                                   value={this.state.feedback}
+                                      onChange={(e) => this.setState({feedback: e.target.value})}></textarea></div>
+
+                        <button className="btn btn-primary"
+                                onClick={() => this.handleSubmit()}>
+                            Submit
+                        </button>
+                    </Modal>
+                    <button className="btn btn-primary"
+                             onClick={() => this.setState({ isModalOpen: true })}>
+                        Feedback
+                    </button>
                 </div>
-
-
              <Footer />
 
 
@@ -115,4 +161,8 @@ class Landingpage extends React.Component {
 
 }
 
-export default Landingpage;
+const mapDispatchToProps = dispatch => ({
+    saveFeedback: data => dispatch(saveFeedback(data))
+})
+
+export default connect(null, mapDispatchToProps)(Landingpage);
