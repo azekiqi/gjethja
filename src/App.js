@@ -21,10 +21,8 @@ import {store} from "./reducers/app";
 
 
 
-function App() {
-    const token = store.getState().authentication.token;
+function App({ token }) {
     return(
-        <Provider store={store}>
             <HashRouter>
                 <Switch>
       
@@ -34,20 +32,23 @@ function App() {
                     <Route path="/login" component={Login} />
                     <Route path="/register/seeker" component={SeekersRegister} />
                     <Route path="/register/provider" component={ProvidersRegister} />
-                    <Route path="/myprofile" component={myProfile} />
+                    <Route path="/profile" component={myProfile} />
 
                      <AuthenticatedRoute path="/home" component={Home} token={token} />
                      <AuthenticatedRoute path="/create" component={CreatePost} token={token} />
-       
 
               </Switch>
           </HashRouter>
-      </Provider>
-      
     );
 }
 
-export default App
+const mapStateToProps = state => {
+    return {
+        token: state.token
+    }
+}
+
+export default connect(mapStateToProps, null)(App)
 
 
 

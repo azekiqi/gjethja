@@ -11,9 +11,16 @@ export const SET_FILTERS = "SET_FILTERS";
 export const CREATE_POST = "CREATE_POST";
 export const DELETE_POST = "DELETE_POST";
 
+export const SAVE_FEEDBACK = "SAVE_FEEDBACK";
+
 
 export const HomeTabs = {
     "Profiles": "profiles",
+    "Posts": "posts"
+}
+
+export const ProfileTabs = {
+    "Profile": "profile",
     "Posts": "posts"
 }
 

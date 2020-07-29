@@ -16,10 +16,10 @@ export default function Post({ id, title, description, handlePay }) {
             <div className={"post-description"}>
                 { description }
             </div>
-            <button className="btn btn-primary"
+            {handlePay && <button className="mx-auto mt-4"
                     onClick={handlePay}>
                 Pay
-            </button>
+            </button>}
         </div>
     )
 }

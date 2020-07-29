@@ -10,9 +10,7 @@ const initialState = {   //initialState is a plain object that "describes" our a
     endAgeFilter: "",
     cityFilter: "",
     educationFilter: "",
-    authentication: {
-        token: localStorage.getItem("token")
-    }
+    token: localStorage.getItem("token")
 }
 
 // Reducer:
@@ -29,9 +27,7 @@ export const app = function (state = initialState, action) {
             localStorage.setItem("token", action.data.accessToken);
             return {
                 ...state,
-                authentication: {
-                    token: action.data.accessToken
-                }
+                token: action.data.accessToken
             }
 
         case constants.LOGOUT:
@@ -39,9 +35,7 @@ export const app = function (state = initialState, action) {
             localStorage.removeItem("token");
             return {
                 ...state,
-                authentication: {
-                    token: null
-                }
+                token: null
             }
 
         case constants.GET_POSTS:
