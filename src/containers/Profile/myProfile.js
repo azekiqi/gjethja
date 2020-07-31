@@ -1,21 +1,15 @@
-import SeekersRegister from "../Register/SeekersRegister";
-import {render} from "react-dom";
 import React from "react";
-import ProvidersRegister from "../Register/ProvidersRegister";
-import {GET_POSTS, ProfileTabs} from "../../utils/constants";
-import {GetPosts} from "../../utils/constants";
-import MultiSelect from "react-multi-select-component";
-import {HomeTabs, options} from "../../utils/constants";
-import { connect } from "react-redux";
-import {editProfile, getUser, seekerRegister} from "../../actions/user";
+import {ProfileTabs} from "../../utils/constants";
+import {connect} from "react-redux";
+import {editProfile, getUser, uploadProfilePicture} from "../../actions/user";
 import Post from "../../components/Post/Post";
-import Slideshow from "../Landingpage/Slideshow";
-import {getPosts} from "../../actions/posts";
+import {deletePost, editPost, getMyPosts, getPosts} from "../../actions/posts";
 import Header from "../../components/Header/Header";
 import Stripe from "../../components/Stripe/Stripe";
 import {loadStripe} from "@stripe/stripe-js";
 import {Elements} from "@stripe/react-stripe-js";
 import Modal from "react-modal";
+
 const stripePromise = loadStripe('pk_test_51H1teeE9l7621wtln7yA1DXyqVAQ4Ld6FJwB2iLYNZKtmluZEZ93jeg2ycwuKRGOj71C7awnuQBN5qDYrDkodgp100Xdajq8Lw');
 
 class myProfile extends React.Component {
@@ -23,41 +17,55 @@ class myProfile extends React.Component {
         super(props);
 
         this.state = {
-            user: {},
+            user: {
+                firstName: "",
+                lastName: "",
+                bio: "",
+                city: "",
+                address: "",
+                phoneNumber: "",
+                image: null
+            },
+            post: {
+                title: "",
+                description: "",
+                status: ""
+            },
             isModalOpen: false,
-            currentTab: ProfileTabs.Profile
+            currentTab: ProfileTabs.Profile,
+            modalContent: ""
         }
     }
 
     componentDidMount() {
-        this.props.editProfile().then(res => {
-            this.setState({ res });
+        this.props.getUser().then(res => {
+            this.setState({ user: res.data });
         })
-        this.props.getPosts();
-        this.props.getUser();
+        this.props.getMyPosts();
     }
 
     handleSubmit = (event) => {
-        this.props.editProfile(this.formattedState(this.state));
-        const isValid = this.validate();
-        if (isValid) {
-            console.log(this.state)
-        }
-        // this.setState(initialState);
+        this.props.editProfile(this.state.user).then(res => {
+            if(this.state.user.image) {
+                this.props.uploadProfilePicture(this.state.user.image).then(res => {
+                    this.props.getUser().then(res => {
+                        this.setState({ user: res.data });
+                    })
+                })
+            } else {
+                this.props.getUser().then(res => {
+                    this.setState({ user: res.data });
+                })
+            }
+        })
     }
 
-    formattedDateOfBirth = (date) => {
-        let splitDate = date.split("-");
-        return [splitDate[2], splitDate[1], splitDate[0]].join("-"); //reformat
-    }
-
-    formattedState = (state) => {
-        return {
-            ...state,
-            dateOfBirth: this.formattedDateOfBirth(state.dateOfBirth),
-            jobs: state.jobs.map(job => job.value),
-            url: process.env.REACT_APP_CONFIRM_URL,
-        }
+    handleEditPost = (event) => {
+        this.props.editPost(this.state.post, this.state.modalId).then(res => {
+            this.props.getPosts().then(res => {
+                this.setState({ isModalOpen: false });
+            })
+        })
     }
 
     setSelectedJobs = (jobs) => {
@@ -74,6 +82,33 @@ class myProfile extends React.Component {
                 <form className="register-form">
                     <div className="register-title"> My Profile!</div>
 
+                    <div className="row">
+                        <div className="col-4 mx-auto">
+                            <img src={"data:image/png;base64," + this.state.user.profilePicture} alt="Logo" style={{ maxWidth: "200px", maxHeight: "200px" }} />
+                        </div>
+                    </div>
+
+                    <div className="form-row">
+                        <div className="col">
+                            <div className="form-group">
+                                <label htmlFor="name-input">Foto e profilit: </label>
+                                <input type="file"
+                                       id="name-input"
+                                       className="form-control p-1"
+                                       placeholder="Image"
+                                       onChange={(e) => {
+                                           this.setState({
+                                               user: {
+                                                   ...this.state.user,
+                                                   image: e.target.files && e.target.files[0] ? e.target.files[0] : null
+                                               }
+                                           })
+                                       }}/>
+                                <div className="error-style">{this.state.firstNameError}</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="form-row">
                         <div className="col">
                             <div className="form-group">
@@ -83,7 +118,14 @@ class myProfile extends React.Component {
                                        className="form-control"
                                        placeholder="Emri"
                                        value={this.state.user.firstName}
-                                       onChange={(e) => this.setState({firstName: e.target.value})}/>
+                                       onChange={(e) => {
+                                           this.setState({
+                                               user: {
+                                                   ...this.state.user,
+                                                   firstName: e.target.value
+                                               }
+                                           })
+                                       }}/>
                                 <div className="error-style">{this.state.firstNameError}</div>
                             </div>
                         </div>
@@ -95,21 +137,17 @@ class myProfile extends React.Component {
                                        className="form-control"
                                        placeholder="Mbiemri"
                                        value={this.state.user.lastName}
-                                       onChange={(e) => this.setState({lastName: e.target.value})}/>
+                                       onChange={(e) => {
+                                           this.setState({
+                                               user: {
+                                                   ...this.state.user,
+                                                   lastName: e.target.value
+                                               }
+                                           })
+                                       }}/>
                                 <div className="error-style">{this.state.lastNameError}</div>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="email">Email adresa:</label>
-                        <input type="email-input"
-                               id="email-input"
-                               className="form-control"
-                               placeholder="Email adresa"
-                               value={this.state.user.email}
-                               onChange={(e) => this.setState({email: e.target.value})}/>
-                        <div className="error-style">{this.state.emailError}</div>
                     </div>
 
                     <div className="form-group">
@@ -119,61 +157,15 @@ class myProfile extends React.Component {
                                className="form-control"
                                placeholder="Numri i telefonit"
                                value={this.state.user.phoneNumber}
-                               onChange={(e) => this.setState({phoneNumber: e.target.value})}/>
+                               onChange={(e) => {
+                                   this.setState({
+                                       user: {
+                                           ...this.state.user,
+                                           phoneNumber: e.target.value
+                                       }
+                                   })
+                               }}/>
                         <div className="error-style">{this.state.phoneNumberError}</div>
-                    </div>
-
-
-                    <div className="form-row">
-                        <div className="col">
-                            <div className="form-group">
-                                <label htmlFor="password-input">Fjalëkalimi: </label>
-                                <input type="password"
-                                       id="password-input"
-                                       className="form-control"
-                                       placeholder="Fjalëkalimi"
-                                       value={this.state.user.password}
-                                       onChange={(e) => this.setState({password: e.target.value})}/>
-                                <div className="error-style">{this.state.passwordError}</div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="form-group">
-                                <label htmlFor="confirm-password-input">Përsërite fjalëkalimin: </label>
-                                <input type="password"
-                                       id="confirm-password-input"
-                                       className="form-control"
-                                       value={this.state.user.confirmPassword}
-                                       placeholder="Përsërite fjalëkalimin"
-                                       onChange={(e) => this.setState({confirmPassword: e.target.value})}/>
-                                <div className="error-style">{this.state.confPassError}</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="form-group">
-                        <label>Data e lindjes: </label>
-                        <input type="date"
-                               id="birthday-input"
-                               className="form-control"
-                               placeholder="wtf"
-                               value={this.state.user.dateOfBirth}
-                               onChange={(e) => this.setState({dateOfBirth: e.target.value})}/>
-                        <div className="error-style">{this.state.dateOfBirthError}</div>
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="gender-input">Gjinia: </label>
-                        <select
-                            id="gender-input"
-                            className="form-control"
-                            onChange={(e) => this.setState({gender: e.target.value})}
-                            defaultValue="Zgjedh gjininë">
-                            <option defaultValue>Zgjedh gjininë</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                        <div className="error-style">{this.state.genderError}</div>
                     </div>
 
                     <div className="form-row">
@@ -183,8 +175,15 @@ class myProfile extends React.Component {
                                 <select
                                     id="city-input"
                                     className="form-control"
-                                    onChange={(e) => this.setState({city: e.target.value})}
-                                    defaultValue="Zgjedh qytetin">
+                                    defaultValue="Zgjedh qytetin"
+                                    onChange={(e) => {
+                                        this.setState({
+                                            user: {
+                                                ...this.state.user,
+                                                city: e.target.value
+                                            }
+                                        })
+                                    }}>
                                     <option defaultValue>Zgjedh qytetin</option>
                                     <option value="Prishtinë">Prishtinë</option>
                                     <option value="Pejë">Pejë</option>
@@ -206,7 +205,14 @@ class myProfile extends React.Component {
                                        id="address-input"
                                        className="form-control"
                                        value={this.state.user.address}
-                                       onChange={(e) => this.setState({address: e.target.value})}
+                                       onChange={(e) => {
+                                           this.setState({
+                                               user: {
+                                                   ...this.state.user,
+                                                   address: e.target.value
+                                               }
+                                           })
+                                       }}
                                        placeholder="Adresa"/>
                                 <div className="error-style">{this.state.addressError}</div>
                             </div>
@@ -220,33 +226,14 @@ class myProfile extends React.Component {
                                className="form-control"
                                placeholder="Biografia"
                                value={this.state.user.bio}
-                               onChange={(e) => this.setState({bio: e.target.value})}/></div>
-
-                    <div className="form-group">
-                        <label htmlFor="education-input">Edukimi: </label>
-                        <select
-                            id="education-input"
-                            className="form-control"
-                            onChange={(e) => this.setState({ education: e.target.value })}
-                            defaultValue="Zgjedh edukimin">
-                            <option defaultValue>Zgjedh edukimin</option>
-                            <option value="Ulet">I ulët</option>
-                            <option value="Mesem">I mesëm</option>
-                            <option value="Larte">I lartë</option>
-                        </select>
-                    </div>
-
-                    <div className="form-group">
-                        <label>Shërbimet: </label>
-                        <MultiSelect
-                            options={options}
-                            value={this.state.jobs}
-                            onChange={this.setSelectedJobs}
-                            labelledBy={"Select"}
-                        />
-                        {/*<div className="error-style">{this.state.jobsError}</div>*/}
-                    </div>
-
+                               onChange={(e) => {
+                                   this.setState({
+                                       user: {
+                                           ...this.state.user,
+                                           bio: e.target.value
+                                       }
+                                   })
+                               }}/></div>
 
                     <div className="register-button">
                         <button type="button" onClick={() => this.handleSubmit()}>Edit Profile</button>
@@ -256,16 +243,16 @@ class myProfile extends React.Component {
         </div>
     )
 
-    handlePay = (id) => {
-
-    }
-
     closeModal = () => {
         this.setState({ isModalOpen: false });
     }
 
-    openModal = (id) => {
-        this.setState({ isModalOpen: true, modalId: id });
+    openModal = (content, id) => {
+        if(content == 'edit-post') {
+            const post = this.props.posts.find(post => post.id == id);
+            this.setState({ post: post });
+        }
+        this.setState({ isModalOpen: true, modalId: id, modalContent: content });
     }
 
     renderPosts = () => (
@@ -277,8 +264,11 @@ class myProfile extends React.Component {
                             return <Post
                                 id={post.id}
                                 title={post.title}
+                                status={post.status}
                                 description={post.description}
-                                handlePay={() => this.openModal(post.id)} />
+                                handleEdit={() => this.openModal("edit-post", post.id)}
+                                handleDelete={() => this.props.deletePost(post.id)}
+                                handlePay={() => this.openModal("handle-pay", post.id)} />
                         })
                     }
                 </div>
@@ -286,6 +276,71 @@ class myProfile extends React.Component {
         </div>
     )
 
+    renderModalContent = () => {
+        if(this.state.modalContent == "edit-post") {
+            return (
+                <form className="create-post-form">
+                    <div className="form-group">
+                        <label htmlFor="name-input">Titulli: </label>
+                        <input type="text"
+                               id="name-input"
+                               className="form-control"
+                               placeholder="Titulli"
+                               value={this.state.post.title}
+                               onChange={(e) => {
+                                   this.setState({
+                                       post: {
+                                           ...this.state.post,
+                                           title: e.target.value
+                                       }
+                                   })
+                               }}/></div>
+
+                    <div className="form-group">
+                        <label htmlFor="name-input">Përshkrimi: </label>
+                        <input type="text"
+                               id="name-input"
+                               className="form-control"
+                               placeholder="Përshkrimi"
+                               value={this.state.post.description}
+                               onChange={(e) => {
+                                   this.setState({
+                                       post: {
+                                           ...this.state.post,
+                                           descrtiption: e.target.value
+                                       }
+                                   })
+                               }}/></div>
+
+                    <div className="form-group">
+                        <label htmlFor="status-input">Statusi: </label>
+                        <select
+                            id="status-input"
+                            className="form-control"
+                            defaultValue="Select status"
+                            onChange={(e) => {
+                                this.setState({
+                                    post: {
+                                        ...this.state.post,
+                                        status: e.target.value
+                                    }
+                                })
+                            }}>
+                            <option defaultValue>Zgjedh statusin</option>
+                            <option value="open">Hapur</option>
+                            <option value="closed">Mbyllur</option>
+                        </select>
+                    </div>
+
+                    <button type="button" onClick={() => this.handleEditPost()}>Posto</button>
+                </form>
+            )
+        } else {
+            return <Elements stripe={stripePromise}>
+                    <Stripe id={this.state.modalId} onPaymentFinish={() => this.closeModal()} />
+                </Elements>
+        }
+    }
 
     render() {
         const { currentTab, isModalOpen, modalId } = this.state;
@@ -320,9 +375,8 @@ class myProfile extends React.Component {
                         className="custom-modal"
                         overlayClassName="custom-modal-overlay">
 
-                        <Elements stripe={stripePromise}>
-                            <Stripe id={modalId} onPaymentFinish={() => this.closeModal()} />
-                        </Elements>
+
+                        { this.renderModalContent() }
 
                     </Modal>
 
@@ -345,7 +399,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     getUser: data => dispatch(getUser()),
     getPosts: data => dispatch(getPosts()),
+    getMyPosts: data => dispatch(getMyPosts()),
+    editPost: (data, id) => dispatch(editPost(data, id)),
+    deletePost: data => dispatch(deletePost(data)),
     editProfile: (data) => dispatch(editProfile(data)),
+    uploadProfilePicture: (data) => dispatch(uploadProfilePicture(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(myProfile);

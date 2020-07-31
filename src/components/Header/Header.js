@@ -21,9 +21,7 @@ function Header(props) {
                     <li>
                         <Link to={"/aboutUs"}>Për ne</Link>
                     </li>
-                    <li>
-                        <Link to={"/profile"}>Profili</Link>
-                    </li>
+
 
 
                     {
@@ -37,6 +35,12 @@ function Header(props) {
                                 </button>
                             </> :
                             <>
+                                <li>
+                                    <Link to={"/home"}>Shtëpia</Link>
+                                </li>
+                                <li>
+                                    <Link to={"/profile"}>Profili</Link>
+                                </li>
                                 <li>
                                     <a href="#"
                                        to={"/profile"}

@@ -96,7 +96,8 @@ class Home extends React.Component {
                                 this.props.posts.map((post, index) => {
                                     return <Post
                                         id={post.id}
-                                        title={post.title}
+                                        title={post.user}
+                                        status={post.status}
                                         description={post.description}/>
                                 })
                             }
@@ -107,7 +108,9 @@ class Home extends React.Component {
                                     return <Post
                                         id={profile.id}
                                         title={profile.firstName + " " + profile.lastName}
-                                        description={profile.description}/>
+                                        info={"Edukimi: " + profile.education}
+                                        description={"Nr. Tel: " + profile.phoneNumber}
+                                    />
                                 })
                             }
                         </div>}
