@@ -10,7 +10,7 @@ import Slideshow from "./Slideshow";
 import {Elements} from "@stripe/react-stripe-js";
 import Stripe from "../../components/Stripe/Stripe";
 import Modal from "react-modal";
-import { saveFeedback } from "../../actions/user";
+import {getFeedback, saveFeedback} from "../../actions/user";
 import { connect } from "react-redux";
 
 class Landingpage extends React.Component {
@@ -20,8 +20,15 @@ class Landingpage extends React.Component {
         this.state = {
             isModalOpen: false,
             modalId: null,
-            feedback: ""
+            feedbackText: "",
+            feedback: []
         }
+    }
+
+    componentDidMount() {
+        this.props.getFeedback().then(res => {
+            this.setState({ feedback: res.data });
+        })
     }
 
     closeModal = () => {
@@ -33,7 +40,10 @@ class Landingpage extends React.Component {
     }
 
     handleSubmit = () => {
-        this.props.saveFeedback(this.state.feedback).then(() => {
+        this.props.saveFeedback(this.state.feedbackText).then(re => {
+            this.props.getFeedback().then(res => {
+                this.setState({ feedback: res.data, isModalOpen: false });
+            })
 
         })
     }
@@ -92,39 +102,20 @@ class Landingpage extends React.Component {
                 <div className="ourvalues">
                     <div className="ourvalues-title">Çfarë thonë miqt dhe partnerët për ne</div>
                     <div className="ourvalues-cards">
-                        <div className="ourvalues-card">
-                            <div className={"post-image"} />
-                            <div className={"partner"}>
-                                UNICEF
-                            </div>
-                            <div className={"post-description"}>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                            </div>
-                        </div>
-                        <div className="ourvalues-card">
-                            <div className={"post-image"} />
-                            <div className={"partner"}>
-                                ICK
-                            </div>
-                            <div className={"post-description"}>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                            </div>
-                        </div>
-                        <div className="ourvalues-card">
-                            <div className={"post-image"} />
-                            <div className={"partner"}>
-                                UBT
-                            </div>
-                            <div className={"post-description"}>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                            </div>
-                        </div>
+                        {
+                            this.state.feedback.map(feedback => {
+                                return <div className="ourvalues-card">
+                                            <div className={"post-image"} />
+                                            <div className={"partner"}>
+                                                { feedback.firstName + " " + feedback.lastName }
+                                            </div>
+                                            <div className={"post-description"}>
+                                                <p>{ feedback.description }</p>
+                                            </div>
+                                        </div>
+                            })
+                        }
+
                     </div>
 
                     <Modal
@@ -139,8 +130,8 @@ class Landingpage extends React.Component {
                             <textarea type="text"
                                    id="feedback-input"
                                    className="form-control"
-                                   value={this.state.feedback}
-                                      onChange={(e) => this.setState({feedback: e.target.value})}></textarea></div>
+                                   value={this.state.feedbackText}
+                                      onChange={(e) => this.setState({feedbackText: e.target.value})}></textarea></div>
 
                         <button className="btn btn-primary"
                                 onClick={() => this.handleSubmit()}>
@@ -162,7 +153,8 @@ class Landingpage extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    saveFeedback: data => dispatch(saveFeedback(data))
+    saveFeedback: data => dispatch(saveFeedback(data)),
+    getFeedback: data => dispatch(getFeedback(data))
 })
 
 export default connect(null, mapDispatchToProps)(Landingpage);

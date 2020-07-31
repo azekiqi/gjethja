@@ -2,6 +2,7 @@ import * as constants from "../utils/constants";
 import axios from 'axios';
 
 const url = process.env.REACT_APP_BACKEND_URL;
+const feedbackUrl = process.env.REACT_APP_FEEDBACK_URL;
 
 // are called by the user
 // whenever it is needed to activate reducer
@@ -69,7 +70,10 @@ export const login = data => {
         return axios({
             method: 'post',
             url: url + "login",
-            data: data
+            data: data,
+            headers: {
+                "Content-Type": "application/json"
+            }
         }).then(res => {
             console.log(res);
             dispatch({ type: constants.LOGIN,  data: res.data });
@@ -97,11 +101,15 @@ export const confirm = data => {
 }
 
 export const editProfile = data => {
+    const token = localStorage.getItem("token");
     return function(dispatch) {
         return axios({
-            method: 'post',
-            url: url + "editProfile",
-            data: data
+            method: 'put',
+            url: url + "edit-profile",
+            data: data,
+            headers: {
+                Authorization: "Bearer " + token
+            }
         }).then(res => {
             console.log(res);
             dispatch({ type: constants.GET_PROFILES,  data: res.data });
@@ -113,11 +121,18 @@ export const editProfile = data => {
 }
 
 export const saveFeedback = data => {
+    const token = localStorage.getItem("token");
     return function(dispatch) {
         return axios({
             method: 'post',
-            url: url + "/feedback",
-            data: data
+            url: feedbackUrl + "feedback",
+            data: {
+                description: data
+            },
+            headers: {
+                "Content-Type": "application/json",
+                authorization: "Bearer " + token
+            }
         }).then(res => {
             console.log(res);
             return res;
@@ -125,4 +140,48 @@ export const saveFeedback = data => {
             return err;
         })
     }
+}
+
+export const getFeedback = data => {
+    const token = localStorage.getItem("token");
+    return function(dispatch) {
+        return axios({
+            method: 'get',
+            url: feedbackUrl + "feedback",
+            data: {
+                description: data
+            },
+            headers: {
+                authorization: "Bearer " + token
+            }
+        }).then(res => {
+            console.log(res);
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+}
+
+export const uploadProfilePicture = data => {
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("profile-picture", data);
+    return function(dispatch) {
+        return axios({
+            method: 'post',
+            url: url + "profile-picture",
+            data: formData,
+            headers: {
+                authorization: "Bearer " + token,
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(res => {
+            console.log(res);
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+
 }

@@ -22,6 +22,25 @@ export const getPosts = filters => {
     }
 }
 
+export const getMyPosts = filters => {
+    const token = localStorage.getItem("token");
+    return function(dispatch) {
+        return axios({
+            method: 'get',
+            url: url + `posts/current-user`,
+            headers: {
+                authorization: "Bearer " + token
+            }
+        }).then(res => {
+            console.log(res);
+            dispatch({ type: constants.GET_POSTS,  data: res.data });
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+}
+
 export const createPost = data => {
     const token = localStorage.getItem("token");
     return function(dispatch) {
@@ -42,13 +61,31 @@ export const createPost = data => {
     }
 }
 
-export const deletePost = ( data, id ) => {
+export const editPost = (data, id) => {
+    const token = localStorage.getItem("token");
+    return function(dispatch) {
+        return axios({
+            method: 'put',
+            url: url + "posts/" + id,
+            data: data,
+            headers: {
+                authorization: "Bearer " + token
+            }
+        }).then(res => {
+            console.log(res);
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+}
+
+export const deletePost = ( data ) => {
     const token = localStorage.getItem("token");
     return function(dispatch) {
         return axios({
             method: 'delete',
-            url: url + "posts/" + id,
-            data: data,
+            url: url + "posts/" + data,
             headers: {
                 authorization: "Bearer " + token
             }
