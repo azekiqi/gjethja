@@ -15,12 +15,12 @@ class Register extends React.Component {
         }
     }
 
-    handleClick = () => {
-        console.log('Button is cliked!');
+    handleClickProvider = () => {
+        console.log('Button is clicked!');
         this.setState({referrer: '/register/provider'});
     }
-    handleClick1 = () => {
-        console.log('Button is cliked!');
+    handleClickSeeker = () => {
+        console.log('Button is clicked!');
         this.setState({referrer: '/register/seeker'});
     }
 
@@ -34,10 +34,10 @@ class Register extends React.Component {
                 <div className="register">
                     <h1 className="heading">PËRZGJEDHENI MËNYRËN E REGJISTRIMIT</h1>
                 <div className="register-b">
-                    <button onClick={this.handleClick}>Ofrues shërbimesh</button>
+                    <button onClick={this.handleClickProvider}>Ofrues shërbimesh</button>
                 </div>
                     <div className="register-b">
-                    <button onClick={this.handleClick1}>Kërkues shërbimesh</button>
+                    <button onClick={this.handleClickSeeker}>Kërkues shërbimesh</button>
                 </div>
                     </div>
                 <Footer />

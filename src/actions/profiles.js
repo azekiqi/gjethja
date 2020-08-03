@@ -28,7 +28,8 @@ export const getProfiles = filters => {
             method: 'get',
             url: url + `providers` + path,
             headers: {
-                authorization: "Bearer " + token
+                authorization: "Bearer " + token,
+                contentType: "application/json; charset=utf-8",
             }
         }).then(res => {
             console.log(res);

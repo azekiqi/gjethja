@@ -4,6 +4,7 @@ export const LOGOUT = "LOGOUT";
 export const CONFIRMED = "CONFIRMED";
 
 export const GET_POSTS = "GET_POSTS";
+export const GET_BOOSTED_POSTS = "GET_BOOSTED_POSTS";
 export const GET_PROFILES = "GET_PROFILES";
 
 export const SET_FILTERS = "SET_FILTERS";

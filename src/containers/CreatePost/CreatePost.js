@@ -1,7 +1,6 @@
 import React from 'react';
 import './CreatePost.scss';
 import { createPost } from "../../actions/posts";
-import { register } from '../../actions/user';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
@@ -51,7 +50,7 @@ class CreatePost extends React.Component {
                                        id="name-input"
                                        className="form-control"
                                        placeholder="Përshkrimi"
-                                       value={this.state.firstName}
+                                       value={this.state.description}
                                        onChange={(e) => this.setState({ description: e.target.value })}/></div>
 
                             <div className="form-group">

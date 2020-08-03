@@ -3,15 +3,11 @@ import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import './Home.scss';
 import Post from "../../components/Post/Post";
-import {deletePost, getPosts} from "../../actions/posts";
+import {deletePost, getBoostedPosts, getPosts} from "../../actions/posts";
 import { connect } from "react-redux";
 import {CARD_OPTIONS, HomeTabs} from "../../utils/constants";
 import {getProfiles} from "../../actions/profiles";
 import Modal from 'react-modal';
-import { CardElement, Elements, useStripe, useElements } from '@stripe/react-stripe-js';
-import {injectStripe, StripeProvider} from "react-stripe-elements";
-import Stripe from "../../components/Stripe/Stripe";
-import {Switch} from "react-router-dom";
 import {loadStripe} from "@stripe/stripe-js";
 const stripePromise = loadStripe('pk_test_51H1teeE9l7621wtln7yA1DXyqVAQ4Ld6FJwB2iLYNZKtmluZEZ93jeg2ycwuKRGOj71C7awnuQBN5qDYrDkodgp100Xdajq8Lw');
 
@@ -23,6 +19,7 @@ class Home extends React.Component {
             currentTab: HomeTabs.Posts,
             isModalOpen: false,
             modalId: null,
+            selected_post: {}
         }
     }
 
@@ -30,9 +27,14 @@ class Home extends React.Component {
         const { currentTab } = this.state;
         if(currentTab == HomeTabs.Posts) {
             this.props.getPosts();
+            this.props.getBoostedPosts();
         } else {
             this.props.getProfiles();
         }
+    }
+
+    handlePostsClick = (selected_post) => {
+        this.setState({ selected_post, isModalOpen: true });
     }
 
     switchTab = (tab) => {
@@ -52,8 +54,27 @@ class Home extends React.Component {
         this.setState({ isModalOpen: true, modalId: id });
     }
 
+    renderModalContent = () => {
+        return (
+            <div className="modal-content">
+                <div className="fistName">
+                    { this.state.selected_post.firstName }
+                </div>
+                <div className="lastName">
+                    { this.state.selected_post.lastName }
+                </div>
+                <div className="phoneNumbers">
+                    { this.state.selected_post.phoneNumber }
+                </div>
+                <div className="jobs">
+                    { this.state.selected_post.jobs }
+                </div>
+            </div>
+        )
+    }
+
     render() {
-        const { currentTab, isModalOpen, modalId } = this.state;
+        const { currentTab, isModalOpen } = this.state;
         return (
             <div>
                 <Header/>
@@ -69,9 +90,7 @@ class Home extends React.Component {
                         className="custom-modal"
                         overlayClassName="custom-modal-overlay">
 
-                        <Elements stripe={stripePromise}>
-                            <Stripe id={modalId} onPaymentFinish={() => this.closeModal()} />
-                        </Elements>
+                        { this.renderModalContent() }
 
                     </Modal>
 
@@ -91,6 +110,23 @@ class Home extends React.Component {
                                 </button>
                             </div>
                         </div>
+                        <div className="row">
+                            <div className="col">
+                                {currentTab == HomeTabs.Posts && <div className="posts">
+                                    {
+                                        this.props.boosted_posts.map((post, index) => {
+                                            return <Post
+                                                id={post.id}
+                                                title={post.user}
+                                                status={post.status}
+                                                description={post.description}
+                                                handleClick={() => this.handlePostsClick(post)}
+                                            />
+                                        })
+                                    }
+                                </div>}
+                            </div>
+                        </div>
                         {currentTab == HomeTabs.Posts && <div className="posts">
                             {
                                 this.props.posts.map((post, index) => {
@@ -108,7 +144,7 @@ class Home extends React.Component {
                                     return <Post
                                         id={profile.id}
                                         title={profile.firstName + " " + profile.lastName}
-                                        info={"Edukimi: " + profile.education}
+                                        info={"Shërbimet: " + profile.jobs.join(", ")}
                                         description={"Nr. Tel: " + profile.phoneNumber}
                                     />
                                 })
@@ -125,12 +161,14 @@ class Home extends React.Component {
 const mapStateToProps = state => {
     return {
         posts: state.posts,
-        profiles: state.profiles
+        profiles: state.profiles,
+        boosted_posts: state.boosted_posts
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     getPosts: data => dispatch(getPosts()),
+    getBoostedPosts: data => dispatch(getBoostedPosts()),
     getProfiles: data => dispatch(getProfiles()),
     deletePost: (data) => dispatch(deletePost(data)),
 })

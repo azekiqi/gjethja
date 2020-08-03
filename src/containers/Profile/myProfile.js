@@ -68,6 +68,12 @@ class myProfile extends React.Component {
         })
     }
 
+    handleDelete = (id) => {
+        this.props.deletePost(id).then(res => {
+            this.props.getMyPosts();
+        })
+    }
+
     setSelectedJobs = (jobs) => {
         this.setState({ jobs: jobs })
     }
@@ -185,15 +191,15 @@ class myProfile extends React.Component {
                                         })
                                     }}>
                                     <option defaultValue>Zgjedh qytetin</option>
-                                    <option value="Prishtinë">Prishtinë</option>
-                                    <option value="Pejë">Pejë</option>
+                                    <option value="Prishtine">Prishtine</option>
+                                    <option value="Peje">Peje</option>
                                     <option value="Prizren">Prizren</option>
-                                    <option value="Gjakovë">Gjakovë</option>
-                                    <option value="Fushë Kosovë">Fushë Kosovë</option>
+                                    <option value="Gjakovë">Gjakove</option>
+                                    <option value="Fushe Kosove">Fushe Kosove</option>
                                     <option value="Ferizaj">Ferizaj</option>
                                     <option value="Vushtrri">Vushtrri</option>
                                     <option value="Gjilan">Gjilan</option>
-                                    <option value="Mitrovicë">Mitrovicë</option>
+                                    <option value="Mitrovice">Mitrovice</option>
                                 </select>
                                 <div className="error-style">{this.state.cityError}</div>
                             </div>
@@ -267,7 +273,7 @@ class myProfile extends React.Component {
                                 status={post.status}
                                 description={post.description}
                                 handleEdit={() => this.openModal("edit-post", post.id)}
-                                handleDelete={() => this.props.deletePost(post.id)}
+                                handleDelete={() => this.handleDelete(post.id)}
                                 handlePay={() => this.openModal("handle-pay", post.id)} />
                         })
                     }
