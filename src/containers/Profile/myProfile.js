@@ -68,6 +68,12 @@ class myProfile extends React.Component {
         })
     }
 
+    handleDelete = (id) => {
+        this.props.deletePost(id).then(res => {
+            this.props.getMyPosts();
+        })
+    }
+
     setSelectedJobs = (jobs) => {
         this.setState({ jobs: jobs })
     }
@@ -267,7 +273,7 @@ class myProfile extends React.Component {
                                 status={post.status}
                                 description={post.description}
                                 handleEdit={() => this.openModal("edit-post", post.id)}
-                                handleDelete={() => this.props.deletePost(post.id)}
+                                handleDelete={() => this.handleDelete(post.id)}
                                 handlePay={() => this.openModal("handle-pay", post.id)} />
                         })
                     }
