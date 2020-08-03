@@ -44,13 +44,13 @@ const Stripe = ({ id, makePayment, onPaymentFinish }) => {
         <form onSubmit={handleSubmit}>
             <div className="btn-group w-100 btn-group-toggle mb-4" data-toggle="buttons">
                 <label className={`btn btn-secondary ${price === 3.0 && "active"}`}>
-                    <input type="radio" name="options" id="option1" onClick={(e) => setPrice(3.0)} checked={price === 3.0} /> 3 dite
+                    <input type="radio" name="options" id="option1" onClick={(e) => setPrice(3.0)} checked={price === 3.0} /> 3 ditë (3€)
                 </label>
                 <label className={`btn btn-secondary ${price === 5.0 && "active"}`}>
-                    <input type="radio" name="options" id="option2" onClick={(e) => setPrice(5.0)} checked={price === 5.0} /> 5 dite
+                    <input type="radio" name="options" id="option2" onClick={(e) => setPrice(5.0)} checked={price === 5.0} /> 5 ditë (5€)
                 </label>
                 <label className={`btn btn-secondary ${price === 7.0 && "active"}`}>
-                    <input type="radio" name="options" id="option3" onClick={(e) => setPrice(7.0)} checked={price === 7.0} /> 7 dite
+                    <input type="radio" name="options" id="option3" onClick={(e) => setPrice(7.0)} checked={price === 7.0} /> 7 ditë (7€)
                 </label>
             </div>
             <CardElement />

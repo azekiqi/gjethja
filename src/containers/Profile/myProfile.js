@@ -185,15 +185,15 @@ class myProfile extends React.Component {
                                         })
                                     }}>
                                     <option defaultValue>Zgjedh qytetin</option>
-                                    <option value="Prishtinë">Prishtinë</option>
-                                    <option value="Pejë">Pejë</option>
+                                    <option value="Prishtine">Prishtine</option>
+                                    <option value="Peje">Peje</option>
                                     <option value="Prizren">Prizren</option>
-                                    <option value="Gjakovë">Gjakovë</option>
-                                    <option value="Fushë Kosovë">Fushë Kosovë</option>
+                                    <option value="Gjakovë">Gjakove</option>
+                                    <option value="Fushe Kosove">Fushe Kosove</option>
                                     <option value="Ferizaj">Ferizaj</option>
                                     <option value="Vushtrri">Vushtrri</option>
                                     <option value="Gjilan">Gjilan</option>
-                                    <option value="Mitrovicë">Mitrovicë</option>
+                                    <option value="Mitrovice">Mitrovice</option>
                                 </select>
                                 <div className="error-style">{this.state.cityError}</div>
                             </div>

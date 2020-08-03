@@ -9,9 +9,7 @@ import {CARD_OPTIONS, HomeTabs} from "../../utils/constants";
 import {getProfiles} from "../../actions/profiles";
 import Modal from 'react-modal';
 import { CardElement, Elements, useStripe, useElements } from '@stripe/react-stripe-js';
-import {injectStripe, StripeProvider} from "react-stripe-elements";
 import Stripe from "../../components/Stripe/Stripe";
-import {Switch} from "react-router-dom";
 import {loadStripe} from "@stripe/stripe-js";
 const stripePromise = loadStripe('pk_test_51H1teeE9l7621wtln7yA1DXyqVAQ4Ld6FJwB2iLYNZKtmluZEZ93jeg2ycwuKRGOj71C7awnuQBN5qDYrDkodgp100Xdajq8Lw');
 

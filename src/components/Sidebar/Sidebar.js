@@ -69,9 +69,9 @@ function Sidebar(props) {
                             placeholder="Edukimi"
                             onChange={(e) => filter("educationFilter", e.target.value)}>
                         <option></option>
-                        <option>Fillor</option>
-                        <option>Mesëm</option>
-                        <option>Lartë</option>
+                        <option value="Ulet">Fillor</option>
+                        <option>Mesem</option>
+                        <option>Larte</option>
                     </select>
                 </div>
             </div>
