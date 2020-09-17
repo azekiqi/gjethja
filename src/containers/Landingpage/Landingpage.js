@@ -56,10 +56,6 @@ class Landingpage extends React.Component {
                  <div className="slideshow">
                      <Slideshow />
                  </div>
-
-
-
-
                 <div className="services">
                     <div className="services-title">Shërbimet tona</div>
                     <div className="services-cards">
@@ -102,42 +98,42 @@ class Landingpage extends React.Component {
                 <div className="ourvalues">
                     <div className="ourvalues-title">Çfarë thonë miqt dhe partnerët për ne</div>
                     <div className="ourvalues-cards">
-                        {
-                            this.state.feedback.map(feedback => {
-                                return <div className="ourvalues-card">
-                                            <div className={"post-image"} />
-                                            <div className={"partner"}>
-                                                { feedback.firstName + " " + feedback.lastName }
-                                            </div>
-                                            <div className={"post-description"}>
-                                                <p>{ feedback.description }</p>
-                                            </div>
-                                        </div>
-                            })
-                        }
+                        {/*{*/}
+                        {/*    this.state.feedback.map(feedback => {*/}
+                        {/*        return <div className="ourvalues-card">*/}
+                        {/*                    <div className={"post-image"} />*/}
+                        {/*                    <div className={"partner"}>*/}
+                        {/*                        { feedback.firstName + " " + feedback.lastName }*/}
+                        {/*                    </div>*/}
+                        {/*                    <div className={"post-description"}>*/}
+                        {/*                        <p>{ feedback.description }</p>*/}
+                        {/*                    </div>*/}
+                        {/*                </div>*/}
+                        {/*    })*/}
+                        {/*}*/}
 
                     </div>
 
-                    <Modal
-                        isOpen={isModalOpen}
-                        onRequestClose={this.closeModal}
-                        contentLabel="Payment Modal"
-                        className="custom-modal"
-                        overlayClassName="custom-modal-overlay">
+                    {/*<Modal*/}
+                    {/*    isOpen={isModalOpen}*/}
+                    {/*    onRequestClose={this.closeModal}*/}
+                    {/*    contentLabel="Payment Modal"*/}
+                    {/*    className="custom-modal"*/}
+                    {/*    overlayClassName="custom-modal-overlay">*/}
 
-                        <div className="form-group">
-                            <label htmlFor="feedback-input">Feedback: </label>
-                            <textarea type="text"
-                                   id="feedback-input"
-                                   className="form-control"
-                                   value={this.state.feedbackText}
-                                      onChange={(e) => this.setState({feedbackText: e.target.value})}></textarea></div>
+                    {/*    <div className="form-group">*/}
+                    {/*        <label htmlFor="feedback-input">Feedback: </label>*/}
+                    {/*        <textarea type="text"*/}
+                    {/*               id="feedback-input"*/}
+                    {/*               className="form-control"*/}
+                    {/*               value={this.state.feedbackText}*/}
+                    {/*                  onChange={(e) => this.setState({feedbackText: e.target.value})}></textarea></div>*/}
 
-                        <button className="btn btn-primary"
-                                onClick={() => this.handleSubmit()}>
-                            Submit
-                        </button>
-                    </Modal>
+                    {/*    <button className="btn btn-primary"*/}
+                    {/*            onClick={() => this.handleSubmit()}>*/}
+                    {/*        Submit*/}
+                    {/*    </button>*/}
+                    {/*</Modal>*/}
                     <button className="btn btn-primary"
                              onClick={() => this.setState({ isModalOpen: true })}>
                         Feedback
