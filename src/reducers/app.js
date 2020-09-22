@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 
 const initialState = {   //initialState is a plain object that "describes" our app state
     user: {},
-    posts: [],
     profiles: [],
     boosted_posts: [],
     startAgeFilter: "",
@@ -37,20 +36,6 @@ export const app = function (state = initialState, action) {
             return {
                 ...state,
                 token: null
-            }
-
-        case constants.GET_POSTS:
-            console.log(action);
-            return {
-                ...state,
-                posts: action.data
-            }
-
-        case constants.GET_BOOSTED_POSTS:
-            console.log(action);
-            return {
-                ...state,
-                boosted_posts: action.data
             }
 
         case constants.GET_PROFILES:

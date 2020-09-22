@@ -49,10 +49,6 @@ function Header(props) {
                                            props.logOut();
                                        }}>Çkyçu</a>
                                 </li>
-                                <button className="btn btn-primary"
-                                        onClick={() => props.history.push("/create")}>
-                                    Create Post
-                                </button>
                             </>
                     }
                 </ul>

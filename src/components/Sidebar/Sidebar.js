@@ -3,11 +3,10 @@ import './Sidebar.scss'
 import FeatherIcon from 'feather-icons';
 import {setFilter} from "../../actions";
 import { connect } from "react-redux";
-import {getPosts} from "../../actions/posts";
 import {getProfiles} from "../../actions/profiles";
 
 function Sidebar(props) {
-    const { startAgeFilter, endAgeFilter, cityFilter, educationFilter, setFilter, getPosts, getProfiles } = props;
+    const { startAgeFilter, endAgeFilter, cityFilter, educationFilter, setFilter, getProfiles } = props;
 
     const filter = (filter, value) => {
         setFilter(filter, value);
@@ -89,7 +88,6 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getPosts: data => dispatch(getPosts(data)),
     getProfiles: data => dispatch(getProfiles(data)),
     setFilter: (filter, value) => dispatch(setFilter(filter, value))
 })

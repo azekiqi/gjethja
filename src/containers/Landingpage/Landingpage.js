@@ -7,8 +7,6 @@ import Elder  from "../../assets/images/elder.png";
 import Pet from "../../assets/images/pet.png";
 import House  from "../../assets/images/house.png";
 import Slideshow from "./Slideshow";
-import {Elements} from "@stripe/react-stripe-js";
-import Stripe from "../../components/Stripe/Stripe";
 import Modal from "react-modal";
 import {getFeedback, saveFeedback} from "../../actions/user";
 import { connect } from "react-redux";
@@ -57,7 +55,7 @@ class Landingpage extends React.Component {
                      <Slideshow />
                  </div>
                 <div className="services">
-                    <div className="services-title">Shërbimet tona</div>
+                    <div className="services-title">Shërbimet të cilat ofrohen</div>
                     <div className="services-cards">
                      <div className="services-card">
                          <div className="services-card-img">
@@ -72,7 +70,7 @@ class Landingpage extends React.Component {
                              <img src={Elder}/>
                          </div>
                          <div className="service-card-text">
-                             Kujdes për fëmijë
+                             Kujdes për të moshuar
                          </div>
                      </div>
                      <div className="services-card">
@@ -80,7 +78,7 @@ class Landingpage extends React.Component {
                              <img src={Pet}/>
                          </div>
                          <div className="service-card-text">
-                             Kujdes për fëmijë
+                             Kujdes për kafshët
                          </div>
                      </div>
                      <div className="services-card">
@@ -88,7 +86,7 @@ class Landingpage extends React.Component {
                              <img src={House}/>
                          </div>
                         <div className="service-card-text">
-                            Kujdes për fëmijë
+                            Kujdes shtëpiak
                         </div>
                      </div>
                     </div>

@@ -5,7 +5,6 @@ import Home from "./containers/Home/Home";
 import Login from "./containers/Login/Login";
 import AboutUs from "./containers/AboutUs/AboutUs"
 import "./App.scss";
-import CreatePost from "./containers/CreatePost/CreatePost";
 import Register from "./containers/Register/Register";
 import ProvidersRegister from "./containers/Register/ProvidersRegister";
 import SeekersRegister from "./containers/Register/SeekersRegister";
@@ -28,7 +27,6 @@ function App({ token }) {
                     <Route path="/profile" component={myProfile} />
 
                      <AuthenticatedRoute path="/home" component={Home} token={token} />
-                     <AuthenticatedRoute path="/create" component={CreatePost} token={token} />
 
               </Switch>
           </HashRouter>

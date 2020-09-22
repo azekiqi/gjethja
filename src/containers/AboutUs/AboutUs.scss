@@ -2,14 +2,30 @@
   height: 700px;
   width: 100%;
   background-color: rgba(38, 144, 119, 0.08);
+}
+
+.heading{
   text-align: center;
 }
 
-.text{
-  font-size: 0.9rem;
+.content{
+  flexDirection: 'row';
+  justifyContent: 'space-between';
+  display: flex;
+}
+
+.video{
+  text-align: left;
+  padding-left: 20px;
+  padding-top: 50px;
+  padding-right: 0;
+  width: 50px;
+}
+.about-text{
+  font-size: 1rem;
   font-weight: 300;
-  padding: 40px 400px 100px 400px;
-  margin: 0;
+  text-align: right;
+  padding: 50px 20px 20px 50px;
 }
 
 
