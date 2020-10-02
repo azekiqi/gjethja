@@ -10,6 +10,7 @@ import Slideshow from "./Slideshow";
 import Modal from "react-modal";
 import {getFeedback, saveFeedback} from "../../actions/user";
 import { connect } from "react-redux";
+import ReactPlayer from "react-player";
 
 class Landingpage extends React.Component {
     constructor(props) {
@@ -94,49 +95,20 @@ class Landingpage extends React.Component {
 
 
                 <div className="ourvalues">
-                    <div className="ourvalues-title">Çfarë thonë miqt dhe partnerët për ne</div>
-                    <div className="ourvalues-cards">
-                        {/*{*/}
-                        {/*    this.state.feedback.map(feedback => {*/}
-                        {/*        return <div className="ourvalues-card">*/}
-                        {/*                    <div className={"post-image"} />*/}
-                        {/*                    <div className={"partner"}>*/}
-                        {/*                        { feedback.firstName + " " + feedback.lastName }*/}
-                        {/*                    </div>*/}
-                        {/*                    <div className={"post-description"}>*/}
-                        {/*                        <p>{ feedback.description }</p>*/}
-                        {/*                    </div>*/}
-                        {/*                </div>*/}
-                        {/*    })*/}
-                        {/*}*/}
-
+                    <div className="content">
+                        <div className="video-col">
+                            <ReactPlayer url='https://youtu.be/4nfbjaM_4o8' />
+                        </div>
+                        <p className="about-text">
+                            <br/><br/> Përdorimi i këtij website do të mundësoj gjetjen e shërbimeve të ndryshme siç janë:
+                            kujdesi për femijë, kujdesi për të moshuarit, kujdesi për shtëpi dhe kujdesi për shtëpi dhe
+                            kujdesi për kafshë.
+                            <br/><br/> Shërbime të cilat do të ofrohen nga personat me pasqyrë profesionale për këto lloj
+                            shërbimesh. </p>
+                    </div>
                     </div>
 
-                    {/*<Modal*/}
-                    {/*    isOpen={isModalOpen}*/}
-                    {/*    onRequestClose={this.closeModal}*/}
-                    {/*    contentLabel="Payment Modal"*/}
-                    {/*    className="custom-modal"*/}
-                    {/*    overlayClassName="custom-modal-overlay">*/}
 
-                    {/*    <div className="form-group">*/}
-                    {/*        <label htmlFor="feedback-input">Feedback: </label>*/}
-                    {/*        <textarea type="text"*/}
-                    {/*               id="feedback-input"*/}
-                    {/*               className="form-control"*/}
-                    {/*               value={this.state.feedbackText}*/}
-                    {/*                  onChange={(e) => this.setState({feedbackText: e.target.value})}></textarea></div>*/}
-
-                    {/*    <button className="btn btn-primary"*/}
-                    {/*            onClick={() => this.handleSubmit()}>*/}
-                    {/*        Submit*/}
-                    {/*    </button>*/}
-                    {/*</Modal>*/}
-                    <button className="btn btn-primary"
-                             onClick={() => this.setState({ isModalOpen: true })}>
-                        Feedback
-                    </button>
-                </div>
              <Footer />
 
 

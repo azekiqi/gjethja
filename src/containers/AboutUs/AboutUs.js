@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import Header from "../../components/Header/Header";
+import about from './../../assets/images/about.png';
 import "./AboutUs.scss";
 import "../Home/Home.scss"
 import Footer from "../../components/Footer/Footer";
@@ -9,6 +10,8 @@ import Unicef from "../../assets/images/unicef.png";
 import Ada from "../../assets/images/ada.png";
 import Ing from "../../assets/images/ing.png";
 import Inlab from "../../assets/images/inlab.png";
+import {Link} from "react-router-dom";
+import Logo from "../../assets/images/gjethja-logo.png";
 
 
 class AboutUs extends React.Component {
@@ -22,34 +25,27 @@ class AboutUs extends React.Component {
 
     render() {
         return (
+
             <div>
                 <Header/>
                 <div className="aboutUs">
                     <h1 className="heading">PËR GJETHEN</h1>
 
                     <div className="content">
-                        <div className="video">
+                        <div className="video-col">
                             <ReactPlayer url='https://youtu.be/4nfbjaM_4o8' />
                         </div>
                         <p className="about-text"> Ky web aplikacion është krijuar për të përmirësuar në mënyrë dramatike gjetjen e
                             shërbimeve shtëpiake përmes përdorimit të një platforme online.
-                            Duke e marrë parasysh që deri më tani gjetja e këtyre shërbimeve nuk është e lehtë dhe nuk ka
+                            <br/><br/> Duke e marrë parasysh që deri më tani gjetja e këtyre shërbimeve nuk është e lehtë dhe nuk ka
                             ndonjë ofrues për gjetjen e tyre,
                             krijimi i një aplikacioni të tillë do të kursej kohën për përdoruesit.
-                            Përdorimi i këtij website do të mundësoj gjetjen e shërbimeve të ndryshme siç janë:
+                            <br/><br/> Përdorimi i këtij website do të mundësoj gjetjen e shërbimeve të ndryshme siç janë:
                             kujdesi për femijë, kujdesi për të moshuarit, kujdesi për shtëpi dhe kujdesi për shtëpi dhe
                             kujdesi për kafshë.
-                            Shërbime të cilat do të ofrohen nga personat me pasqyrë profesionale për këto lloj
+                            <br/><br/> Shërbime të cilat do të ofrohen nga personat me pasqyrë profesionale për këto lloj
                             shërbimesh. </p>
                     </div>
-
-
-
-
-
-
-
-
                 </div>
 
                 <div className="partners">

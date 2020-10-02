@@ -1,17 +1,22 @@
 .aboutUs{
-  height: 700px;
+  height: 650px;
   width: 100%;
-  background-color: rgba(38, 144, 119, 0.08);
+
+  //background-color: rgba(38, 144, 119, 0.08);
+  background-image: linear-gradient(180deg, rgba(207, 246, 235, 0.6) 20%, rgba(207, 246, 235, 1) 35%), url("../../assets/images/about.png");
 }
 
 .heading{
   text-align: center;
+  padding-bottom: 50px;
 }
 
 .content{
   flexDirection: 'row';
   justifyContent: 'space-between';
   display: flex;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .video{
@@ -24,8 +29,10 @@
 .about-text{
   font-size: 1rem;
   font-weight: 300;
-  text-align: right;
-  padding: 50px 20px 20px 50px;
+  text-align: center;
+  padding-left: 20px;
+  padding-top: 20px;
+  //padding: 50px 0px 20px 50px;
 }
 
 
