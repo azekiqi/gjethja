@@ -11,6 +11,8 @@ import SeekersRegister from "./containers/Register/SeekersRegister";
 import AuthenticatedRoute from "./components/Routes/AuthenticatedRoute";
 import myProfile from "./containers/Profile/myProfile";
 import {connect, Provider} from "react-redux";
+import SeekersHome from "./containers/SeekersHomePage/SeekersHome";
+import UserProfile from "./containers/UserProfile/UserProfile";
 
 
 function App({ token }) {
@@ -25,8 +27,11 @@ function App({ token }) {
                     <Route path="/register/seeker" component={SeekersRegister} />
                     <Route path="/register/provider" component={ProvidersRegister} />
                     <Route path="/profile" component={myProfile} />
+                    <Route path="/uprofile" component={UserProfile} />
 
-                     <AuthenticatedRoute path="/home" component={Home} token={token} />
+
+                    <AuthenticatedRoute path="/home" component={Home} token={token} />
+                    <AuthenticatedRoute path="/seekershome" component={SeekersHome} token={SeekersHome} />
 
               </Switch>
           </HashRouter>

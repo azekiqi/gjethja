@@ -3,6 +3,7 @@ import {ProfileTabs} from "../../utils/constants";
 import {connect} from "react-redux";
 import {editProfile, getUser, uploadProfilePicture} from "../../actions/user";
 import Header from "../../components/Header/Header";
+import Modal from "react-modal";
 
 
 class myProfile extends React.Component {
@@ -19,7 +20,6 @@ class myProfile extends React.Component {
                 phoneNumber: "",
                 image: null
             },
-
             isModalOpen: false,
             currentTab: ProfileTabs.Profile,
             modalContent: ""
@@ -34,8 +34,8 @@ class myProfile extends React.Component {
 
     handleSubmit = (event) => {
         this.props.editProfile(this.state.user).then(res => {
-            if(this.state.user.image) {
-                this.props.uploadProfilePicture(this.state.user.image).then(res => {
+            if(this.state.image) {
+                this.props.uploadProfilePicture(this.state.image).then(res => {
                     this.props.getUser().then(res => {
                         this.setState({ user: res.data });
                     })
@@ -52,10 +52,6 @@ class myProfile extends React.Component {
         this.setState({ jobs: jobs })
     }
 
-    switchTab = (tab) => {
-        this.setState({ currentTab: tab });
-    }
-
     renderProfile = () => (
         <div className="row pb-5">
             <div className="col-6 mx-auto register-form-container">
@@ -64,7 +60,7 @@ class myProfile extends React.Component {
 
                     <div className="row">
                         <div className="col-4 mx-auto">
-                            <img src={"data:image/png;base64," + this.state.user.profilePicture} alt="Logo" style={{ maxWidth: "200px", maxHeight: "200px" }} />
+                            <img src={"data:image/png;base64," + this.state.user.image} alt="Logo" style={{ maxWidth: "200px", maxHeight: "200px" }} />
                         </div>
                     </div>
 
@@ -178,6 +174,7 @@ class myProfile extends React.Component {
                                 <div className="error-style">{this.state.cityError}</div>
                             </div>
                         </div>
+
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="address-input">Adresa: </label>
@@ -227,8 +224,17 @@ class myProfile extends React.Component {
         this.setState({ isModalOpen: false });
     }
 
+    openModal = (content, id) => {
+        if(content == 'edit-profile') {
+            const profile = this.props.profile.find(post => myProfile.id == id);
+            this.setState({ profile: myProfile });
+        }
+        this.setState({ isModalOpen: true, modalId: id, modalContent: content });
+    }
+
+
     render() {
-        const { currentTab } = this.state;
+        const { isModalOpen, modalId } = this.state;
 
         return (
             <>
@@ -247,7 +253,7 @@ class myProfile extends React.Component {
                         </div>
                     </div>
 
-                    { currentTab == ProfileTabs.Profile && this.renderProfile() }
+                    {  ProfileTabs.Profile && this.renderProfile() }
 
                 </div>
             </>

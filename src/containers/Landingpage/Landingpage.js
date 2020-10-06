@@ -6,11 +6,19 @@ import Baby  from "../../assets/images/baby.png";
 import Elder  from "../../assets/images/elder.png";
 import Pet from "../../assets/images/pet.png";
 import House  from "../../assets/images/house.png";
+import Transport from "../../assets/images/transport.png";
+import Date from "../../assets/images/date.png";
+import School from "../../assets/images/school.png";
+import Night from "../../assets/images/night.png";
+import Ardi from "../../assets/images/Ardi.jpg";
+import Dobby from "../../assets/images/Dobby.jpg";
 import Slideshow from "./Slideshow";
 import Modal from "react-modal";
 import {getFeedback, saveFeedback} from "../../actions/user";
 import { connect } from "react-redux";
 import ReactPlayer from "react-player";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 class Landingpage extends React.Component {
     constructor(props) {
@@ -106,7 +114,92 @@ class Landingpage extends React.Component {
                             <br/><br/> Shërbime të cilat do të ofrohen nga personat me pasqyrë profesionale për këto lloj
                             shërbimesh. </p>
                     </div>
+                </div>
+
+                <div className="services-extra">
+                    <div className="services-title">Kujdesi që ju nevojitet, kur keni nevojë për të</div>
+                    <div className="services-cards">
+                        <div className="services-card">
+                            <div className="services-card-img">
+                                <img src={Date}/>
+                            </div>
+                            <div className="service-card-text">
+                                Kujdes i rregullt ose me kohë të pjesshme
+                            </div>
+                        </div>
+                        <div className="services-card">
+                            <div className="services-card-img">
+                                <img src={Transport}/>
+                            </div>
+                            <div className="service-card-text">
+                                Pickups & Dropoffs
+                            </div>
+                        </div>
+                        <div className="services-card">
+                            <div className="services-card-img">
+                                <img src={Night}/>
+                            </div>
+                            <div className="service-card-text">
+                                Overnights
+                            </div>
+                        </div>
+                        <div className="services-card">
+                            <div className="services-card-img">
+                                <img src={School}/>
+                            </div>
+                            <div className="service-card-text">
+                                Kujdes pas shkolle
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <div className="testimonials">
+                    <Carousel
+                        showArrows={true}
+                        infiniteLoop={true}
+                        showThumbs={false}
+                        showStatus={false}
+                        autoPlay={true}
+                        interval={6100}
+                    >
+                        <div>
+                            <img src={Pet} />
+                            <div className="myCarousel">
+                                <h3>Shirley Fultz</h3>
+                                <h4>Designer</h4>
+                                <p>
+                                    It's freeing to be able to catch up on customized news and not be
+                                    distracted by a social media element on the same site
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <img src={Dobby} />
+                            <div className="myCarousel">
+                                <h3>Daniel Keystone</h3>
+                                <h4>Designer</h4>
+                                <p>
+                                    The simple and intuitive design makes it easy for me use. I highly
+                                    recommend Fetch to my peers.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <img src={Ardi} />
+                            <div className="myCarousel">
+                                <h3>Theo Sorel</h3>
+                                <h4>Designer</h4>
+                                <p>
+                                    I enjoy catching up with Fetch on my laptop, or on my phone when
+                                    I'm on the go!
+                                </p>
+                            </div>
+                        </div>
+                    </Carousel>
+                </div>
 
 
              <Footer />
