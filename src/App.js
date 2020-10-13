@@ -13,7 +13,7 @@ import myProfile from "./containers/Profile/myProfile";
 import {connect, Provider} from "react-redux";
 import SeekersHome from "./containers/SeekersHomePage/SeekersHome";
 import UserProfile from "./containers/UserProfile/UserProfile";
-
+import ReactDOM from "react-dom";
 
 function App({ token }) {
     return(

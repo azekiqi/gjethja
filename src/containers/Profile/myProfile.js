@@ -3,7 +3,6 @@ import {ProfileTabs} from "../../utils/constants";
 import {connect} from "react-redux";
 import {editProfile, getUser, uploadProfilePicture} from "../../actions/user";
 import Header from "../../components/Header/Header";
-import Modal from "react-modal";
 
 
 class myProfile extends React.Component {
@@ -19,37 +18,34 @@ class myProfile extends React.Component {
                 address: "",
                 phoneNumber: "",
                 image: null
-            },
-            isModalOpen: false,
-            currentTab: ProfileTabs.Profile,
-            modalContent: ""
+            }
         }
     }
 
     componentDidMount() {
         this.props.getUser().then(res => {
-            this.setState({ user: res.data });
+            this.setState({user: res.data});
         })
     }
 
     handleSubmit = (event) => {
         this.props.editProfile(this.state.user).then(res => {
-            if(this.state.image) {
+            if (this.state.image) {
                 this.props.uploadProfilePicture(this.state.image).then(res => {
                     this.props.getUser().then(res => {
-                        this.setState({ user: res.data });
+                        this.setState({user: res.data});
                     })
                 })
             } else {
                 this.props.getUser().then(res => {
-                    this.setState({ user: res.data });
+                    this.setState({user: res.data});
                 })
             }
         })
     }
 
     setSelectedJobs = (jobs) => {
-        this.setState({ jobs: jobs })
+        this.setState({jobs: jobs})
     }
 
     renderProfile = () => (
@@ -60,7 +56,8 @@ class myProfile extends React.Component {
 
                     <div className="row">
                         <div className="col-4 mx-auto">
-                            <img src={"data:image/png;base64," + this.state.user.image} alt="Logo" style={{ maxWidth: "200px", maxHeight: "200px" }} />
+                            <img src={"data:image/png;base64," + this.state.user.image} alt="Logo"
+                                 style={{maxWidth: "200px", maxHeight: "200px"}}/>
                         </div>
                     </div>
 
@@ -218,42 +215,23 @@ class myProfile extends React.Component {
                 </form>
             </div>
         </div>
-    )
-
-    closeModal = () => {
-        this.setState({ isModalOpen: false });
-    }
-
-    openModal = (content, id) => {
-        if(content == 'edit-profile') {
-            const profile = this.props.profile.find(post => myProfile.id == id);
-            this.setState({ profile: myProfile });
-        }
-        this.setState({ isModalOpen: true, modalId: id, modalContent: content });
-    }
+    );
 
 
     render() {
-        const { isModalOpen, modalId } = this.state;
-
         return (
             <>
                 <Header/>
-                <div className="container-fluid register-container" >
+                <div className="container-fluid register-container">
                     <div className="row">
                         <div className="col">
                             <div className="navigation">
-                                <div className="navigation-link">
-                                    <button
-                                        onClick={() => this.switchTab(ProfileTabs.Profile)}>
-                                        Profili
-                                    </button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
 
-                    {  ProfileTabs.Profile && this.renderProfile() }
+                    { this.renderProfile()}
 
                 </div>
             </>
@@ -265,12 +243,12 @@ const mapStateToProps = state => {
     return {
         user: state.user,
     };
-}
+};
 
 const mapDispatchToProps = dispatch => ({
     getUser: data => dispatch(getUser()),
     editProfile: (data) => dispatch(editProfile(data)),
     uploadProfilePicture: (data) => dispatch(uploadProfilePicture(data)),
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(myProfile);

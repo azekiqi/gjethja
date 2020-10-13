@@ -143,12 +143,33 @@ class Landingpage extends React.Component {
                                 Overnights
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div className="services-extra">
+                    <div className="services-cards">
                         <div className="services-card">
                             <div className="services-card-img">
-                                <img src={School}/>
+                                <img src={Date}/>
                             </div>
                             <div className="service-card-text">
-                                Kujdes pas shkolle
+                                Kujdes i rregullt ose me kohë të pjesshme
+                            </div>
+                        </div>
+                        <div className="services-card">
+                            <div className="services-card-img">
+                                <img src={Transport}/>
+                            </div>
+                            <div className="service-card-text">
+                                Pickups & Dropoffs
+                            </div>
+                        </div>
+                        <div className="services-card">
+                            <div className="services-card-img">
+                                <img src={Night}/>
+                            </div>
+                            <div className="service-card-text">
+                                Overnights
                             </div>
                         </div>
                     </div>

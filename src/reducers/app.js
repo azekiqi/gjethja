@@ -24,10 +24,10 @@ export const app = function (state = initialState, action) {
             return state;
 
         case constants.LOGIN:
-            localStorage.setItem("token", action.data.accessToken);
+            localStorage.setItem("token", action.data.access_token);
             return {
                 ...state,
-                token: action.data.accessToken
+                token: action.data.access_token
             }
 
         case constants.LOGOUT:

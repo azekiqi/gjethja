@@ -3,7 +3,10 @@
   background-image: url("../../assets/images/pattern.png");
   justify-content: space-around;
   align-items: center;
-  min-height: 100vh;
+  .col {
+    background-color: white;
+  }
+  //min-height: 100vh;
   //background-color: rgb(255, 255, 255);
   .register-form-container {
     background-color: rgba(255, 255, 255, 0.8);

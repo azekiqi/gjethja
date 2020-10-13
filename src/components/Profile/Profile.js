@@ -15,6 +15,9 @@ export default function Profile({id, fullName, title, description}) {
             <div className={"profile-description"}>
                 { description }
             </div>
+            <div>
+            <button className={"profile-button"}>Shiko Profilin!</button>
+            </div>
         </div>
     )
 }

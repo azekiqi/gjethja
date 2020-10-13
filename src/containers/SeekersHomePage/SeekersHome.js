@@ -25,7 +25,7 @@ class SeekersHome extends React.Component {
     }
 
     handleProfileClick = (id) => {
-        this.history.push("/uprofile/" + id)
+        this.props.history.push("/uprofile/" + id)
     };
 
     closeModal = () => {
@@ -76,7 +76,7 @@ class SeekersHome extends React.Component {
                             </div>
                         </div>
 
-                        {  <div className="profiles">
+                        {  <div className="profiles" onClick={this.handleProfileClick}>
                             {
                                 this.props.profiles.map((profile, index) => {
                                     console.log(profile.id);

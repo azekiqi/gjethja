@@ -6,8 +6,11 @@ import MultiSelect from "react-multi-select-component";
 import StepForm from "../../components/StepForm/StepForm";
 import FirstStep from "../../components/StepForm/Steps/FirstStep";
 import SecondStep from "../../components/StepForm/Steps/SecondStep";
+import ThirdStep from "../../components/StepForm/Steps/ThirdStep";
 import {options} from "../../utils/constants";
 import axios from 'axios';
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 
 class ProvidersRegister extends React.Component {
@@ -18,7 +21,6 @@ class ProvidersRegister extends React.Component {
         }
     }
 
-
     steps = [
         {
             step: 1,
@@ -27,6 +29,10 @@ class ProvidersRegister extends React.Component {
         {
             step: 2,
             component: <SecondStep />
+        },
+        {
+            step: 3,
+            component: <ThirdStep />
         }
     ]
     questions = [
@@ -40,15 +46,18 @@ class ProvidersRegister extends React.Component {
         }
     ]
 
-
     render() {
         return (
+            <>
+                <Header />
             <div className="container-fluid register-container">
             <StepForm
             steps = { this.steps }
             />
 
             </div>
+                <Footer />
+                </>
         );
     }
 }

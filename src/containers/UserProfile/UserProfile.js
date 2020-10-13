@@ -30,11 +30,11 @@ class UserProfile extends React.Component {
         })
     }
 
-    renderProfile = () => {
-        this.props.getUser().then(res => {
-            this.setState({user: res.data});
-        })
-    };
+    // renderProfile = () => {
+    //     this.props.getUser().then(res => {
+    //         this.setState({user: res.data});
+    //     })
+    // };
 
     render() {
         console.log(this.state.user);
@@ -47,7 +47,6 @@ class UserProfile extends React.Component {
                             <Une user={this.state.user} />
                         </div>
                     </div>
-                    {this.renderProfile()}
                 </div>
             </>
         )

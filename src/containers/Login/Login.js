@@ -64,10 +64,6 @@ class Login extends React.Component {
         this.props.login(this.state).then(res => {
             this.props.history.push("/home");
         })
-            const isValid = this.validate();
-            if(isValid){
-                console.log(this.state)
-            }
     }
 
     render() {
@@ -75,7 +71,6 @@ class Login extends React.Component {
              <div className="container-fluid login-container">
                  <div className="row">
                      <div className="col">
-                         <form onSubmit={this.handleSubmit} className="login-form">
                              <div className="login-title"> Kyçja e përdoruesit </div>
 
                              <div className="form-group">
@@ -105,7 +100,6 @@ class Login extends React.Component {
                                          onClick={(e) => this.handleSubmit(e)}>Kyçu</button>
                              </div>
 
-                         </form>
                      </div>
                  </div>
             </div>

@@ -66,13 +66,15 @@ export const seekerRegister = data => {
 }
 
 export const login = data => {
+    data = `grant_type=password&username=${data.email}&password=${data.password}`;
     return function(dispatch) {
         return axios({
             method: 'post',
-            url: url + "login",
+            url: url + "oauth/token",
             data: data,
             headers: {
-                "Content-Type": "application/json"
+                "Authorization": "Basic a2F0cmFzb2x1dGlvbnM6bWFuZGFyaW5hNC4=",
+                "Content-Type": "application/x-www-form-urlencoded"
             }
         }).then(res => {
             console.log(res);
