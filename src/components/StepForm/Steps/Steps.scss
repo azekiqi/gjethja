@@ -1,16 +1,22 @@
+.txt-upload{
+  text-align: center;
+}
+.btn-upload{
+  width: 287px;
+}
+
 .step-form {
   width: 500px;
   height: 600px;
   border-radius: 10px;
   background-color: #ffffff;
-  padding: 20px;
+  padding-top: 20px;
   margin: auto;
 }
-
 .step-form{
   .float-right{
     .btn{
-         background-color: #269077;
+      background-color: #269077;
     }
   }
 }

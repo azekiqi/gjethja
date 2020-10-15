@@ -36,8 +36,8 @@ class StepForm extends React.Component{
                 { this.renderCurrentStep() }
                 <div className="float-right">
                     {this.isBackButtonVisible() &&
-                    <button onClick={() => this.handleBack()} type="back" className="btn btn-primary mr-3">Back</button>}
-                    <button onClick={() => this.handleNext()} type="next" className="btn btn-primary">Next</button>
+                    <button onClick={() => this.handleBack()} type="back" className="btn btn-primary mr-3">Kthehu</button>}
+                    <button onClick={() => this.handleNext()} type="next" className="btn btn-primary">Vazhdo</button>
                 </div>
             </div>
         )
