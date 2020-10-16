@@ -1,0 +1,172 @@
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import 'antd/dist/antd.css';
+import "./Steps.scss";
+import {
+    Form,
+    Input,
+    Tooltip,
+    Cascader,
+    Select,
+    Row,
+    DatePicker,
+    Col,
+    Checkbox,
+    Button,
+    AutoComplete,
+} from 'antd';
+
+import { QuestionCircleOutlined } from '@ant-design/icons';
+
+const { Option } = Select;
+const AutoCompleteOption = AutoComplete.Option;
+
+const formItemLayout = {
+    labelCol: {
+        xs: {
+            span: 24,
+        },
+        sm: {
+            span: 8,
+        },
+    },
+    wrapperCol: {
+        xs: {
+            span: 24,
+        },
+        sm: {
+            span: 16,
+        },
+    },
+};
+
+const tailFormItemLayout = {
+    wrapperCol: {
+        xs: {
+            span: 24,
+            offset: 0,
+        },
+        sm: {
+            span: 16,
+            offset: 8,
+        },
+    },
+};
+
+const onFinish = (values) => {
+    console.log('Received values of form: ', values);
+};
+
+
+class SecondStepS extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {}
+    }
+
+
+    render() {
+        return (
+            <Form
+                {...formItemLayout}
+                // form={form}
+                name="register"
+                onFinish={onFinish}
+                initialValues={{
+                    prefix: '86',
+                }}
+                scrollToFirstError
+            >
+
+                <Form.Item
+                    name="gender"
+                    label="Gjinia"
+                    rules={[
+                        {required: true}
+                    ]}>
+                    <Select
+                        placeholder="Përzgjedh gjininë"
+                        onChange={this.onGenderChange}
+                        allowClear
+                    >
+                        <Option value="male">male</Option>
+                        <Option value="female">female</Option>
+                        <Option value="other">other</Option>
+                    </Select>
+                </Form.Item>
+
+                <Form.Item
+                    name="phone"
+                    label="Numri i telefonit"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Ju lutem shënoni numrin e juaj të telefonit!',
+                        },
+                    ]}
+                >
+                    <Input
+                        style={{
+                            width: '100%',
+                        }}
+                    />
+                </Form.Item>
+
+                <Form.Item
+                    name="city"
+                    label="Qyteti"
+                    rules={[{required: true}]}>
+                    <Select
+                        placeholder="Përzgjedh qytetin"
+                        onChange={this.onCityChange}
+                        allowClear
+                    >
+                        <Option value="Prishtine">Prishtinë</Option>
+                        <Option value="Peje">Pejë</Option>
+                        <Option value="Prizren">Prizren</Option>
+                        <Option value="Ferizaj">Ferizaj</Option>
+                        <Option value="Gjakove">Gjakove</Option>
+                        <Option value="Mitrovice">Mitrovice</Option>
+                        <Option value="Peje">Peje</Option>
+                        <Option value="Gjilan">Gjilan</Option>
+                        <Option value="Vushtrri">Vushtrri</Option>
+                    </Select>
+                </Form.Item>
+
+
+                <Form.Item
+                    name={['user', 'address']}
+                    label="Adresa"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    name="agreement"
+                    valuePropName="checked"
+                    rules={[
+                        {
+                            validator: (_, value) =>
+                                value ? Promise.resolve() : Promise.reject('Should accept agreement'),
+                        },
+                    ]}
+
+                >
+                    <Checkbox>
+                        I have read the <a href="">agreement</a>
+                    </Checkbox>
+                </Form.Item>
+
+
+            </Form>
+        );
+    };
+}
+
+
+export default SecondStepS;

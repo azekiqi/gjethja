@@ -11,17 +11,18 @@ class Register extends React.Component {
         super(props);
         this.state = {
             referrer: null,
+            type: null,
             //
         }
     }
 
     handleClickProvider = () => {
         console.log('Button is clicked!');
-        this.setState({referrer: '/register/provider'});
+        this.setState({referrer: '/register/provider', type: 'provider'});
     }
     handleClickSeeker = () => {
         console.log('Button is clicked!');
-        this.setState({referrer: '/register/seeker'});
+        this.setState({referrer: '/register/seeker', type: 'seeker'});
     }
 
     render() {

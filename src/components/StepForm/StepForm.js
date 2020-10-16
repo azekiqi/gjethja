@@ -18,6 +18,8 @@ class StepForm extends React.Component{
         const index = this.props.steps.findIndex(step => step.step == this.state.step);
         if((index + 1) != this.props.steps.length) {
             this.setState({step: this.state.step + 1})
+        } else {
+            this.props.handleSubmit();
         }
     }
 

@@ -85,6 +85,7 @@ const tailFormItemLayout = {
                         rules={[
                             {
                                 required: true,
+                                message: 'Ju lutem shënoni emrin e juaj!',
                             },
                         ]}
                     >
@@ -97,6 +98,7 @@ const tailFormItemLayout = {
                         rules={[
                             {
                                 required: true,
+                                message: 'Ju lutem shënoni mbiemrin e juaj!',
                             },
                         ]}
                     >
@@ -109,11 +111,11 @@ const tailFormItemLayout = {
                         rules={[
                             {
                                 type: 'email',
-                                message: 'The input is not valid E-mail!',
+                                message: 'Email-i juaj nuk është valid',
                             },
                             {
                                 required: true,
-                                message: 'Please input your E-mail!',
+                                message: 'Ju lutem shënoni email e juaj!',
                             },
                         ]}
                     >
@@ -126,7 +128,7 @@ const tailFormItemLayout = {
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your password!',
+                                message: 'Ju lutem shënoni fjalëkalimin e juaj!',
                             },
                         ]}
                         hasFeedback

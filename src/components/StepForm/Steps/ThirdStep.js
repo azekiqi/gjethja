@@ -68,7 +68,7 @@ class ThirdStep extends React.Component {
             </Form.Item>
 
         <Form.Item
-            name="jobs"
+            name="Profesioni"
             label="Përzgjedh profesionin"
             rules={[
             {required: true}

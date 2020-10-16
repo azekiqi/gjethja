@@ -18,13 +18,14 @@ class ProvidersRegister extends React.Component {
         super(props);
 
         this.state = {
+            type: null
         }
     }
 
     steps = [
         {
             step: 1,
-            component: <FirstStep/>
+            component: <FirstStep />
         },
         {
             step: 2,
@@ -46,14 +47,16 @@ class ProvidersRegister extends React.Component {
         }
     ]
 
+    handleReg
+
     render() {
         return (
             <>
                 <Header />
             <div className="container-fluid register-container">
             <StepForm
-            steps = { this.steps }
-            />
+                handleSubmit={() => alert("REGISTER")}
+                steps = { this.steps }/>
 
             </div>
                 <Footer />

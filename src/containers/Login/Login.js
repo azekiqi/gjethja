@@ -30,7 +30,6 @@ class Login extends React.Component {
         }
     }
 
-
     emailhandler = event => {
         this.setState({
             email: event.target.value
@@ -41,7 +40,6 @@ class Login extends React.Component {
             password: event.target.value
         })
     }
-
 
     validate = () => {
         let emailError = "";
@@ -58,7 +56,6 @@ class Login extends React.Component {
             return true;
         }
     }
-
 
     handleSubmit = event => {
         this.props.login(this.state).then(res => {
