@@ -25,7 +25,8 @@ class ProvidersRegister extends React.Component {
     steps = [
         {
             step: 1,
-            component: <FirstStep />
+            component: <FirstStep />,
+            handleStepSubmit: () =>  alert("Submit step 1")
         },
         {
             step: 2,
@@ -36,18 +37,10 @@ class ProvidersRegister extends React.Component {
             component: <ThirdStep />
         }
     ]
-    questions = [
-        {
-            id: 1,
-            question: "How are you?"
-        },
-        {
-            id: 2,
-            question: "How old are you?"
-        }
-    ]
 
-    handleReg
+    handleSubmit = (event) => {
+        this.props.registerUser();
+    }
 
     render() {
         return (

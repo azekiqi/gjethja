@@ -71,7 +71,6 @@ const tailFormItemLayout = {
                     {...formItemLayout}
                     // form={form}
                     name="register"
-                    onFinish={onFinish}
                     initialValues={{
                         prefix: '86',
                     }}
@@ -166,9 +165,18 @@ const tailFormItemLayout = {
                         rules={[
                             {
                                 required: true,
+                                message: 'Ju lutem vendosni datën e lindjes!',
                             },
                         ]}>
                         <DatePicker/>
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button type="primary"
+                                htmlType="submit"
+                                onClick={() => this.props.handleSubmit()}>
+                            Submit
+                        </Button>
                     </Form.Item>
                 </Form>
             );

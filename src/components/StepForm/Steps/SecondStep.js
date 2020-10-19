@@ -115,7 +115,13 @@ class SecondStep extends React.Component {
                 <Form.Item
                     name="city"
                     label="Qyteti"
-                    rules={[{required: true}]}>
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Ju lutem përzgjedheni qytetin!',
+                        }
+                        ]}
+                >
                     <Select
                         placeholder="Përzgjedh qytetin"
                         onChange={this.onCityChange}
@@ -140,6 +146,7 @@ class SecondStep extends React.Component {
                     rules={[
                         {
                             required: true,
+                            message: 'Ju lutem shënoni adresën e juaj!',
                         },
                     ]}
                 >
@@ -150,8 +157,12 @@ class SecondStep extends React.Component {
                     name="education"
                     label="Edukimi"
                     rules={[
-                        {required: true}
-                    ]}>
+                        {
+                            required: true,
+                            message: 'Ju lutem zgjedh edukimin e juaj!',
+                         }
+                    ]}
+                >
                     <Select
                         placeholder="Përzgjedh edukimin"
                         onChange={this.onEducationChange}
@@ -169,6 +180,7 @@ class SecondStep extends React.Component {
                     rules={[
                         {
                             required: true,
+                            message: 'Ju lutem shënoni biografinë e juaj!',
                         },
                     ]}>
                     <Input.TextArea/>

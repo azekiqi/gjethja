@@ -14,6 +14,7 @@ import {connect, Provider} from "react-redux";
 import SeekersHome from "./containers/SeekersHomePage/SeekersHome";
 import UserProfile from "./containers/UserProfile/UserProfile";
 import ReactDOM from "react-dom";
+import UserLogin from "./components/Login/UserLogin";
 
 function App({ token }) {
     return(
@@ -23,7 +24,7 @@ function App({ token }) {
                     <Route exact path="/" component={Landingpage} />
                     <Route exact path="/aboutUs" component={AboutUs} />
                     <Route exact path="/register" component={Register} />
-                    <Route path="/login" component={Login} />
+                    <Route path="/login" component={UserLogin} />
                     <Route path="/register/seeker" component={SeekersRegister} />
                     <Route path="/register/provider" component={ProvidersRegister} />
                     <Route path="/profile" component={myProfile} />

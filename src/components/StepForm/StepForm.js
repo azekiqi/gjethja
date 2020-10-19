@@ -11,12 +11,14 @@ class StepForm extends React.Component{
 
     renderCurrentStep = () => {
         const step = this.props.steps.find(step => step.step == this.state.step);
-        return step.component;
+        return step;
     }
 
     handleNext = () => {
         const index = this.props.steps.findIndex(step => step.step == this.state.step);
+        const step = this.props.steps[index];
         if((index + 1) != this.props.steps.length) {
+            step.handleStepSubmit();
             this.setState({step: this.state.step + 1})
         } else {
             this.props.handleSubmit();
@@ -33,9 +35,26 @@ class StepForm extends React.Component{
     }
 
     render() {
+        // const childrenWithProps = React.Children.map(this.props.children, child => {
+        //     // checking isValidElement is the safe way and avoids a typescript error too
+        //     const props = { doSomething };
+        //     if (React.isValidElement(child)) {
+        //         return React.cloneElement(child, props);
+        //     }
+        //     return child;
+        // });
         return(
             <div class="step-form">
-                { this.renderCurrentStep() }
+                { this.props.steps.map(step =>  {
+                    return (
+                        step.step == this.state.step && React.cloneElement(
+                            step.component,
+                            {
+                                handleSubmit: () => alert("submited step 1")
+                            }
+                        )
+                    )
+                }) }
                 <div className="float-right">
                     {this.isBackButtonVisible() &&
                     <button onClick={() => this.handleBack()} type="back" className="btn btn-primary mr-3">Kthehu</button>}

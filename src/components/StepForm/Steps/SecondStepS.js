@@ -115,7 +115,13 @@ class SecondStepS extends React.Component {
                 <Form.Item
                     name="city"
                     label="Qyteti"
-                    rules={[{required: true}]}>
+                    rules={
+                        [{
+                            required: true,
+                            message: 'Ju lutem përzgjedheni qytetin!',
+                        }]
+                    }
+                >
                     <Select
                         placeholder="Përzgjedh qytetin"
                         onChange={this.onCityChange}
@@ -140,6 +146,7 @@ class SecondStepS extends React.Component {
                     rules={[
                         {
                             required: true,
+                            message: 'Ju lutem shënoni adresën e juaj!',
                         },
                     ]}
                 >
