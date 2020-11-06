@@ -3,7 +3,6 @@ import {HashRouter as Router, Switch, Route, HashRouter} from "react-router-dom"
 import Landingpage from "./containers/Landingpage/Landingpage";
 import Home from "./containers/Home/Home";
 import Login from "./containers/Login/Login";
-import AboutUs from "./containers/AboutUs/AboutUs"
 import "./App.scss";
 import Register from "./containers/Register/Register";
 import ProvidersRegister from "./containers/Register/ProvidersRegister";
@@ -22,7 +21,6 @@ function App({ token }) {
                 <Switch>
       
                     <Route exact path="/" component={Landingpage} />
-                    <Route exact path="/aboutUs" component={AboutUs} />
                     <Route exact path="/register" component={Register} />
                     <Route path="/login" component={UserLogin} />
                     <Route path="/register/seeker" component={SeekersRegister} />

@@ -1,12 +1,13 @@
 .form{
   background-color: whitesmoke;
+  background-image: url("../../assets/images/pattern.png");
 }
 .login-form {
   width: 400px;
-  height: 500px;
+  height: 400px;
   align-content: center;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: 30px;
   margin: auto;
 }
 .login-form-forgot {
@@ -18,4 +19,8 @@
 .login-form-button {
   width: 100%;
   background-color: #269077;
+}
+.login-title{
+  padding-top: 40px;
+  padding-bottom: 0px;
 }

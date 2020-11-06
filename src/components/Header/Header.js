@@ -18,12 +18,6 @@ function Header(props) {
                     <li>
                         <Link to={"/"}>Ballina</Link>
                     </li>
-                    <li>
-                        <Link to={"/aboutUs"}>Për ne</Link>
-                    </li>
-
-
-
                     {
                         !props.token ?
                             <>

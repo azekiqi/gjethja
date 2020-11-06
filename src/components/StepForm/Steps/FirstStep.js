@@ -5,13 +5,8 @@ import "./Steps.scss";
 import {
     Form,
     Input,
-    Tooltip,
-    Cascader,
     Select,
-    Row,
     DatePicker,
-    Col,
-    Checkbox,
     Button,
     AutoComplete,
 } from 'antd';
@@ -143,7 +138,7 @@ const tailFormItemLayout = {
                         rules={[
                             {
                                 required: true,
-                                message: 'Please confirm your password!',
+                                message: 'Ju lutem konfirmoni fjalëkalimin e juaj!',
                             },
                             ({getFieldValue}) => ({
                                 validator(rule, value) {
@@ -151,7 +146,7 @@ const tailFormItemLayout = {
                                         return Promise.resolve();
                                     }
 
-                                    return Promise.reject('The two passwords that you entered do not match!');
+                                    return Promise.reject('Ju lutem konfirmoni fjalëkalimin e juaj!');
                                 },
                             }),
                         ]}

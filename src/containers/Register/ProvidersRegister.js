@@ -30,7 +30,8 @@ class ProvidersRegister extends React.Component {
         },
         {
             step: 2,
-            component: <SecondStep />
+            component: <SecondStep />,
+            handleStepSubmit: () =>  alert("Submit step 2")
         },
         {
             step: 3,
@@ -47,13 +48,12 @@ class ProvidersRegister extends React.Component {
             <>
                 <Header />
             <div className="container-fluid register-container">
-            <StepForm
+                <StepForm
                 handleSubmit={() => alert("REGISTER")}
                 steps = { this.steps }/>
-
             </div>
                 <Footer />
-                </>
+            </>
         );
     }
 }

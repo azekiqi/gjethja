@@ -19,6 +19,11 @@ import { connect } from "react-redux";
 import ReactPlayer from "react-player";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import Ick from "../../assets/images/ick.png";
+import Unicef from "../../assets/images/unicef.png";
+import Ada from "../../assets/images/ada.png";
+import Ing from "../../assets/images/ing.png";
+import Inlab from "../../assets/images/inlab.png";
 
 class Landingpage extends React.Component {
     constructor(props) {
@@ -222,10 +227,28 @@ class Landingpage extends React.Component {
                     </Carousel>
                 </div>
 
+                <div className="partners">
+                    <div className="partners-cards">
+                        {/*<div className="partners-card-title">Miqt e Gjethes</div>*/}
+                        <div className="partners-card-img">
+                            <img src={Ick}/>
+                        </div>
+                        <div className="partners-card-img">
+                            <img src={Unicef}/>
+                        </div>
+                        <div className="partners-card-img">
+                            <img src={Ada}/>
+                        </div>
+                        <div className="partners-card-img">
+                            <img src={Ing}/>
+                        </div>
+                        <div className="partners-card-img">
+                            <img src={Inlab}/>
+                        </div>
+                    </div>
+                </div>
 
              <Footer />
-
-
             </div>
         );
     }
