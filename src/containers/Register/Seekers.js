@@ -2,13 +2,13 @@ import React from 'react';
 import './Register.scss';
 import {providerRegister, seekerRegister} from '../../actions/user';
 import {connect} from "react-redux";
-import FirstStep from "../../components/StepForm/Steps/FirstStep";
-import SecondStepS from "../../components/StepForm/Steps/SecondStepS";
+import First from "../../components/Forms/Step/Steps/First";
+import Second from "../../components/Forms/Step/Steps/Seekers/Second";
 import Header from "../../components/Header/Header";
-import StepForm from "../../components/StepForm/StepForm";
+import Step from "../../components/Forms/Step/Step";
 import Footer from "../../components/Footer/Footer";
 
-class SeekersRegister extends React.Component {
+class Seekers extends React.Component {
     constructor(props) {
         super(props);
 
@@ -20,11 +20,11 @@ class SeekersRegister extends React.Component {
     steps = [
         {
             step: 1,
-            component: <FirstStep />
+            component: <First/>
         },
         {
             step: 2,
-            component: <SecondStepS />
+            component: <Second/>
         }
     ]
     questions = [
@@ -40,16 +40,12 @@ class SeekersRegister extends React.Component {
 
     render() {
         return (
-            <>
-                <Header />
                 <div className="container-fluid register-container">
-                    <StepForm
-                        steps = { this.steps }
+                    <Step
+                        steps={this.steps}
                     />
 
                 </div>
-                <Footer />
-            </>
         );
     }
 }
@@ -64,4 +60,4 @@ const mapDispatchToProps = dispatch => ({
     registerUser: (data) => dispatch(seekerRegister(data)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SeekersRegister);
+export default connect(mapStateToProps, mapDispatchToProps)(Seekers);

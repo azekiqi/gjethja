@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import Header from "../../components/Header/Header";
 import {getUser} from "../../actions/user";
 import {render} from "react-dom";
-import {Une} from "./Une"
 
 
 class UserProfile extends React.Component {
@@ -39,16 +38,13 @@ class UserProfile extends React.Component {
     render() {
         console.log(this.state.user);
         return (
-            <>
-                <Header/>
                 <div className="container-fluid register-container">
                     <div className="row">
                         <div className="col">
-                            <Une user={this.state.user} />
+                            < this.state.user />
                         </div>
                     </div>
                 </div>
-            </>
         )
     }
 }

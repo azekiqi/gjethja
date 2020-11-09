@@ -1,53 +1,27 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import './Login.scss';
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import {confirm, login} from "../../actions/user";
-import { withRouter } from "react-router-dom";
-import UserLogin from "../../components/Login/UserLogin";
+import {withRouter} from "react-router-dom";
+import LoginForm from "../../components/Forms/Login/Login";
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-        }
     }
 
-    // componentDidMount() {
-    //     const url = window.location.href;
-    //     const token = url.split("token=")[1];
-    //     if(token) {
-    //         this.props.confirm(token).then(res => {
-    //             alert("Email confirmed successfully");
-    //             console.log(res);
-    //         })
-    //     }
-    // }
-
-
-    handleSubmit = (event) => {
-        this.props.login(this.state).then(res => {
+    handleSubmit = (data) => {
+        this.props.login(data).then(res => {
             this.props.history.push("/home");
         })
-    }
+    };
 
     render() {
         return (
-            <>
-                <div className="container-fluid register-container">
-                    <UserLogin />
-                    {/*// handleSubmit={() => alert("LOGIN")}/>*/}
-                </div>
-            </>
+            <div className="login-container">
+                <LoginForm handleSubmit={(data) => this.handleSubmit(data)}/>
+            </div>
         );
-    }
-}
-
-const mapStateToProps = state => {
-    return {
-        //
     }
 }
 
@@ -56,4 +30,4 @@ const mapDispatchToProps = dispatch => ({
     confirm: data => dispatch(confirm(data))
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default withRouter(connect(null, mapDispatchToProps)(Login));

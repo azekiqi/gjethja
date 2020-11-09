@@ -60,3 +60,7 @@
     width: 100%;
     padding: 11px 15px 11px 0;
 }
+
+[class*="-container"] {
+    height: calc(100vh - 300px - 70px);
+}

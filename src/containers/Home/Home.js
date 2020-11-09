@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import './Home.scss';
 import {connect} from "react-redux";
@@ -11,7 +10,6 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            currentTab: HomeTabs.Profiles,
             isModalOpen: false,
             modalId: null,
             selected_post: {}
@@ -54,11 +52,8 @@ class Home extends React.Component {
         const {currentTab} = this.state;
         return (
             <div>
-                <Header/>
                 <div className="home-container">
-
                     <Sidebar/>
-
                     <div className="main-content">
                         <div className="navigation">
                                     Profiles

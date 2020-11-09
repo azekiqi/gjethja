@@ -3,9 +3,9 @@ import {ProfileTabs} from "../../utils/constants";
 import {connect} from "react-redux";
 import {editProfile, getUser, uploadProfilePicture} from "../../actions/user";
 import Header from "../../components/Header/Header";
+import "./Profile.scss";
 
-
-class myProfile extends React.Component {
+class profile extends React.Component {
     constructor(props) {
         super(props);
 
@@ -220,8 +220,6 @@ class myProfile extends React.Component {
 
     render() {
         return (
-            <>
-                <Header/>
                 <div className="container-fluid register-container">
                     <div className="row">
                         <div className="col">
@@ -230,11 +228,8 @@ class myProfile extends React.Component {
                             </div>
                         </div>
                     </div>
-
                     { this.renderProfile()}
-
                 </div>
-            </>
         )
     }
 }
@@ -251,4 +246,4 @@ const mapDispatchToProps = dispatch => ({
     uploadProfilePicture: (data) => dispatch(uploadProfilePicture(data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(myProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(profile);

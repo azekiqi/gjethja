@@ -3,17 +3,17 @@ import './Register.scss';
 import {providerRegister} from '../../actions/user';
 import {connect} from "react-redux";
 import MultiSelect from "react-multi-select-component";
-import StepForm from "../../components/StepForm/StepForm";
-import FirstStep from "../../components/StepForm/Steps/FirstStep";
-import SecondStep from "../../components/StepForm/Steps/SecondStep";
-import ThirdStep from "../../components/StepForm/Steps/ThirdStep";
+import Step from "../../components/Forms/Step/Step";
+import First from "../../components/Forms/Step/Steps/First";
+import Second from "../../components/Forms/Step/Steps/Providers/Second";
+import Third from "../../components/Forms/Step/Steps/Providers/Third";
 import {options} from "../../utils/constants";
 import axios from 'axios';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
 
-class ProvidersRegister extends React.Component {
+class Providers extends React.Component {
     constructor(props) {
         super(props);
 
@@ -25,17 +25,17 @@ class ProvidersRegister extends React.Component {
     steps = [
         {
             step: 1,
-            component: <FirstStep />,
+            component: <First />,
             handleStepSubmit: () =>  alert("Submit step 1")
         },
         {
             step: 2,
-            component: <SecondStep />,
+            component: <Second />,
             handleStepSubmit: () =>  alert("Submit step 2")
         },
         {
             step: 3,
-            component: <ThirdStep />
+            component: <Third />
         }
     ]
 
@@ -45,15 +45,11 @@ class ProvidersRegister extends React.Component {
 
     render() {
         return (
-            <>
-                <Header />
             <div className="container-fluid register-container">
-                <StepForm
-                handleSubmit={() => alert("REGISTER")}
-                steps = { this.steps }/>
+                <Step
+                    handleSubmit={() => alert("REGISTER")}
+                    steps = { this.steps }/>
             </div>
-                <Footer />
-            </>
         );
     }
 }
@@ -68,4 +64,4 @@ const mapDispatchToProps = dispatch => ({
     registerUser: (data) => dispatch(providerRegister(data)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProvidersRegister);
+export default connect(mapStateToProps, mapDispatchToProps)(Providers);

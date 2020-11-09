@@ -63,8 +63,7 @@ class Landingpage extends React.Component {
     render() {
         const { isModalOpen } = this.state;
         return (
-            <div>
-                <Header />
+            <div>x
                  <div className="slideshow">
                      <Slideshow />
                  </div>
@@ -247,8 +246,6 @@ class Landingpage extends React.Component {
                         </div>
                     </div>
                 </div>
-
-             <Footer />
             </div>
         );
     }

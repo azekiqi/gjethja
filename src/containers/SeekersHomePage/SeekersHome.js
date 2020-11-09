@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {CARD_OPTIONS, HomeTabs} from "../../utils/constants";
 import {getProfiles} from "../../actions/profiles";
 import Profile from "../../components/Profile/Profile";
-import SeekersRegister from "../Register/SeekersRegister";
+import SeekersRegister from "../Register/Seekers";
 import {withRouter} from "react-router-dom";
 
 
@@ -59,7 +59,6 @@ class SeekersHome extends React.Component {
         const {currentTab, isModalOpen} = this.state;
         return (
             <div>
-                <Header/>
                 <div className="home-container">
 
                     <Sidebar/>

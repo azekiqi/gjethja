@@ -31,7 +31,6 @@ class Register extends React.Component {
 
         return (
             <div>
-                <Header/>
                 <div className="register">
                     <h1 className="heading">PËRZGJEDHENI MËNYRËN E REGJISTRIMIT</h1>
                 <div className="register-b">
@@ -41,7 +40,6 @@ class Register extends React.Component {
                     <button onClick={this.handleClickSeeker}>Kërkues shërbimesh</button>
                 </div>
                     </div>
-                <Footer />
             </div>
         );
     }

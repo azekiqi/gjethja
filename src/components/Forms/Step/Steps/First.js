@@ -52,12 +52,11 @@ const tailFormItemLayout = {
     };
 
 
-    class FirstStep extends React.Component {
+    class First extends React.Component {
         constructor(props) {
             super(props);
             this.state = {}
         }
-
 
         render() {
             return (
@@ -69,6 +68,7 @@ const tailFormItemLayout = {
                     initialValues={{
                         prefix: '86',
                     }}
+                    onFinish={() => this.props.handleSubmit()}
                     scrollToFirstError
                 >
                     <p className="register-title"> Regjistrohu!</p>
@@ -168,8 +168,7 @@ const tailFormItemLayout = {
 
                     <Form.Item>
                         <Button type="primary"
-                                htmlType="submit"
-                                onClick={() => this.props.handleSubmit()}>
+                                htmlType="submit">
                             Submit
                         </Button>
                     </Form.Item>
@@ -179,4 +178,4 @@ const tailFormItemLayout = {
     }
 
 
-export default FirstStep;
+export default First;

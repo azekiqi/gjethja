@@ -1,7 +1,7 @@
 import React from "react";
-import "./StepForm.scss";
+import "./Step.scss";
 
-class StepForm extends React.Component{
+class Step extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -46,11 +46,12 @@ class StepForm extends React.Component{
         return(
             <div class="step-form">
                 { this.props.steps.map(step =>  {
+                    const shouldBeVisible = step.step == this.state.step;
                     return (
-                        step.step == this.state.step && React.cloneElement(
+                         shouldBeVisible && React.cloneElement(
                             step.component,
                             {
-                                handleSubmit: () => alert("submited step 1")
+                                handleSubmit: () => this.handleNext()
                             }
                         )
                     )
@@ -65,4 +66,4 @@ class StepForm extends React.Component{
     }
 }
 
-export default StepForm;
+export default Step;

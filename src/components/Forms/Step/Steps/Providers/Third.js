@@ -1,5 +1,5 @@
 import React from "react";
-import "./Steps.scss";
+import "../Steps.scss";
 import {
     Form,
     Select,
@@ -41,7 +41,7 @@ function handleChange(value) {
     console.log(`selected ${value}`);
 }
 
-class ThirdStep extends React.Component {
+class Third extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -132,4 +132,4 @@ class ThirdStep extends React.Component {
 }
 }
 
-export default ThirdStep;
+export default Third;

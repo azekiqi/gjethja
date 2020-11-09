@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import "./Steps.scss";
+import "../Steps.scss";
 import {
     Form,
     Input,
@@ -58,7 +58,7 @@ const onFinish = (values) => {
 };
 
 
-class SecondStep extends React.Component {
+class Second extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -191,4 +191,4 @@ class SecondStep extends React.Component {
 }
 
 
-export default SecondStep;
+export default Second;
