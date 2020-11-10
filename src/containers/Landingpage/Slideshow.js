@@ -19,13 +19,13 @@ const Slideshow = () => {
         <div  className="slide-container">
             <Slide {...props}>
                 <div className="images">
-                    <img src={Femijet}   style={{height: "500px"}}/>
+                    <img src={Femijet}   style={{height: "450px"}}/>
                 </div>
                 <div>
-                    <img src={Gjyshja}   style={{height: "500px"}}/>
+                    <img src={Gjyshja}   style={{height: "450px"}}/>
                 </div>
                 <div>
-                    <img src={Qeni}   style={{height: "500px"}}/>
+                    <img src={Qeni}   style={{height: "450px"}}/>
                 </div>
             </Slide>
         </div>

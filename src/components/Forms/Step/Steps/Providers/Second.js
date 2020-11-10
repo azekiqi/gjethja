@@ -2,22 +2,8 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import "../Steps.scss";
-import {
-    Form,
-    Input,
-    Tooltip,
-    Cascader,
-    Select,
-    Row,
-    DatePicker,
-    Col,
-    Checkbox,
-    Button,
-    AutoComplete,
-} from 'antd';
-
-import { QuestionCircleOutlined } from '@ant-design/icons';
-
+import { Form, Input, Select, Button, AutoComplete } from 'antd';
+import formConfig from "../../../Login/Config";
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
@@ -52,16 +38,39 @@ const tailFormItemLayout = {
         },
     },
 };
-
-const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-};
-
+    const onFinish = (values) => {
+         console.log('Received values of form: ', values);
+    };
 
 class Second extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            gender: "",
+            phone: "",
+            city: "",
+            address: "",
+            education: "",
+            bio: "",
+        }
+    }
+
+    phonehandler = event => {
+        this.setState({
+            phone: event.target.value
+        })
+    }
+
+    addresshandler = event => {
+        this.setState({
+            address: event.target.value
+        })
+    }
+
+    biohandler = event => {
+        this.setState({
+            bio: event.target.value
+        })
     }
 
 
@@ -71,7 +80,7 @@ class Second extends React.Component {
                 {...formItemLayout}
                 // form={form}
                 name="register"
-                onFinish={onFinish}
+                onFinish={() => this.props.handleSubmit()}
                 initialValues={{
                     prefix: '86',
                 }}
@@ -79,33 +88,28 @@ class Second extends React.Component {
             >
 
                 <Form.Item
-                    name="gender"
-                    label="Gjinia"
-                    rules={[
-                        {required: true}
-                    ]}>
+                    name={formConfig.gender.name}
+                    label={formConfig.gender.label}
+                    rules={formConfig.gender.rules}>
                     <Select
-                        placeholder="Përzgjedh gjininë"
+                        placeholder={formConfig.gender.placeholder}
                         onChange={this.onGenderChange}
                         allowClear
                     >
-                        <Option value="male">male</Option>
-                        <Option value="female">female</Option>
-                        <Option value="other">other</Option>
+                        <Option value="male">Male</Option>
+                        <Option value="female">Female</Option>
+                        <Option value="other">Other</Option>
                     </Select>
                 </Form.Item>
 
                 <Form.Item
-                    name="phone"
-                    label="Numri i telefonit"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Ju lutem shënoni numrin e juaj të telefonit!',
-                        },
-                    ]}
-                >
+                    name={formConfig.phone.name}
+                    label={formConfig.phone.label}
+                    rules={formConfig.phone.rules}>
                     <Input
+                        value={this.state.phone}
+                        onChange={this.phonehandler}
+                        placeholder={formConfig.phone.placeholder}
                         style={{
                             width: '100%',
                         }}
@@ -113,17 +117,11 @@ class Second extends React.Component {
                 </Form.Item>
 
                 <Form.Item
-                    name="city"
-                    label="Qyteti"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Ju lutem përzgjedheni qytetin!',
-                        }
-                        ]}
-                >
+                    name={formConfig.city.name}
+                    label={formConfig.city.label}
+                    rules={formConfig.city.rules}>
                     <Select
-                        placeholder="Përzgjedh qytetin"
+                        placeholder={formConfig.city.placeholder}
                         onChange={this.onCityChange}
                         allowClear
                     >
@@ -139,32 +137,22 @@ class Second extends React.Component {
                     </Select>
                 </Form.Item>
 
-
                 <Form.Item
-                    name={['user', 'address']}
-                    label="Adresa"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Ju lutem shënoni adresën e juaj!',
-                        },
-                    ]}
-                >
-                    <Input/>
+                    name={formConfig.address.name}
+                    label={formConfig.address.label}
+                    rules={formConfig.address.rules}>
+                    <Input
+                        value={this.state.address}
+                        onChange={this.addresshandler}
+                        placeholder={formConfig.address.placeholder}/>
                 </Form.Item>
 
                 <Form.Item
-                    name="education"
-                    label="Edukimi"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Ju lutem zgjedh edukimin e juaj!',
-                         }
-                    ]}
-                >
+                    name={formConfig.education.name}
+                    label={formConfig.education.label}
+                    rules={formConfig.education.rules}>
                     <Select
-                        placeholder="Përzgjedh edukimin"
+                        placeholder={formConfig.address.placeholder}
                         onChange={this.onEducationChange}
                         allowClear
                     >
@@ -175,20 +163,23 @@ class Second extends React.Component {
                 </Form.Item>
 
                 <Form.Item
-                    name={['user', 'introduction']}
-                    label="Biografia"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Ju lutem shënoni biografinë e juaj!',
-                        },
-                    ]}>
-                    <Input.TextArea/>
+                    name={formConfig.bio.name}
+                    label={formConfig.bio.label}
+                    rules={formConfig.bio.rules}>
+                    <Input.TextArea
+                        placeholder={formConfig.bio.placeholder}
+                        onChange={this.biohandler}/>
+                </Form.Item>
+
+                <Form.Item>
+                    <Button type="primary"
+                            htmlType="submit">
+                        Submit
+                    </Button>
                 </Form.Item>
             </Form>
         );
     };
 }
-
 
 export default Second;

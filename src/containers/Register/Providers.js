@@ -47,6 +47,7 @@ class Providers extends React.Component {
         return (
             <div className="container-fluid register-container">
                 <Step
+                    handleInputChange={() => null}
                     handleSubmit={() => alert("REGISTER")}
                     steps = { this.steps }/>
             </div>

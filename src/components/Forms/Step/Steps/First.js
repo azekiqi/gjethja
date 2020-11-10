@@ -2,16 +2,8 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import "./Steps.scss";
-import {
-    Form,
-    Input,
-    Select,
-    DatePicker,
-    Button,
-    AutoComplete,
-} from 'antd';
-
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import {Form, Input, Select, DatePicker, Button, AutoComplete,} from 'antd';
+import formConfig from "../../Login/Config";
 
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
@@ -34,6 +26,7 @@ const formItemLayout = {
         },
     },
 };
+
 const tailFormItemLayout = {
     wrapperCol: {
         xs: {
@@ -51,11 +44,55 @@ const tailFormItemLayout = {
         console.log('Received values of form: ', values);
     };
 
-
     class First extends React.Component {
         constructor(props) {
             super(props);
-            this.state = {}
+            this.state = {
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: "",
+                confirmPassword: "",
+                dateOfBirth: "",
+            }
+        }
+
+        firstNamehandler = event => {
+            this.setState({
+                firstName: event.target.value
+            })
+        }
+
+        lastNamehandler = event => {
+            this.setState({
+                lastName: event.target.value
+            })
+        }
+
+        emailhandler = event => {
+            this.setState({
+                email: event.target.value
+            })
+        }
+
+        passwordhandler = event => {
+            this.setState({
+                password: event.target.value
+            })
+        }
+
+        // dateOfBirthhandler = event => {
+        //     this.setState({
+        //         dateOfBirth: event.target.value
+        //     })
+        // }
+
+        passwordMatchValidation = (password, password_confirmation) => {
+            if (!password || password_confirmation === password) {
+                return Promise.resolve();
+            }
+
+            return Promise.reject('Ju lutem konfirmoni fjalëkalimin e juaj!');
         }
 
         render() {
@@ -74,60 +111,50 @@ const tailFormItemLayout = {
                     <p className="register-title"> Regjistrohu!</p>
 
                     <Form.Item
-                        name={['user', 'name']}
-                        label="Emri"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Ju lutem shënoni emrin e juaj!',
-                            },
-                        ]}
-                    >
-                        <Input/>
+                        name={formConfig.firstName.name}
+                        label={formConfig.firstName.label}
+                        rules={formConfig.firstName.rules}>
+                        <Input
+                            value={this.state.firstName}
+                            onChange={this.firstNamehandler}
+                            placeholder={formConfig.firstName.placeholder}/>
                     </Form.Item>
 
                     <Form.Item
-                        name={['user', 'lastname']}
-                        label="Mbiemri"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Ju lutem shënoni mbiemrin e juaj!',
-                            },
-                        ]}
-                    >
-                        <Input/>
+                        name={formConfig.lastName.name}
+                        label={formConfig.lastName.label}
+                        rules={formConfig.lastName.rules}>
+                        <Input
+                            value={this.state.lastName}
+                            onChange={this.lastNamehandler}
+                            placeholder={formConfig.lastName.placeholder}/>
                     </Form.Item>
 
                     <Form.Item
-                        name="email"
-                        label="E-mail"
-                        rules={[
+                        name={formConfig.email.name}
+                        label={formConfig.email.label}
+                        rules={[formConfig.email.rules[0],
                             {
                                 type: 'email',
                                 message: 'Email-i juaj nuk është valid',
-                            },
-                            {
-                                required: true,
-                                message: 'Ju lutem shënoni email e juaj!',
-                            },
-                        ]}
-                    >
-                        <Input/>
+                            }
+                        ]}>
+                        <Input
+                            value={this.state.email}
+                            onChange={this.emailhandler}
+                            placeholder={formConfig.email.placeholder} />
                     </Form.Item>
 
                     <Form.Item
-                        name="password"
-                        label="Password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Ju lutem shënoni fjalëkalimin e juaj!',
-                            },
-                        ]}
+                        name={formConfig.password.name}
+                        label={formConfig.password.label}
+                        rules={formConfig.password.rules}
                         hasFeedback
                     >
-                        <Input.Password/>
+                        <Input.Password
+                            value={this.state.password}
+                            onChange={this.passwordhandler}
+                            placeholder={formConfig.password.placeholder}/>
                     </Form.Item>
 
                     <Form.Item
@@ -135,35 +162,25 @@ const tailFormItemLayout = {
                         label="Konfirmo Password"
                         dependencies={['password']}
                         hasFeedback
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Ju lutem konfirmoni fjalëkalimin e juaj!',
-                            },
+                        rules={[formConfig.password.rules[0],
                             ({getFieldValue}) => ({
-                                validator(rule, value) {
-                                    if (!value || getFieldValue('password') === value) {
-                                        return Promise.resolve();
-                                    }
-
-                                    return Promise.reject('Ju lutem konfirmoni fjalëkalimin e juaj!');
-                                },
+                                validator: (rule, value) => this.passwordMatchValidation(value, getFieldValue('password')),
                             }),
-                        ]}
-                    >
-                        <Input.Password/>
+                        ]}>
+                        <Input.Password
+                            value={this.state.password}
+                            onChange={this.passwordhandler}
+                            placeholder={formConfig.password.placeholder}/>
                     </Form.Item>
 
                     <Form.Item
-                        name="date"
-                        label="Data e lindjes"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Ju lutem vendosni datën e lindjes!',
-                            },
-                        ]}>
-                        <DatePicker/>
+                        name={formConfig.dateOfBirth.name}
+                        label={formConfig.dateOfBirth.label}
+                        rules={formConfig.dateOfBirth.rules}>
+                        <DatePicker
+                            value={this.state.dateOfBirth}
+                            // onChange={this.dateOfBirthhandler}
+                            placeholder={formConfig.dateOfBirth.placeholder}/>
                     </Form.Item>
 
                     <Form.Item>

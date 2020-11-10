@@ -1,21 +1,8 @@
 import React from "react";
 import "../Steps.scss";
-import {
-    Form,
-    Select,
-    InputNumber,
-    Switch,
-    Radio,
-    Slider,
-    Button,
-    Upload,
-    Rate,
-    Checkbox,
-    Dropdown,
-    Row,
-    Col,
-} from 'antd';
+import {Form, Select, Button, Upload, Checkbox, Dropdown, Row, Col, Input} from 'antd';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
+import formConfig from "../../../Login/Config";
 
 const { Option } = Select;
 
@@ -32,7 +19,6 @@ const normFile = e => {
     return e && e.fileList;
 };
 
-
 const onFinish = (values) => {
     console.log('Received values of form: ', values);
 };
@@ -44,9 +30,11 @@ function handleChange(value) {
 class Third extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            profession: "",
+            job: "",
+        }
     }
-
 
     render() {
     return (
@@ -55,6 +43,7 @@ class Third extends React.Component {
             {...formItemLayout}
             onFinish={onFinish}
         >
+
             <Form.Item
                 name="upload"
                 label="Fotografija e profilit"
@@ -68,15 +57,13 @@ class Third extends React.Component {
             </Form.Item>
 
         <Form.Item
-            name="Profesioni"
-            label="Përzgjedh profesionin"
-            rules={[
-            {required: true}
-        ]}>
+            name={formConfig.job.name}
+            label={formConfig.job.label}
+            rules={formConfig.job.rules}>
             <Select
+                placeholder={formConfig.firstName.placeholder}
                 mode="multiple"
                 style={{ width: '100%' }}
-                placeholder="Përzgjedh profesionin... "
                 onChange={handleChange}
                 optionLabelProp="label"
             >
@@ -127,6 +114,12 @@ class Third extends React.Component {
                 </Checkbox>
             </Form.Item>
 
+            <Form.Item>
+                <Button type="primary"
+                        htmlType="submit">
+                    Submit
+                </Button>
+            </Form.Item>
         </Form>
     );
 }

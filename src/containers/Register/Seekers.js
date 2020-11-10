@@ -7,6 +7,7 @@ import Second from "../../components/Forms/Step/Steps/Seekers/Second";
 import Header from "../../components/Header/Header";
 import Step from "../../components/Forms/Step/Step";
 import Footer from "../../components/Footer/Footer";
+import Third from "../../components/Forms/Step/Steps/Providers/Third";
 
 class Seekers extends React.Component {
     constructor(props) {
@@ -20,31 +21,27 @@ class Seekers extends React.Component {
     steps = [
         {
             step: 1,
-            component: <First/>
+            component: <First />,
+            handleStepSubmit: () =>  alert("Submit step 1")
         },
         {
             step: 2,
-            component: <Second/>
+            component: <Second />,
+            handleStepSubmit: () =>  alert("Register")
         }
     ]
-    questions = [
-        {
-            id: 1,
-            question: "How are you?"
-        },
-        {
-            id: 2,
-            question: "How old are you?"
-        }
-    ]
+
+    handleSubmit = (event) => {
+        this.props.registerUser();
+    }
 
     render() {
         return (
                 <div className="container-fluid register-container">
                     <Step
-                        steps={this.steps}
-                    />
-
+                        handleInputChange={() => null}
+                        handleSubmit={() => alert("REGISTER")}
+                        steps = { this.steps }/>
                 </div>
         );
     }
