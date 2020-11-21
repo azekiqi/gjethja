@@ -4,17 +4,17 @@ import {providerRegister, seekerRegister} from '../../actions/user';
 import {connect} from "react-redux";
 import First from "../../components/Forms/Step/Steps/First";
 import Second from "../../components/Forms/Step/Steps/Seekers/Second";
-import Header from "../../components/Header/Header";
 import Step from "../../components/Forms/Step/Step";
-import Footer from "../../components/Footer/Footer";
 import Third from "../../components/Forms/Step/Steps/Providers/Third";
+import {initialRegisterDataObject} from "../../utils/constants";
+import { register } from '../../actions/user';
 
 class Seekers extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            type: null
+            type: null,
+            data: { ...initialRegisterDataObject }
         }
     }
 
@@ -26,8 +26,8 @@ class Seekers extends React.Component {
         },
         {
             step: 2,
-            component: <Second />,
-            handleStepSubmit: () =>  alert("Register")
+            component: <Second/>,
+            handleStepSubmit: () => alert("Registered")
         }
     ]
 
@@ -35,14 +35,24 @@ class Seekers extends React.Component {
         this.props.registerUser();
     }
 
+    handleChange = (value, name) => {
+        this.setState({
+            data: {
+                ...this.state.data,
+                [name]: value,
+            }
+        })
+    }
+
     render() {
         return (
-                <div className="container-fluid register-container">
-                    <Step
-                        handleInputChange={() => null}
-                        handleSubmit={() => alert("REGISTER")}
-                        steps = { this.steps }/>
-                </div>
+            <div className="container-fluid register-container">
+                <Step
+                    steps={this.steps}
+                    data={this.state.data}
+                    handleSubmit={() => alert("REGISTER")}
+                    handleChange={(value, name) => this.handleChange(value, name)}/>
+            </div>
         );
     }
 }

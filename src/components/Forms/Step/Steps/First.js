@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, {useState} from 'react';
 import 'antd/dist/antd.css';
 import "./Steps.scss";
 import {Form, Input, Select, DatePicker, Button, AutoComplete,} from 'antd';
-import formConfig from "../../Login/Config";
+import formConfig from "../../Config";
+import moment from "moment";
+import {FormInstance} from 'antd/lib/form';
 
-const { Option } = Select;
+
+const {Option} = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
 const formItemLayout = {
@@ -40,159 +42,152 @@ const tailFormItemLayout = {
     },
 };
 
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-    };
-
-    class First extends React.Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-                firstName: "",
-                lastName: "",
-                email: "",
-                password: "",
-                confirmPassword: "",
-                dateOfBirth: "",
-            }
-        }
-
-        firstNamehandler = event => {
-            this.setState({
-                firstName: event.target.value
-            })
-        }
-
-        lastNamehandler = event => {
-            this.setState({
-                lastName: event.target.value
-            })
-        }
-
-        emailhandler = event => {
-            this.setState({
-                email: event.target.value
-            })
-        }
-
-        passwordhandler = event => {
-            this.setState({
-                password: event.target.value
-            })
-        }
-
-        // dateOfBirthhandler = event => {
-        //     this.setState({
-        //         dateOfBirth: event.target.value
-        //     })
-        // }
-
-        passwordMatchValidation = (password, password_confirmation) => {
-            if (!password || password_confirmation === password) {
-                return Promise.resolve();
-            }
-
-            return Promise.reject('Ju lutem konfirmoni fjalëkalimin e juaj!');
-        }
-
-        render() {
-            return (
-                <Form
-                    classname="step-form"
-                    {...formItemLayout}
-                    // form={form}
-                    name="register"
-                    initialValues={{
-                        prefix: '86',
-                    }}
-                    onFinish={() => this.props.handleSubmit()}
-                    scrollToFirstError
-                >
-                    <p className="register-title"> Regjistrohu!</p>
-
-                    <Form.Item
-                        name={formConfig.firstName.name}
-                        label={formConfig.firstName.label}
-                        rules={formConfig.firstName.rules}>
-                        <Input
-                            value={this.state.firstName}
-                            onChange={this.firstNamehandler}
-                            placeholder={formConfig.firstName.placeholder}/>
-                    </Form.Item>
-
-                    <Form.Item
-                        name={formConfig.lastName.name}
-                        label={formConfig.lastName.label}
-                        rules={formConfig.lastName.rules}>
-                        <Input
-                            value={this.state.lastName}
-                            onChange={this.lastNamehandler}
-                            placeholder={formConfig.lastName.placeholder}/>
-                    </Form.Item>
-
-                    <Form.Item
-                        name={formConfig.email.name}
-                        label={formConfig.email.label}
-                        rules={[formConfig.email.rules[0],
-                            {
-                                type: 'email',
-                                message: 'Email-i juaj nuk është valid',
-                            }
-                        ]}>
-                        <Input
-                            value={this.state.email}
-                            onChange={this.emailhandler}
-                            placeholder={formConfig.email.placeholder} />
-                    </Form.Item>
-
-                    <Form.Item
-                        name={formConfig.password.name}
-                        label={formConfig.password.label}
-                        rules={formConfig.password.rules}
-                        hasFeedback
-                    >
-                        <Input.Password
-                            value={this.state.password}
-                            onChange={this.passwordhandler}
-                            placeholder={formConfig.password.placeholder}/>
-                    </Form.Item>
-
-                    <Form.Item
-                        name="confirm"
-                        label="Konfirmo Password"
-                        dependencies={['password']}
-                        hasFeedback
-                        rules={[formConfig.password.rules[0],
-                            ({getFieldValue}) => ({
-                                validator: (rule, value) => this.passwordMatchValidation(value, getFieldValue('password')),
-                            }),
-                        ]}>
-                        <Input.Password
-                            value={this.state.password}
-                            onChange={this.passwordhandler}
-                            placeholder={formConfig.password.placeholder}/>
-                    </Form.Item>
-
-                    <Form.Item
-                        name={formConfig.dateOfBirth.name}
-                        label={formConfig.dateOfBirth.label}
-                        rules={formConfig.dateOfBirth.rules}>
-                        <DatePicker
-                            value={this.state.dateOfBirth}
-                            // onChange={this.dateOfBirthhandler}
-                            placeholder={formConfig.dateOfBirth.placeholder}/>
-                    </Form.Item>
-
-                    <Form.Item>
-                        <Button type="primary"
-                                htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
-                </Form>
-            );
-        };
+class First extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {}
     }
+
+    formRef = React.createRef();
+
+    componentDidMount() {
+        const {data} = this.props;
+        this.formRef.current.setFieldsValue({
+            [formConfig.firstName.name]: data[formConfig.firstName.name],
+            [formConfig.lastName.name]: data[formConfig.lastName.name],
+            [formConfig.email.name]: data[formConfig.email.name],
+            [formConfig.dateOfBirth.name]: data[formConfig.dateOfBirth.name] ? moment(data[formConfig.dateOfBirth.name]) : ""
+        });
+    }
+
+    handleChange = (value, name) => {
+        this.props.handleChange(value, name);
+    }
+
+    passwordMatchValidation = (password, password_confirmation) => {
+        if (!password || password_confirmation === password) {
+            return Promise.resolve();
+        }
+
+        return Promise.reject('Ju lutem konfirmoni fjalëkalimin e juaj!');
+    }
+
+    disabledDate = (current) => {
+        const date = new Date();
+        date.setFullYear(date.getFullYear() - 18);
+        return current && current > moment(date, "YYYY-MM-DD");
+    }
+
+    render() {
+        const { hasBack } = this.props;
+        return (
+            <Form
+                classname="step-form"
+                {...formItemLayout}
+                // form={form}
+                name="register"
+                initialValues={{
+                    prefix: '86',
+                }}
+                ref={this.formRef}
+                onFinish={() => this.props.handleSubmit()}
+                scrollToFirstError
+            >
+                <p className="register-title"> Regjistrohu!</p>
+
+                <Form.Item
+                    name={formConfig.firstName.name}
+                    label={formConfig.firstName.label}
+                    rules={formConfig.firstName.rules}>
+                    <Input
+                        onChange={(e) => {
+                            this.handleChange(e.target.value, formConfig.firstName.name)
+                        }}
+                        placeholder={formConfig.firstName.placeholder}/>
+                </Form.Item>
+
+                <Form.Item
+                    name={formConfig.lastName.name}
+                    label={formConfig.lastName.label}
+                    rules={formConfig.lastName.rules}>
+                    <Input
+                        onChange={(e) => {
+                            this.handleChange(e.target.value, formConfig.lastName.name)
+                        }}
+                        placeholder={formConfig.lastName.placeholder}/>
+                </Form.Item>
+
+                <Form.Item
+                    name={formConfig.email.name}
+                    label={formConfig.email.label}
+                    rules={formConfig.email.rules}>
+                    <Input
+                        onChange={(e) => {
+                            this.handleChange(e.target.value, formConfig.email.name)
+                        }}
+                        placeholder={formConfig.email.placeholder}/>
+                </Form.Item>
+
+                <Form.Item
+                    name={formConfig.password.name}
+                    label={formConfig.password.label}
+                    rules={formConfig.password.rules}
+                    hasFeedback
+                >
+                    <Input.Password
+                        onChange={(e) => {
+                            this.handleChange(e.target.value, formConfig.password.name)
+                        }}
+                        placeholder={formConfig.password.placeholder}/>
+                </Form.Item>
+
+                <Form.Item
+                    name={formConfig.confirm_password.name}
+                    label={formConfig.confirm_password.label}
+                    dependencies={['password']}
+                    hasFeedback
+                    rules={[formConfig.confirm_password.rules[0],
+                        ({getFieldValue}) => ({
+                            validator: (rule, value) => this.passwordMatchValidation(value, getFieldValue('password')),
+                        }),
+                    ]}>
+                    <Input.Password
+                        onChange={(e) => {
+                            this.handleChange(e.target.value, formConfig.confirm_password.name)
+                        }}
+                        placeholder={formConfig.confirm_password.placeholder}/>
+                </Form.Item>
+
+                <Form.Item
+                    name={formConfig.dateOfBirth.name}
+                    label={formConfig.dateOfBirth.label}
+                    rules={formConfig.dateOfBirth.rules}>
+                    <DatePicker
+                        disabledDate={this.disabledDate}
+                        onChange={(date, dateString) => {
+                            this.handleChange(dateString, formConfig.dateOfBirth.name)
+                        }}
+                        placeholder={formConfig.dateOfBirth.placeholder}/>
+                </Form.Item>
+
+                <div className="step-buttons">
+                    {hasBack &&
+                    <Button className="step-submit-button"
+                            type="primary"
+                            onClick={() => this.props.handleBack()}>
+                        Back
+                    </Button>}
+                    <Button className="step-submit-button"
+                            type="primary"
+                            htmlType="submit">
+                        Submit
+                    </Button>
+                </div>
+
+            </Form>
+        );
+    };
+}
 
 
 export default First;

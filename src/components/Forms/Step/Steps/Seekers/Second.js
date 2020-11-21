@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import "../Steps.scss";
 import {Form, Input, Tooltip, Cascader, Select, Row, DatePicker, Col, Checkbox, Button, AutoComplete} from 'antd';
-import formConfig from "../../../Login/Config";
+import formConfig from "../../../Config";
+import moment from "moment";
 
-const { Option } = Select;
+const {Option} = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
 const formItemLayout = {
@@ -44,7 +45,6 @@ const onFinish = (values) => {
     console.log('Received values of form: ', values);
 };
 
-
 class Second extends React.Component {
     constructor(props) {
         super(props);
@@ -56,26 +56,31 @@ class Second extends React.Component {
         }
     }
 
-    phonehandler = event => {
-        this.setState({
-            phone: event.target.value
-        })
+    formRef = React.createRef();
+
+    componentDidMount() {
+        const {data} = this.props;
+        this.formRef.current.setFieldsValue({
+            [formConfig.gender.name]: data[formConfig.gender.name],
+            [formConfig.phone.name]: data[formConfig.phone.name],
+            [formConfig.city.name]: data[formConfig.city.name],
+            [formConfig.address.name]: data[formConfig.address.name],
+        });
     }
 
-    addresshandler = event => {
-        this.setState({
-            address: event.target.value
-        })
+    handleChange = (value, name) => {
+        this.props.handleChange(value, name);
     }
-
-
 
     render() {
+        const {hasBack} = this.props;
+
         return (
             <Form
                 {...formItemLayout}
                 name="register"
-                onFinish={onFinish}
+                ref={this.formRef}
+                onFinish={() => this.props.handleSubmit()}
                 initialValues={{
                     prefix: '86',
                 }}
@@ -86,10 +91,11 @@ class Second extends React.Component {
                     label={formConfig.gender.label}
                     rules={formConfig.gender.rules}>
                     <Select
-                        placeholder={formConfig.gender.placeholder}
-                        onChange={this.onGenderChange}
                         allowClear
-                    >
+                        placeholder={formConfig.gender.placeholder}
+                        onChange={(e) => {
+                            this.handleChange(e, formConfig.firstName.name)
+                        }}>
                         <Option value="male">Male</Option>
                         <Option value="female">Female</Option>
                         <Option value="other">Other</Option>
@@ -102,12 +108,11 @@ class Second extends React.Component {
                     rules={formConfig.phone.rules}>
                     <Input
                         value={this.state.phone}
-                        onChange={this.phonehandler}
+                        style={{width: '100%'}}
                         placeholder={formConfig.phone.placeholder}
-                        style={{
-                            width: '100%',
-                        }}
-                    />
+                        onChange={(e) => {
+                            this.handleChange(e, formConfig.firstName.name)
+                        }}/>
                 </Form.Item>
 
                 <Form.Item
@@ -115,17 +120,17 @@ class Second extends React.Component {
                     label={formConfig.city.label}
                     rules={formConfig.city.rules}>
                     <Select
-                        placeholder={formConfig.city.placeholder}
-                        onChange={this.onCityChange}
                         allowClear
-                    >
+                        placeholder={formConfig.city.placeholder}
+                        onChange={(e) => {
+                            this.handleChange(e, formConfig.city.name)
+                        }}>
                         <Option value="Prishtine">Prishtinë</Option>
                         <Option value="Peje">Pejë</Option>
                         <Option value="Prizren">Prizren</Option>
                         <Option value="Ferizaj">Ferizaj</Option>
                         <Option value="Gjakove">Gjakove</Option>
                         <Option value="Mitrovice">Mitrovice</Option>
-                        <Option value="Peje">Peje</Option>
                         <Option value="Gjilan">Gjilan</Option>
                         <Option value="Vushtrri">Vushtrri</Option>
                     </Select>
@@ -138,32 +143,39 @@ class Second extends React.Component {
                     rules={formConfig.address.rules}>
                     <Input
                         value={this.state.address}
-                        onChange={this.addresshandler}
-                        placeholder={formConfig.address.placeholder}/>
+                        placeholder={formConfig.address.placeholder}
+                        onChange={(e) => {
+                            this.handleChange(e, formConfig.address.name)
+                        }}/>
                 </Form.Item>
 
                 <Form.Item
-                    name="agreement"
+                    name={formConfig.agreement.name}
                     valuePropName="checked"
-                    rules={[
-                        {
-                            validator: (_, value) =>
-                                value ? Promise.resolve() : Promise.reject('Should accept agreement'),
-                        },
-                    ]}
-
-                >
-                    <Checkbox>
+                    rules={[{
+                        validator: (_, value) => value ? Promise.resolve() : Promise.reject('Should accept agreement'),
+                    }]}>
+                    <Checkbox
+                        onChange={(e) => {
+                            this.handleChange(e.target.checked, formConfig.agreement.name)
+                        }}>
                         I have read the <a href="">agreement</a>
                     </Checkbox>
                 </Form.Item>
 
-                <Form.Item>
-                    <Button type="primary"
+                <div className="step-buttons">
+                    {hasBack &&
+                    <Button className="step-submit-button"
+                            type="primary"
+                            onClick={() => this.props.handleBack()}>
+                        Back
+                    </Button>}
+                    <Button className="step-submit-button"
+                            type="primary"
                             htmlType="submit">
                         Submit
                     </Button>
-                </Form.Item>
+                </div>
             </Form>
         );
     };

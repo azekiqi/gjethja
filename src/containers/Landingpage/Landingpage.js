@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import "./Landingpage.scss";
 import Baby  from "../../assets/images/baby.png";
 import Elder  from "../../assets/images/elder.png";
@@ -8,12 +6,10 @@ import Pet from "../../assets/images/pet.png";
 import House  from "../../assets/images/house.png";
 import Transport from "../../assets/images/transport.png";
 import Date from "../../assets/images/date.png";
-import School from "../../assets/images/school.png";
 import Night from "../../assets/images/night.png";
 import Ardi from "../../assets/images/Ardi.jpg";
 import Dobby from "../../assets/images/Dobby.jpg";
 import Slideshow from "./Slideshow";
-import Modal from "react-modal";
 import {getFeedback, saveFeedback} from "../../actions/user";
 import { connect } from "react-redux";
 import ReactPlayer from "react-player";
@@ -28,7 +24,6 @@ import Inlab from "../../assets/images/inlab.png";
 class Landingpage extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             isModalOpen: false,
             modalId: null,
@@ -63,7 +58,7 @@ class Landingpage extends React.Component {
     render() {
         const { isModalOpen } = this.state;
         return (
-            <div>x
+            <div>
                  <div className="slideshow">
                      <Slideshow />
                  </div>
@@ -249,7 +244,6 @@ class Landingpage extends React.Component {
             </div>
         );
     }
-
 }
 
 const mapDispatchToProps = dispatch => ({

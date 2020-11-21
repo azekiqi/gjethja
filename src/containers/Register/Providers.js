@@ -2,54 +2,64 @@ import React from 'react';
 import './Register.scss';
 import {providerRegister} from '../../actions/user';
 import {connect} from "react-redux";
-import MultiSelect from "react-multi-select-component";
 import Step from "../../components/Forms/Step/Step";
 import First from "../../components/Forms/Step/Steps/First";
 import Second from "../../components/Forms/Step/Steps/Providers/Second";
 import Third from "../../components/Forms/Step/Steps/Providers/Third";
-import {options} from "../../utils/constants";
-import axios from 'axios';
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import {initialRegisterDataObject} from "../../utils/constants";
 
 
 class Providers extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            type: null
+            type: null,
+            data: { ...initialRegisterDataObject }
         }
+
     }
 
     steps = [
         {
             step: 1,
-            component: <First />,
-            handleStepSubmit: () =>  alert("Submit step 1")
+            component: <First/>,
+            handleStepSubmit: () => alert("Submit step 1")
         },
         {
             step: 2,
-            component: <Second />,
-            handleStepSubmit: () =>  alert("Submit step 2")
+            component: <Second/>,
+            handleStepSubmit: () => alert("Submit step 2")
         },
         {
             step: 3,
-            component: <Third />
+            component: <Third/>,
+            handleStepSubmit: () => alert("Registered")
         }
     ]
 
-    handleSubmit = (event) => {
-        this.props.registerUser();
+    handleSubmit = () => {
+        const { data } = this.state;
+        console.log(data);
+        this.props.registerUser(data);
+    }
+
+    handleChange = (value, name) => {
+        this.setState({
+            data: {
+                ...this.state.data,
+                [name]: value,
+            }
+        })
     }
 
     render() {
         return (
             <div className="container-fluid register-container">
                 <Step
-                    handleInputChange={() => null}
-                    handleSubmit={() => alert("REGISTER")}
-                    steps = { this.steps }/>
+                    steps={this.steps}
+                    data={this.state.data}
+                    handleSubmit={() => this.handleSubmit()}
+                    handleChange={(value, name) => this.handleChange(value, name)}/>
             </div>
         );
     }

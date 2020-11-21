@@ -1,3 +1,6 @@
+import formConfig from "../components/Forms/Config";
+
+
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
@@ -31,6 +34,22 @@ export const options = [
 
 export const GetPosts = {
     "Posts": "posts",
+};
+
+export const initialRegisterDataObject = {
+    [formConfig.firstName.name]: "",
+    [formConfig.lastName.name]: "",
+    [formConfig.email.name]: "",
+    [formConfig.password.name]: "",
+    [formConfig.confirm_password.name]: "",
+    [formConfig.dateOfBirth.name]: "",
+    [formConfig.gender.name]: "",
+    [formConfig.phone.name]: "",
+    [formConfig.city.name]: "",
+    [formConfig.address.name]: "",
+    [formConfig.education.name]: "",
+    [formConfig.bio.name]: "",
+    [formConfig.job.name]: "",
 }
 
 export const CARD_OPTIONS = {

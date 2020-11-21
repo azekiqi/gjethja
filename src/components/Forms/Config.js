@@ -5,7 +5,7 @@ const config = {
         label: "Emri",
         placeholder: "Emri",
         rules: [{
-            required: true,
+            required: false,
             message: 'Ju lutem shënoni emrin e juaj!',
         }]
     },
@@ -15,7 +15,7 @@ const config = {
         label: "Mbiemri",
         placeholder: "Mbiemri",
         rules: [{
-            required: true,
+            required: false,
             message: 'Ju lutem shënoni mbiemrin e juaj!',
         }]
     },
@@ -25,8 +25,11 @@ const config = {
         label: "E-mail",
         placeholder: "E-mail",
         rules: [{
-            required: true,
+            required: false,
             message: 'Ju lutem shënoni email-ën e juaj!',
+        }, {
+            type: 'email',
+            message: 'Email-i juaj nuk është valid',
         }]
     },
     password: {
@@ -35,8 +38,18 @@ const config = {
         label: "Password",
         placeholder: "Password",
         rules: [{
-            required: true,
-            message: 'Ju lutem shënoni fjalëkalimin e juaj!',
+            required: false,
+            message: 'Ju lutem shënoni fjalëkalimin tuaj!',
+        }]
+    },
+    confirm_password: {
+        name: "confirm_password",
+        type: "password",
+        label: "Confirm Password",
+        placeholder: "Confirm Password",
+        rules: [{
+            required: false,
+            message: 'Ju lutem konfirmoni fjalëkalimin tuaj!',
         }]
     },
     dateOfBirth: {
@@ -45,7 +58,7 @@ const config = {
         label: "Data e lindjes",
         placeholder: "Ditëlindja",
         rules: [{
-            required: true,
+            required: false,
             message: 'Ju lutem vendosni datën e lindjes!',
         }]
     },
@@ -54,7 +67,7 @@ const config = {
         label: "Gjinia",
         placeholder: "Përzgjedh gjininë",
         rules: [{
-            required: true,
+            required: false,
             message: 'Ju lutem përzgjedhni gjininë e juaj',
         }]
     },
@@ -63,7 +76,7 @@ const config = {
         label: "Numri i telefonit",
         placeholder: "Shënoni numrin e telefonit",
         rules: [{
-            required: true,
+            required: false,
             message: 'Ju lutem shënoni numrin e juaj të telefonit!',
         }]
     },
@@ -72,7 +85,7 @@ const config = {
         label: "Qyteti",
         placeholder: "Përzgjedh qytetin",
         rules:    [{
-            required: true,
+            required: false,
             message: 'Ju lutem përzgjedheni qytetin!',
         }]
     },
@@ -81,7 +94,7 @@ const config = {
         label: "Adresa",
         placeholder: "Shënoni adresën",
         rules:    [{
-                required: true,
+                required: false,
                 message: 'Ju lutem shënoni adresën e juaj!',
             }]
     },
@@ -90,7 +103,7 @@ const config = {
         label: "Edukimi",
         placeholder: "Përzgjedh edukimin",
         rules:    [{
-                required: true,
+                required: false,
                 message: 'Ju lutem zgjedh edukimin e juaj!',
             }]
     },
@@ -99,7 +112,7 @@ const config = {
         label: "Profesioni",
         placeholder: "Përzgjedh profesionin",
         rules:    [{
-            required: true,
+            required: false,
             message: 'Ju lutem zgjedheni profesionin e juaj!',
         }]
     },
@@ -108,11 +121,18 @@ const config = {
         label: "Biografia",
         placeholder: "Shënoni biografinë e juaj",
         rules:    [{
-            required: true,
+            required: false,
             message: 'Ju lutem shënoni biografinë e juaj!',
         }]
     },
-
+    agreement: {
+        name: "agreement",
+        label: "Termet dhe Kushtet",
+        rules:    [{
+            required: false,
+            message: 'Duhet te pajtoheni me Termet dhe Kushtet!',
+        }]
+    },
 }
 
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import './Profile.scss';
 
-
 export default function Profile({id, fullName, title, description}) {
     return(
         <div className="profile">

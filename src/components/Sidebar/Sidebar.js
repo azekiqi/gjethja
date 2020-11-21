@@ -4,6 +4,7 @@ import FeatherIcon from 'feather-icons';
 import {setFilter} from "../../actions";
 import { connect } from "react-redux";
 import {getProfiles} from "../../actions/profiles";
+import {Select} from "antd";
 
 function Sidebar(props) {
     const { startAgeFilter, endAgeFilter, cityFilter, educationFilter, setFilter, getProfiles } = props;
@@ -51,9 +52,15 @@ function Sidebar(props) {
                                placeholder="Qyteti"
                                onChange={(e) => filter("cityFilter", e.target.value)}>
                             <option></option>
-                            <option>Prishtinë</option>
-                            <option>Prizren</option>
-                            <option>Mitrovicë</option>
+                           <option value="Prishtine">Prishtinë</option>
+                           <option value="Peje">Pejë</option>
+                           <option value="Prizren">Prizren</option>
+                           <option value="Ferizaj">Ferizaj</option>
+                           <option value="Gjakove">Gjakove</option>
+                           <option value="Mitrovice">Mitrovice</option>
+                           <option value="Peje">Peje</option>
+                           <option value="Gjilan">Gjilan</option>
+                           <option value="Vushtrri">Vushtrri</option>
                        </select>
                 </div>
             </div>
@@ -68,9 +75,9 @@ function Sidebar(props) {
                             placeholder="Edukimi"
                             onChange={(e) => filter("educationFilter", e.target.value)}>
                         <option></option>
-                        <option value="Ulet">Fillor</option>
-                        <option>Mesem</option>
-                        <option>Larte</option>
+                        <option value="Ulet">Ulët</option>
+                        <option value="Mesem">Mesëm</option>
+                        <option value="Larte">Lartë</option>
                     </select>
                 </div>
             </div>

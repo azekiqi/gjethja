@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import "../Steps.scss";
-import { Form, Input, Select, Button, AutoComplete } from 'antd';
-import formConfig from "../../../Login/Config";
-const { Option } = Select;
+import {Form, Input, Select, Button, AutoComplete, DatePicker} from 'antd';
+import formConfig from "../../../Config";
+import moment from "moment";
+
+const {Option} = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
 const formItemLayout = {
@@ -38,9 +40,10 @@ const tailFormItemLayout = {
         },
     },
 };
-    const onFinish = (values) => {
-         console.log('Received values of form: ', values);
-    };
+
+const onFinish = (values) => {
+    console.log('Received values of form: ', values);
+};
 
 class Second extends React.Component {
     constructor(props) {
@@ -55,31 +58,32 @@ class Second extends React.Component {
         }
     }
 
-    phonehandler = event => {
-        this.setState({
-            phone: event.target.value
-        })
+    formRef = React.createRef();
+
+    componentDidMount() {
+        const {data} = this.props;
+        this.formRef.current.setFieldsValue({
+            [formConfig.gender.name]: data[formConfig.gender.name] ? moment(data[formConfig.gender.name]) : "",
+            [formConfig.phone.name]: data[formConfig.phone.name],
+            [formConfig.city.name]: data[formConfig.city.name],
+            [formConfig.address.name]: data[formConfig.address.name],
+            [formConfig.education.name]: data[formConfig.education.name],
+            [formConfig.bio.name]: data[formConfig.bio.name],
+        });
     }
 
-    addresshandler = event => {
-        this.setState({
-            address: event.target.value
-        })
+    handleChange = (value, name) => {
+        this.props.handleChange(value, name);
     }
-
-    biohandler = event => {
-        this.setState({
-            bio: event.target.value
-        })
-    }
-
 
     render() {
+        const {hasBack} = this.props;
         return (
             <Form
                 {...formItemLayout}
                 // form={form}
                 name="register"
+                ref={this.formRef}
                 onFinish={() => this.props.handleSubmit()}
                 initialValues={{
                     prefix: '86',
@@ -92,10 +96,11 @@ class Second extends React.Component {
                     label={formConfig.gender.label}
                     rules={formConfig.gender.rules}>
                     <Select
-                        placeholder={formConfig.gender.placeholder}
-                        onChange={this.onGenderChange}
                         allowClear
-                    >
+                        placeholder={formConfig.gender.placeholder}
+                        onChange={(e) => {
+                            this.handleChange(e, formConfig.gender.name)
+                        }}>
                         <Option value="male">Male</Option>
                         <Option value="female">Female</Option>
                         <Option value="other">Other</Option>
@@ -107,11 +112,10 @@ class Second extends React.Component {
                     label={formConfig.phone.label}
                     rules={formConfig.phone.rules}>
                     <Input
-                        value={this.state.phone}
-                        onChange={this.phonehandler}
                         placeholder={formConfig.phone.placeholder}
-                        style={{
-                            width: '100%',
+                        style={{width: '100%'}}
+                        onChange={(e) => {
+                            this.handleChange(e.target.value, formConfig.phone.name)
                         }}
                     />
                 </Form.Item>
@@ -121,17 +125,17 @@ class Second extends React.Component {
                     label={formConfig.city.label}
                     rules={formConfig.city.rules}>
                     <Select
-                        placeholder={formConfig.city.placeholder}
-                        onChange={this.onCityChange}
                         allowClear
-                    >
+                        placeholder={formConfig.city.placeholder}
+                        onChange={(e) => {
+                            this.handleChange(e, formConfig.city.name)
+                        }}>
                         <Option value="Prishtine">Prishtinë</Option>
                         <Option value="Peje">Pejë</Option>
                         <Option value="Prizren">Prizren</Option>
                         <Option value="Ferizaj">Ferizaj</Option>
                         <Option value="Gjakove">Gjakove</Option>
                         <Option value="Mitrovice">Mitrovice</Option>
-                        <Option value="Peje">Peje</Option>
                         <Option value="Gjilan">Gjilan</Option>
                         <Option value="Vushtrri">Vushtrri</Option>
                     </Select>
@@ -142,9 +146,10 @@ class Second extends React.Component {
                     label={formConfig.address.label}
                     rules={formConfig.address.rules}>
                     <Input
-                        value={this.state.address}
-                        onChange={this.addresshandler}
-                        placeholder={formConfig.address.placeholder}/>
+                        placeholder={formConfig.address.placeholder}
+                        onChange={(e) => {
+                            this.handleChange(e.target.value, formConfig.address.name)
+                        }}/>
                 </Form.Item>
 
                 <Form.Item
@@ -152,10 +157,11 @@ class Second extends React.Component {
                     label={formConfig.education.label}
                     rules={formConfig.education.rules}>
                     <Select
-                        placeholder={formConfig.address.placeholder}
-                        onChange={this.onEducationChange}
                         allowClear
-                    >
+                        placeholder={formConfig.education.placeholder}
+                        onChange={(e) => {
+                            this.handleChange(e, formConfig.education.name)
+                        }}>
                         <Option value="ulet">I ulët</Option>
                         <Option value="mesem">I mesëm</Option>
                         <Option value="larte">I lartë</Option>
@@ -168,15 +174,24 @@ class Second extends React.Component {
                     rules={formConfig.bio.rules}>
                     <Input.TextArea
                         placeholder={formConfig.bio.placeholder}
-                        onChange={this.biohandler}/>
+                        onChange={(e) => {
+                            this.handleChange(e.target.value, formConfig.bio.name)
+                        }}/>
                 </Form.Item>
 
-                <Form.Item>
-                    <Button type="primary"
+                <div className="step-buttons">
+                    {hasBack &&
+                    <Button className="step-submit-button"
+                            type="primary"
+                            onClick={() => this.props.handleBack()}>
+                        Back
+                    </Button>}
+                    <Button className="step-submit-button"
+                            type="primary"
                             htmlType="submit">
                         Submit
                     </Button>
-                </Form.Item>
+                </div>
             </Form>
         );
     };

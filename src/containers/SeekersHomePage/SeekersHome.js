@@ -1,9 +1,7 @@
 import React from 'react';
-import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import './SeekersHome.scss';
 import {connect} from "react-redux";
-import {CARD_OPTIONS, HomeTabs} from "../../utils/constants";
 import {getProfiles} from "../../actions/profiles";
 import Profile from "../../components/Profile/Profile";
 import SeekersRegister from "../Register/Seekers";
@@ -63,18 +61,6 @@ class SeekersHome extends React.Component {
 
                     <Sidebar/>
                     <div className="main-content">
-                        <div className="navigation">
-                            <div className="navigation-link">
-                                {/*/!*<button>*!/*/}
-                                {/*    Profiles*/}
-                                {/*</button>*/}
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col">
-                            </div>
-                        </div>
-
                         {  <div className="profiles" onClick={this.handleProfileClick}>
                             {
                                 this.props.profiles.map((profile, index) => {
@@ -84,8 +70,7 @@ class SeekersHome extends React.Component {
                                         title={profile.firstName + " " + profile.lastName}
                                         info={"Shërbimet: " + profile.jobs.join(", ")}
                                         description={"Nr. Tel: " + profile.phoneNumber}
-                                        handleClick={() => this.handleProfileClick(profile.id)}
-                                    />
+                                        handleClick={() => this.handleProfileClick(profile.id)}/>
                                 })
                             }
                         </div>}
@@ -94,17 +79,17 @@ class SeekersHome extends React.Component {
             </div>
         );
     }
-
 }
 
 const mapStateToProps = state => {
     return {
         profiles: state.profiles,
     }
-}
+};
 
 const mapDispatchToProps = dispatch => ({
     getProfiles: data => dispatch(getProfiles()),
-})
+    }
+);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SeekersHome));

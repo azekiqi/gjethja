@@ -1,18 +1,13 @@
 import React from 'react';
-import Header from "../../components/Header/Header";
-import { withRouter } from "react-router-dom";
-import {connect} from "react-redux";
-import Footer from "../../components/Footer/Footer";
-import { useHistory } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 class Register extends React.Component {
     constructor(props) {
+
         super(props);
         this.state = {
             referrer: null,
-            type: null,
-            //
+            type: null
         }
     }
 
@@ -20,6 +15,7 @@ class Register extends React.Component {
         console.log('Button is clicked!');
         this.setState({referrer: '/register/provider', type: 'provider'});
     }
+
     handleClickSeeker = () => {
         console.log('Button is clicked!');
         this.setState({referrer: '/register/seeker', type: 'seeker'});
@@ -28,7 +24,6 @@ class Register extends React.Component {
     render() {
         const {referrer} = this.state;
         if (referrer) return <Redirect to={referrer} />;
-
         return (
             <div>
                 <div className="register">
@@ -39,14 +34,10 @@ class Register extends React.Component {
                     <div className="register-b">
                     <button onClick={this.handleClickSeeker}>Kërkues shërbimesh</button>
                 </div>
-                    </div>
             </div>
+        </div>
         );
     }
 }
 
-
-
 export default Register;
-
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterSeeker));

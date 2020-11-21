@@ -20,7 +20,6 @@ function Footer() {
                     <li><a href="https://www.instagram.com/katrasolutions/">Instagram</a></li>
                     <li><a href="https://www.linkedin.com/company/katra-solutions">LinkedIn</a></li>
                 </ul>
-
             </div>
             <div className="copyrights">
                 <p>2020 Gjethja - All Rights Reserved</p>

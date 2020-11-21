@@ -51,16 +51,15 @@ class Step extends React.Component{
                          shouldBeVisible && React.cloneElement(
                             step.component,
                             {
-                                handleSubmit: () => this.handleNext()
+                                hasBack: this.isBackButtonVisible(),
+                                data: this.props.data,
+                                handleChange: (value, name) => this.props.handleChange(value, name),
+                                handleBack: () => this.handleBack(),
+                                handleSubmit: () => this.handleNext(),
                             }
                         )
                     )
                 }) }
-                <div className="float-right">
-                    {this.isBackButtonVisible() &&
-                    <button onClick={() => this.handleBack()} type="back" className="btn btn-primary mr-3">Kthehu</button>}
-                    <button onClick={() => this.handleNext()} type="next" className="btn btn-primary">Vazhdo</button>
-                </div>
             </div>
         )
     }

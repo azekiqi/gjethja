@@ -19,7 +19,7 @@ import Login from "./containers/Login/Login";
 function App({ token }) {
     return(
             <HashRouter>
-                <Header/>
+                    <Header/>
                 <Switch>
                     <Route exact path="/" component={Landingpage} />
                     <Route exact path="/register" component={Register} />
@@ -31,9 +31,8 @@ function App({ token }) {
 
                     <AuthenticatedRoute path="/home" component={Home} token={token} />
                     <AuthenticatedRoute path="/seekershome" component={SeekersHome} token={SeekersHome} />
-
               </Switch>
-                <Footer/>
+                    <Footer/>
           </HashRouter>
     );
 }

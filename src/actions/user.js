@@ -45,7 +45,6 @@ export const providerRegister = data => {
             return err;
         })
     }
-
 }
 
 export const seekerRegister = data => {
@@ -62,8 +61,7 @@ export const seekerRegister = data => {
             return err;
         })
     }
-
-}
+};
 
 export const login = data => {
     data = `grant_type=password&username=${data.email}&password=${data.password}`;
@@ -84,7 +82,6 @@ export const login = data => {
             return err;
         })
     }
-
 }
 
 export const confirm = data => {
@@ -185,5 +182,4 @@ export const uploadProfilePicture = data => {
             return err;
         })
     }
-
 }

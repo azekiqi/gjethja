@@ -6,7 +6,7 @@ import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
 import "./Login.scss";
-import formConfig from "./Config";
+import formConfig from "../Config";
 import {confirm, login} from "../../../actions/user";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";

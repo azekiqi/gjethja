@@ -29,7 +29,7 @@ export const getProfiles = filters => {
             url: url + `providers` + path,
             headers: {
                 authorization: "Bearer " + token,
-                contentType: "application/json; charset=utf-8",
+                "content-type": "application/json; charset=utf-8",
             }
         }).then(res => {
             console.log(res);

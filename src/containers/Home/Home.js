@@ -2,13 +2,11 @@ import React from 'react';
 import Sidebar from "../../components/Sidebar/Sidebar";
 import './Home.scss';
 import {connect} from "react-redux";
-import {CARD_OPTIONS, HomeTabs} from "../../utils/constants";
 import {getProfiles} from "../../actions/profiles";
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             isModalOpen: false,
             modalId: null,
@@ -18,38 +16,9 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.props.getProfiles();
-
-    }
-
-    closeModal = () => {
-        this.setState({isModalOpen: false});
-    }
-
-    openModal = (id) => {
-        this.setState({isModalOpen: true, modalId: id});
-    }
-
-    renderModalContent = () => {
-        return (
-            <div className="modal-content">
-                <div className="fistName">
-                    {this.state.selected_post.firstName}
-                </div>
-                <div className="lastName">
-                    {this.state.selected_post.lastName}
-                </div>
-                <div className="phoneNumbers">
-                    {this.state.selected_post.phoneNumber}
-                </div>
-                <div className="jobs">
-                    {this.state.selected_post.jobs}
-                </div>
-            </div>
-        )
     }
 
     render() {
-        const {currentTab} = this.state;
         return (
             <div>
                 <div className="home-container">
@@ -63,7 +32,6 @@ class Home extends React.Component {
                 </div>
         );
     }
-
 }
 
 const mapStateToProps = state => {

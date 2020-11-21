@@ -5,8 +5,6 @@ import Femijet from "../../assets/images/femijet.png"
 import Gjyshja from "../../assets/images/gjyshja.png"
 import Qeni from "../../assets/images/qeni.png"
 
-
-
 const props = {
     duration: 3000,
     transitionDuration: 550,
@@ -18,14 +16,14 @@ const Slideshow = () => {
     return (
         <div  className="slide-container">
             <Slide {...props}>
-                <div className="images">
-                    <img src={Femijet}   style={{height: "450px"}}/>
+                <div>
+                    <img src={Femijet}   style={{height: "400px"}}/>
                 </div>
                 <div>
-                    <img src={Gjyshja}   style={{height: "450px"}}/>
+                    <img src={Gjyshja}   style={{height: "400px"}}/>
                 </div>
                 <div>
-                    <img src={Qeni}   style={{height: "450px"}}/>
+                    <img src={Qeni}   style={{height: "400px"}}/>
                 </div>
             </Slide>
         </div>
