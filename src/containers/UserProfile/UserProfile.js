@@ -1,7 +1,8 @@
 import React from "react";
+import "./UserProfile.scss";
 import {connect} from "react-redux";
 import {getSpecifiedUser} from "../../actions/user";
-import UserProfile from "../../components/Profile/UserProfile";
+import BlankProfile from "../../assets/images/blank_profile.jpg";
 
 class userProfile extends React.Component {
 
@@ -19,6 +20,7 @@ class userProfile extends React.Component {
                 city: "",
                 address: "",
                 phoneNumber: "",
+                jobs: null,
                 image: null
             }
         }
@@ -30,31 +32,72 @@ class userProfile extends React.Component {
         });
     }
 
-    renderProfile(user) {
-        return (<div>
-            <UserProfile profilePicture={user.image}
-                         firstName={user.firstName}
-                         lastName={user.lastName}
-                         dateOfBirth={user.dateOfBirth}
-                         phone={user.phoneNumber}
-                         city={user.city}
-                         address={user.address}
-                         education={user.education}
-                         bio={user.bio}
-                         job={user.job}
-            />
-        </div>);
-    };
-
     render() {
+        const {user} = this.state;
+        const image = (user && user.image) ? "data:image/png;base64," + user.image : BlankProfile;
         return (
             <>
-                <div className="container-fluid register-container">
+                <div className="container pt-5">
                     <div className="row">
-                        <div className="col">
+                        <div className="col-4">
+                            <div className="card">
+                                <div className="card-header">
+                                    Picture
+                                </div>
+                                <div className="card-body">
+                                    <div className="profile-picture-container">
+                                        <img
+                                            alt="Logo"
+                                            className="profile-picture"
+                                            src={image}  />
+                                    </div>
+                                    <div className="text-center mt-3">
+                                        <h5>{ user.firstName } { user.lastName }</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="col-8">
+                            <div className="card">
+                                <div className="card-header">
+                                    Profile
+                                </div>
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col-3">
+                                            <div className="info-row">
+                                                Birthday
+                                            </div>
+                                            <div className="info-row">
+                                                City
+                                            </div>
+                                            <div className="info-row">
+                                                Address
+                                            </div>
+                                            <div className="info-row">
+                                                Phone Number
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="info-row">
+                                                {user.dateOfBirth}
+                                            </div>
+                                            <div className="info-row">
+                                                {user.city}
+                                            </div>
+                                            <div className="info-row">
+                                                {user.address}
+                                            </div>
+                                            <div className="info-row">
+                                                {user.phoneNumber}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    {this.renderProfile(this.state.user)}
                 </div>
             </>
         )

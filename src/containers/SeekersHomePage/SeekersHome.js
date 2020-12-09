@@ -6,7 +6,6 @@ import {getProfiles} from "../../actions/profiles";
 import Profile from "../../components/Profile/Profile";
 import SeekersRegister from "../Register/Seekers";
 import {withRouter} from "react-router-dom";
-import UserProfile from "../../components/Profile/UserProfile";
 
 
 class SeekersHome extends React.Component {

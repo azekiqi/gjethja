@@ -21,10 +21,7 @@ class Home extends React.Component {
     }
 
     handleProfileClick = (id) => {
-        this.props.history.push({
-            pathname: "/uprofile/" + id,
-            state: {id: id}
-        })
+        this.props.history.push("/uprofile/" + id);
     };
 
     render() {
