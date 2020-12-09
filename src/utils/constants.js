@@ -50,6 +50,7 @@ export const initialRegisterDataObject = {
     [formConfig.education.name]: "",
     [formConfig.bio.name]: "",
     [formConfig.job.name]: "",
+    "url": process.env.REACT_APP_CONFIRM_URL
 }
 
 export const CARD_OPTIONS = {

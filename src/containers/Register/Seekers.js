@@ -1,13 +1,11 @@
 import React from 'react';
 import './Register.scss';
-import {providerRegister, seekerRegister} from '../../actions/user';
+import {seekerRegister} from '../../actions/user';
 import {connect} from "react-redux";
 import First from "../../components/Forms/Step/Steps/First";
 import Second from "../../components/Forms/Step/Steps/Seekers/Second";
 import Step from "../../components/Forms/Step/Step";
-import Third from "../../components/Forms/Step/Steps/Providers/Third";
 import {initialRegisterDataObject} from "../../utils/constants";
-import { register } from '../../actions/user';
 
 class Seekers extends React.Component {
     constructor(props) {
@@ -32,7 +30,9 @@ class Seekers extends React.Component {
     ]
 
     handleSubmit = (event) => {
-        this.props.registerUser();
+        const { data } = this.state;
+        console.log(data);
+        this.props.registerUser(data);
     }
 
     handleChange = (value, name) => {
@@ -50,7 +50,7 @@ class Seekers extends React.Component {
                 <Step
                     steps={this.steps}
                     data={this.state.data}
-                    handleSubmit={() => alert("REGISTER")}
+                    handleSubmit={() => this.handleSubmit()}
                     handleChange={(value, name) => this.handleChange(value, name)}/>
             </div>
         );

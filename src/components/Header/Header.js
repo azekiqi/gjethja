@@ -7,7 +7,7 @@ import {logOut} from "../../actions/user";
 
 function Header(props) {
     return(
-        <div class={"header"}>
+        <div className={"header"}>
             <div className="header_logo">
                 <Link to={"/"}>
                         <img src={Logo} alt="logo"/>

@@ -9,7 +9,7 @@ class profile extends React.Component {
         super(props);
 
         this.state = {
-            user: { ...initialRegisterDataObject }
+            user: {...initialRegisterDataObject}
         }
     }
 
@@ -43,10 +43,9 @@ class profile extends React.Component {
         const {user} = this.state;
         return (
             <div className="row pb-5">
-                <div className="col-6 mx-auto register-form-container">
+                <div className="col-6">
                     <form className="register-form">
                         <div className="register-title"> My Profile!</div>
-
                         <div className="row">
                             <div className="col-4 mx-auto">
                                 <img src={"data:image/png;base64," + (user && user.image)} alt="Logo"
@@ -118,22 +117,22 @@ class profile extends React.Component {
 
                         <div className="form-group">
                             <div className="col">
-                            <label htmlFor="phone">Numri i telefonit:</label>
-                            <input type="text"
-                                   id="phone-input"
-                                   className="form-control"
-                                   placeholder="Numri i telefonit"
-                                   value={this.state.user.phoneNumber}
-                                   onChange={(e) => {
-                                       this.setState({
-                                           user: {
-                                               ...this.state.user,
-                                               phoneNumber: e.target.value
-                                           }
-                                       })
-                                   }}/>
-                            <div className="error-style">{this.state.phoneNumberError}</div>
-                        </div>
+                                <label htmlFor="phone">Numri i telefonit:</label>
+                                <input type="text"
+                                       id="phone-input"
+                                       className="form-control"
+                                       placeholder="Numri i telefonit"
+                                       value={this.state.user.phoneNumber}
+                                       onChange={(e) => {
+                                           this.setState({
+                                               user: {
+                                                   ...this.state.user,
+                                                   phoneNumber: e.target.value
+                                               }
+                                           })
+                                       }}/>
+                                <div className="error-style">{this.state.phoneNumberError}</div>
+                            </div>
                         </div>
 
                         <div className="form-row">
@@ -152,7 +151,7 @@ class profile extends React.Component {
                                                 }
                                             })
                                         }}>
-                                        <option defaultValue>Zgjedh qytetin</option>
+                                        <option defaultValue>{this.state.user.city}</option>
                                         <option value="Prishtine">Prishtine</option>
                                         <option value="Peje">Peje</option>
                                         <option value="Prizren">Prizren</option>
@@ -182,7 +181,7 @@ class profile extends React.Component {
                                                    }
                                                })
                                            }}
-                                           placeholder="Adresa"/>
+                                           placeholder={this.state.user.address}/>
                                     <div className="error-style">{this.state.addressError}</div>
                                 </div>
                             </div>
@@ -193,7 +192,7 @@ class profile extends React.Component {
                             <input type="text"
                                    id="bio-input"
                                    className="form-control"
-                                   placeholder="Biografia"
+                                   placeholder={this.state.user.bio}
                                    value={this.state.user.bio}
                                    onChange={(e) => {
                                        this.setState({
@@ -213,17 +212,9 @@ class profile extends React.Component {
         )
     };
 
-
     render() {
         return (
-            <div className="container-fluid register-container">
-                <div className="row">
-                    <div className="col">
-                        <div className="navigation">
-
-                        </div>
-                    </div>
-                </div>
+            <div>
                 {this.renderProfile()}
             </div>
         )

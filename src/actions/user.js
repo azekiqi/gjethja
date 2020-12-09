@@ -11,14 +11,14 @@ const feedbackUrl = process.env.REACT_APP_FEEDBACK_URL;
 export const logOut = data => ({
     type: constants.LOGOUT,
     data: data
-})
+});
 
 export const getUser = data => {
     const token = localStorage.getItem("token");
     return function(dispatch) {
         return axios({
             method: 'get',
-            url: url + "current",
+            url: url + "api/current",
             headers: {
                 authorization: "Bearer " + token
             }
@@ -29,13 +29,33 @@ export const getUser = data => {
             return err;
         })
     }
-}
+};
+
+export const getSpecifiedUser = data => {
+    const token = localStorage.getItem("token");
+    console.log("alketa b4b4");
+    return function(dispatch) {
+        return axios({
+            method: 'get',
+            url: url + `api/providers/${data}`,
+            headers: {
+                authorization: "Bearer " + token
+            }
+        }).then(res => {
+            console.log(res);
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+};
+
 
 export const providerRegister = data => {
     return function(dispatch) {
         return axios({
             method: 'post',
-            url: url + "providers/register",
+            url: url + "api/providers/register",
             data: data
         }).then(res => {
             console.log(res);
@@ -51,7 +71,7 @@ export const seekerRegister = data => {
     return function(dispatch) {
         return axios({
             method: 'post',
-            url: url + "seekers/register",
+            url: url + "api/seekers/register",
             data: data
         }).then(res => {
             console.log(res);

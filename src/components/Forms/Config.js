@@ -1,6 +1,6 @@
 const config = {
     firstName: {
-        name: "firstname",
+        name: "firstName",
         type: "text",
         label: "Emri",
         placeholder: "Emri",
@@ -10,7 +10,7 @@ const config = {
         }]
     },
     lastName: {
-        name: "lastname",
+        name: "lastName",
         type: "text",
         label: "Mbiemri",
         placeholder: "Mbiemri",
@@ -43,7 +43,7 @@ const config = {
         }]
     },
     confirm_password: {
-        name: "confirm_password",
+        name: "confirmPassword",
         type: "password",
         label: "Confirm Password",
         placeholder: "Confirm Password",
@@ -53,7 +53,7 @@ const config = {
         }]
     },
     dateOfBirth: {
-        name: "date",
+        name: "dateOfBirth",
         type: "date",
         label: "Data e lindjes",
         placeholder: "Ditëlindja",
@@ -72,7 +72,7 @@ const config = {
         }]
     },
     phone: {
-        name: "phone",
+        name: "phoneNumber",
         label: "Numri i telefonit",
         placeholder: "Shënoni numrin e telefonit",
         rules: [{

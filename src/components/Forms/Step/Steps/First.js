@@ -61,6 +61,7 @@ class First extends React.Component {
     }
 
     handleChange = (value, name) => {
+        console.log(value);
         this.props.handleChange(value, name);
     }
 
@@ -75,7 +76,7 @@ class First extends React.Component {
     disabledDate = (current) => {
         const date = new Date();
         date.setFullYear(date.getFullYear() - 18);
-        return current && current > moment(date, "YYYY-MM-DD");
+        return current && current > moment(date, "dd-MM-yyyy");
     }
 
     render() {
@@ -95,6 +96,7 @@ class First extends React.Component {
             >
                 <p className="register-title"> Regjistrohu!</p>
 
+
                 <Form.Item
                     name={formConfig.firstName.name}
                     label={formConfig.firstName.label}
@@ -105,6 +107,7 @@ class First extends React.Component {
                         }}
                         placeholder={formConfig.firstName.placeholder}/>
                 </Form.Item>
+
 
                 <Form.Item
                     name={formConfig.lastName.name}
@@ -163,6 +166,7 @@ class First extends React.Component {
                     label={formConfig.dateOfBirth.label}
                     rules={formConfig.dateOfBirth.rules}>
                     <DatePicker
+                        format = {"DD-MM-yyyy"}
                         disabledDate={this.disabledDate}
                         onChange={(date, dateString) => {
                             this.handleChange(dateString, formConfig.dateOfBirth.name)

@@ -27,7 +27,7 @@ function App({ token }) {
                     <Route path="/register/seeker" component={SeekersRegister} />
                     <Route path="/register/provider" component={ProvidersRegister} />
                     <Route path="/profile" component={myProfile} />
-                    <Route path="/uprofile" component={UserProfile} />
+                    <Route path="/uprofile/:id" component={UserProfile} />
 
                     <AuthenticatedRoute path="/home" component={Home} token={token} />
                     <AuthenticatedRoute path="/seekershome" component={SeekersHome} token={SeekersHome} />

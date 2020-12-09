@@ -94,7 +94,7 @@ class Second extends React.Component {
                         allowClear
                         placeholder={formConfig.gender.placeholder}
                         onChange={(e) => {
-                            this.handleChange(e, formConfig.firstName.name)
+                            this.handleChange(e, formConfig.gender.name)
                         }}>
                         <Option value="male">Male</Option>
                         <Option value="female">Female</Option>
@@ -107,13 +107,13 @@ class Second extends React.Component {
                     label={formConfig.phone.label}
                     rules={formConfig.phone.rules}>
                     <Input
-                        value={this.state.phone}
-                        style={{width: '100%'}}
                         placeholder={formConfig.phone.placeholder}
+                        style={{width: '100%'}}
                         onChange={(e) => {
-                            this.handleChange(e, formConfig.firstName.name)
+                            this.handleChange(e.target.value, formConfig.phone.name)
                         }}/>
                 </Form.Item>
+
 
                 <Form.Item
                     name={formConfig.city.name}
@@ -136,16 +136,14 @@ class Second extends React.Component {
                     </Select>
                 </Form.Item>
 
-
                 <Form.Item
                     name={formConfig.address.name}
                     label={formConfig.address.label}
                     rules={formConfig.address.rules}>
                     <Input
-                        value={this.state.address}
                         placeholder={formConfig.address.placeholder}
                         onChange={(e) => {
-                            this.handleChange(e, formConfig.address.name)
+                            this.handleChange(e.target.value, formConfig.address.name)
                         }}/>
                 </Form.Item>
 

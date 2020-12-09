@@ -26,7 +26,7 @@ export const getProfiles = filters => {
     return function (dispatch) {
         return axios({
             method: 'get',
-            url: url + `providers` + path,
+            url: url + `api/providers` + path,
             headers: {
                 authorization: "Bearer " + token,
                 "content-type": "application/json; charset=utf-8",

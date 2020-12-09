@@ -1,16 +1,20 @@
 import React from "react";
 import {connect} from "react-redux";
-import {getUser} from "../../actions/user";
-import {render} from "react-dom";
+import {getSpecifiedUser} from "../../actions/user";
+import UserProfile from "../../components/Profile/UserProfile";
 
-class UserProfile extends React.Component {
+class userProfile extends React.Component {
+
     constructor(props) {
         super(props);
 
         this.state = {
             user: {
+                id: "",
                 firstName: "",
                 lastName: "",
+                dateOfBirth: "",
+                education: "",
                 bio: "",
                 city: "",
                 address: "",
@@ -21,27 +25,38 @@ class UserProfile extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getUser().then(res => {
-            this.setState({user: res.data});
-        })
+        this.props.getSpecifiedUser(this.props.match.params.id).then(res => {
+            this.setState({user: res.data})
+        });
     }
 
-    // renderProfile = () => {
-    //     this.props.getUser().then(res => {
-    //         this.setState({user: res.data});
-    //     })
-    // };
+    renderProfile(user) {
+        return (<div>
+            <UserProfile profilePicture={user.image}
+                         firstName={user.firstName}
+                         lastName={user.lastName}
+                         dateOfBirth={user.dateOfBirth}
+                         phone={user.phoneNumber}
+                         city={user.city}
+                         address={user.address}
+                         education={user.education}
+                         bio={user.bio}
+                         job={user.job}
+            />
+        </div>);
+    };
 
     render() {
-        console.log(this.state.user);
         return (
+            <>
                 <div className="container-fluid register-container">
                     <div className="row">
                         <div className="col">
-                            < this.state.user />
                         </div>
                     </div>
+                    {this.renderProfile(this.state.user)}
                 </div>
+            </>
         )
     }
 }
@@ -53,9 +68,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getUser: () => dispatch(getUser()),
-    }
-);
+    getSpecifiedUser: id => dispatch(getSpecifiedUser(id)),
+});
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(userProfile);

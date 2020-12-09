@@ -6,6 +6,7 @@ import {getProfiles} from "../../actions/profiles";
 import Profile from "../../components/Profile/Profile";
 import SeekersRegister from "../Register/Seekers";
 import {withRouter} from "react-router-dom";
+import UserProfile from "../../components/Profile/UserProfile";
 
 
 class SeekersHome extends React.Component {
@@ -23,45 +24,20 @@ class SeekersHome extends React.Component {
     }
 
     handleProfileClick = (id) => {
-        this.props.history.push("/uprofile/" + id)
+        this.props.history.push({
+            pathname: "/uprofile/" + id,
+            state: {id: id}
+        })
     };
 
-    closeModal = () => {
-        this.setState({isModalOpen: false});
-    }
-
-    openModal = (id) => {
-        this.setState({isModalOpen: true, modalId: id});
-    }
-
-    renderModalContent = () => {
-        return (
-            <div className="modal-content">
-                <div className="fistName">
-                    {this.state.selected_post.firstName}
-                </div>
-                <div className="lastName">
-                    {this.state.selected_post.lastName}
-                </div>
-                <div className="phoneNumbers">
-                    {this.state.selected_post.phoneNumber}
-                </div>
-                <div className="jobs">
-                    {this.state.selected_post.jobs}
-                </div>
-            </div>
-        )
-    }
-
     render() {
-        const {currentTab, isModalOpen} = this.state;
         return (
             <div>
                 <div className="home-container">
 
                     <Sidebar/>
                     <div className="main-content">
-                        {  <div className="profiles" onClick={this.handleProfileClick}>
+                        {  <div className="profiles" >
                             {
                                 this.props.profiles.map((profile, index) => {
                                     console.log(profile.id);

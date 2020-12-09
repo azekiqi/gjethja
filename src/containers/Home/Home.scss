@@ -51,10 +51,11 @@ button {
         }
     }
 
-.posts, .profiles {
+.profiles {
     display: flex;
     flex-wrap: wrap;
     width: 85%;
     margin: auto;
+    padding-top: 50px;
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Profile.scss';
 
-export default function Profile({id, fullName, title, description}) {
+export default function Profile({id, fullName, title, description, handleClick}) {
     return(
         <div className="profile">
             <div className={"profile-image"} />
@@ -15,7 +15,7 @@ export default function Profile({id, fullName, title, description}) {
                 { description }
             </div>
             <div>
-            <button className={"profile-button"}>Shiko Profilin!</button>
+            <button className={"profile-button"} onClick={handleClick}>Shiko Profilin!</button>
             </div>
         </div>
     )

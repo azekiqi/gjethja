@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import './Home.scss';
 import {connect} from "react-redux";
 import {getProfiles} from "../../actions/profiles";
+import Profile from "../../components/Profile/Profile";
 
 class Home extends React.Component {
     constructor(props) {
@@ -10,13 +11,21 @@ class Home extends React.Component {
         this.state = {
             isModalOpen: false,
             modalId: null,
-            selected_post: {}
+            selected_post: {},
+            profiles: {}
         }
     }
 
     componentDidMount() {
-        this.props.getProfiles();
+        this.setState({profiles: this.props.getProfiles()});
     }
+
+    handleProfileClick = (id) => {
+        this.props.history.push({
+            pathname: "/uprofile/" + id,
+            state: {id: id}
+        })
+    };
 
     render() {
         return (
@@ -24,12 +33,23 @@ class Home extends React.Component {
                 <div className="home-container">
                     <Sidebar/>
                     <div className="main-content">
-                        <div className="navigation">
-                                    Profiles
-                            </div>
+                        <div className="profiles">
+                            {
+                                this.props.profiles.map((profile, index) => {
+                                    console.log("omg", profile.id);
+                                    return (<Profile
+                                        id={profile.id}
+                                        title={profile.firstName + " " + profile.lastName}
+                                        info={"Shërbimet: " + profile.jobs.join(", ")}
+                                        description={"Nr. Tel: " + profile.phoneNumber}
+                                        handleClick={() => this.handleProfileClick(profile.id)}
+                                    />)
+                                })
+                            }
                         </div>
                     </div>
                 </div>
+            </div>
         );
     }
 }
