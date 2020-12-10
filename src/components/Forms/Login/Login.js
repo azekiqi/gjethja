@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import {Form, Input, Button, Checkbox} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
-import Header from "../../Header/Header";
-import Footer from "../../Footer/Footer";
 import "./Login.scss";
 import formConfig from "../Config";
 import {confirm, login} from "../../../actions/user";
@@ -23,7 +21,7 @@ class Login extends React.Component {
 
     onFinish = (values) => {
         console.log('Received values of form: ', values);
-        const data = { ...this.state };
+        const data = {...this.state};
         console.log(data);
         this.props.handleSubmit(data);
     }

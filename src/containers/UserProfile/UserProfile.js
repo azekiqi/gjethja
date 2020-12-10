@@ -3,6 +3,7 @@ import "./UserProfile.scss";
 import {connect} from "react-redux";
 import {getSpecifiedUser} from "../../actions/user";
 import BlankProfile from "../../assets/images/blank_profile.jpg";
+import formConfig from "../../components/Forms/Config";
 
 class userProfile extends React.Component {
 
@@ -67,21 +68,33 @@ class userProfile extends React.Component {
                                     <div className="row">
                                         <div className="col-3">
                                             <div className="info-row">
-                                                Birthday
+                                                Data e lindjes
                                             </div>
                                             <div className="info-row">
-                                                City
+                                                Numri i telefonit
                                             </div>
                                             <div className="info-row">
-                                                Address
+                                                Qyteti
                                             </div>
                                             <div className="info-row">
-                                                Phone Number
+                                                Adresa
+                                            </div>
+                                            <div className="info-row">
+                                                Edukimi
+                                            </div>
+                                            <div className="info-row">
+                                                Profesioni
+                                            </div>
+                                            <div className="info-row">
+                                                Biografia
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="info-row">
                                                 {user.dateOfBirth}
+                                            </div>
+                                            <div className="info-row">
+                                                {user.phoneNumber}
                                             </div>
                                             <div className="info-row">
                                                 {user.city}
@@ -90,7 +103,13 @@ class userProfile extends React.Component {
                                                 {user.address}
                                             </div>
                                             <div className="info-row">
-                                                {user.phoneNumber}
+                                                {user.education}
+                                            </div>
+                                            <div className="info-row">
+                                                {user.jobs}
+                                            </div>
+                                            <div className="info-row">
+                                                {user.bio}
                                             </div>
                                         </div>
                                     </div>
