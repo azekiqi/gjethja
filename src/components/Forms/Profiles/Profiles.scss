@@ -1,0 +1,107 @@
+.profile-container{
+  height: 100%;
+  width: 100%;
+  //background-image: url("../../assets/images/pattern.png");
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+  min-height: 100vh;
+  //padding-bottom: 300px;
+  //padding: 15px 50px 15px 50px;
+  background-color: rgba(38, 144, 119, 0.05);
+  //background-color: rgb(255, 255, 255);
+}
+
+.profile-form {
+  width: 650px;
+  height: 100%;
+  padding: 20px;
+  justify-content: center;
+  //margin-left: 8%;
+  //margin-bottom: 45px;
+  background-color: #FFFFFF;
+
+  -webkit-box-shadow: 4px 4px 3px -2px rgba(171,171,171,1);
+  -moz-box-shadow: 4px 4px 3px -2px rgba(171,171,171,1);
+  box-shadow: 4px 4px 3px -2px rgba(171,171,171,1);
+}
+
+.button {
+  position: absolute;
+  //bottom: 30px;
+  right: 30px;
+  height: 50px;
+  width: auto;
+  line-height: 30px;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 7px;
+  background-color: #249278;
+  box-shadow: 10px 10px 14px -11px rgba(27,69,29,1);
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.register-form {
+  min-width: 475px;
+  //padding-left: 50px;
+}
+
+.submit{
+  color: white;
+  padding: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 7px;
+  background-color: #249278;
+  box-shadow: 10px 10px 14px -11px rgba(27,69,29,1);
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.register-title {
+  color: var(--main);
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.register-button {
+  margin-top: 35px;
+
+  button {
+    width: 165px;
+    height: 45px;
+  }
+}
+
+.error-style{
+  color: red;
+  font-size: .7rem;
+  font-weight: 300;
+}
+
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+  width: 85%;
+  margin: auto;
+}
+
+.myPosts{
+  position: absolute;
+  bottom: 0;
+  background-color: green;
+}
+
+.info-row {
+  height: 40px;
+}

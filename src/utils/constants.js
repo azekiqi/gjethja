@@ -73,3 +73,8 @@ export const CARD_OPTIONS = {
     },
 };
 
+export const ROLES = {
+    ROLE_PROVIDER: "Provider",
+    ROLE_SEEKER: "Seeker"
+}
+
