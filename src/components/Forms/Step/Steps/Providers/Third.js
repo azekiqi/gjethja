@@ -90,28 +90,28 @@ class Third extends React.Component {
                             this.handleChange(e, formConfig.job.name)
                         }}>
                         <Option
-                            value="kids"
+                            value="babysitter"
                             label="Kujdes për fëmijë">
                             <div className="demo-option-label-item">
                                 Kujdes për fëmijë
                             </div>
                         </Option>
                         <Option
-                            value="elder"
+                            value="eldercare"
                             label="Kujdes për të moshuarit">
                             <div className="demo-option-label-item">
                                 Kujdes për të moshuarit
                             </div>
                         </Option>
                         <Option
-                            value="home"
+                            value="housekeeper"
                             label="Mirëmbajtje e shtëpisë">
                             <div className="demo-option-label-item">
                                 Mirëmbajtje e shtëpisë
                             </div>
                         </Option>
                         <Option
-                            value="pet"
+                            value="petcare"
                             label="Kujdes për kafshët">
                             <div className="demo-option-label-item">
                                 Kujdes për kafshët

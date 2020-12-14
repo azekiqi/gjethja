@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import * as constants from '../utils/constants';
 import thunk from 'redux-thunk';
+import jwt_decode from "jwt-decode";
 
 const initialState = {   //initialState is a plain object that "describes" our app state
     user: {},
@@ -10,7 +11,8 @@ const initialState = {   //initialState is a plain object that "describes" our a
     endAgeFilter: "",
     cityFilter: "",
     educationFilter: "",
-    token: localStorage.getItem("token")
+    token: localStorage.getItem("token"),
+    role: localStorage.getItem("role"),
 }
 
 // Reducer:
@@ -24,10 +26,15 @@ export const app = function (state = initialState, action) {
             return state;
 
         case constants.LOGIN:
-            localStorage.setItem("token", action.data.access_token);
+            const token = action.data.access_token;
+            const decoded_token = jwt_decode(action.data.access_token);
+            const role = decoded_token.authorities[0];
+            localStorage.setItem("token", token);
+            localStorage.setItem("role", role);
             return {
                 ...state,
-                token: action.data.access_token
+                token: token,
+                role: role
             }
 
         case constants.LOGOUT:

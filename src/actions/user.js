@@ -15,10 +15,12 @@ export const logOut = data => ({
 
 export const getUser = data => {
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    const current_url = role === "ROLE_PROVIDER" ? "api/providers/current" : "api/current";
     return function(dispatch) {
         return axios({
             method: 'get',
-            url: url + "api/current",
+            url: url + current_url ,
             headers: {
                 authorization: "Bearer " + token
             }
@@ -33,7 +35,6 @@ export const getUser = data => {
 
 export const getSpecifiedUser = data => {
     const token = localStorage.getItem("token");
-    console.log("alketa b4b4");
     return function(dispatch) {
         return axios({
             method: 'get',
@@ -167,6 +168,27 @@ export const getFeedback = data => {
         return axios({
             method: 'get',
             url: feedbackUrl + "feedback",
+            data: {
+                description: data
+            },
+            headers: {
+                authorization: "Bearer " + token
+            }
+        }).then(res => {
+            console.log(res);
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+}
+
+export const createRate = data => {
+    const token = localStorage.getItem("token");
+    return function(dispatch) {
+        return axios({
+            method: 'post',
+            url: url + "api/rates/",
             data: {
                 description: data
             },

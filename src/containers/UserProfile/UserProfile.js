@@ -3,7 +3,7 @@ import "./UserProfile.scss";
 import {connect} from "react-redux";
 import {getSpecifiedUser} from "../../actions/user";
 import BlankProfile from "../../assets/images/blank_profile.jpg";
-import formConfig from "../../components/Forms/Config";
+import Rating from "../../components/Rating/Rating";
 
 class userProfile extends React.Component {
 
@@ -11,6 +11,8 @@ class userProfile extends React.Component {
         super(props);
 
         this.state = {
+            rating: 0,
+            data: null,
             user: {
                 id: "",
                 firstName: "",
@@ -33,8 +35,20 @@ class userProfile extends React.Component {
         });
     }
 
+    handleRatingChange = (rating) => {
+        // this.setState({
+        //     data: {
+        //         ...this.state.data,
+        //         [rating]: rating,
+        //     }
+        // })
+        // this.props.createRate(data);
+
+        this.props.createRate({});
+    }
+
     render() {
-        const {user} = this.state;
+        const {user, rating} = this.state;
         const image = (user && user.image) ? "data:image/png;base64," + user.image : BlankProfile;
         return (
             <>
@@ -113,6 +127,13 @@ class userProfile extends React.Component {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="row">
+                                        <div className="col">
+                                            <Rating
+                                                rating={rating}
+                                                onChange={(rating) => this.handleRatingChange(rating)}/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -131,6 +152,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     getSpecifiedUser: id => dispatch(getSpecifiedUser(id)),
+    createRate: data => dispatch(createRate(data))
 });
 
 

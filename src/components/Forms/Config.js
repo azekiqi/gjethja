@@ -108,7 +108,7 @@ const config = {
             }]
     },
     job: {
-        name: "job",
+        name: "jobs",
         label: "Profesioni",
         placeholder: "Përzgjedh profesionin",
         rules:    [{
