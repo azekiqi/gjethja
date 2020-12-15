@@ -189,9 +189,7 @@ export const createRate = data => {
         return axios({
             method: 'post',
             url: url + "api/rates/",
-            data: {
-                description: data
-            },
+            data: data,
             headers: {
                 authorization: "Bearer " + token
             }
@@ -219,6 +217,25 @@ export const uploadProfilePicture = data => {
             }
         }).then(res => {
             console.log(res);
+            return res;
+        }).catch(err => {
+            return err;
+        })
+    }
+}
+
+export const getAverageRate = data => {
+    const token = localStorage.getItem("token");
+    return function(dispatch) {
+        return axios({
+            method: 'get',
+            url: url + `api/rates/average/${data}`,
+            data: data,
+            headers: {
+                authorization: "Bearer " + token
+            }
+        }).then(res => {
+            console.log("omg", res);
             return res;
         }).catch(err => {
             return err;

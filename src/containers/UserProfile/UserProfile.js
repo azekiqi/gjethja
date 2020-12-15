@@ -1,7 +1,8 @@
 import React from "react";
 import "./UserProfile.scss";
 import {connect} from "react-redux";
-import {getSpecifiedUser} from "../../actions/user";
+import {getAverageRate, getSpecifiedUser} from "../../actions/user";
+import {createRate} from "../../actions/user";
 import BlankProfile from "../../assets/images/blank_profile.jpg";
 import Rating from "../../components/Rating/Rating";
 
@@ -12,7 +13,6 @@ class userProfile extends React.Component {
 
         this.state = {
             rating: 0,
-            data: null,
             user: {
                 id: "",
                 firstName: "",
@@ -24,8 +24,9 @@ class userProfile extends React.Component {
                 address: "",
                 phoneNumber: "",
                 jobs: null,
-                image: null
-            }
+                image: null,
+            },
+            averageRate: 0,
         }
     }
 
@@ -33,18 +34,21 @@ class userProfile extends React.Component {
         this.props.getSpecifiedUser(this.props.match.params.id).then(res => {
             this.setState({user: res.data})
         });
+        this.props.getAverageRate(this.props.match.params.id).then(res => {
+            console.log("alketa", res.data.average);
+            this.setState({averageRate: res.data.average})
+        });
+        console.log(this.props.averageRate);
     }
 
-    handleRatingChange = (rating) => {
-        // this.setState({
-        //     data: {
-        //         ...this.state.data,
-        //         [rating]: rating,
-        //     }
-        // })
-        // this.props.createRate(data);
-
-        this.props.createRate({});
+    handleRatingChange = (rating, double) => {
+        this.setState({rating})
+        const { user } = this.state;
+        const data = {
+            providerId: user.id,
+            rate: rating
+        }
+        this.props.createRate(data);
     }
 
     render() {
@@ -133,6 +137,9 @@ class userProfile extends React.Component {
                                                 rating={rating}
                                                 onChange={(rating) => this.handleRatingChange(rating)}/>
                                         </div>
+                                        <div>
+                                            {this.state.averageRate}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +159,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     getSpecifiedUser: id => dispatch(getSpecifiedUser(id)),
-    createRate: data => dispatch(createRate(data))
+    createRate: data => dispatch(createRate(data)),
+    getAverageRate: data => dispatch(getAverageRate(data))
 });
 
 
