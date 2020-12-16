@@ -57,7 +57,7 @@ class Home extends React.Component {
                         <div className="profiles">
                             {
                                 this.props.profiles.map((profile, index) => {
-                                    console.log("omg", profile.id);
+                                    console.log("omg", profile.averageRate);
                                     return (<Profile
                                         id={profile.id}
                                         title={profile.firstName + " " + profile.lastName}
@@ -65,7 +65,7 @@ class Home extends React.Component {
                                         description={"Nr. Tel: " + profile.phoneNumber}
                                         handleClick={() => this.handleProfileClick(profile.id)}
                                         handleRateClick={(rating) => this.handleRatingChange(rating, profile.id)}
-                                        rating={rating}
+                                        rating={profile.averageRate}
                                     />)
                                 })
                             }

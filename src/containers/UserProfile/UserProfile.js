@@ -43,7 +43,7 @@ class userProfile extends React.Component {
 
     handleRatingChange = (rating, double) => {
         this.setState({rating})
-        const { user } = this.state;
+        const {user} = this.state;
         const data = {
             providerId: user.id,
             rate: rating
@@ -68,10 +68,10 @@ class userProfile extends React.Component {
                                         <img
                                             alt="Logo"
                                             className="profile-picture"
-                                            src={image}  />
+                                            src={image}/>
                                     </div>
                                     <div className="text-center mt-3">
-                                        <h5>{ user.firstName } { user.lastName }</h5>
+                                        <h5>{user.firstName} {user.lastName}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -136,9 +136,6 @@ class userProfile extends React.Component {
                                             <Rating
                                                 rating={rating}
                                                 onChange={(rating) => this.handleRatingChange(rating)}/>
-                                        </div>
-                                        <div>
-                                            {this.state.averageRate}
                                         </div>
                                     </div>
                                 </div>
