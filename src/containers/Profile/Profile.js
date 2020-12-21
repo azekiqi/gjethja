@@ -17,19 +17,20 @@ class profile extends React.Component {
 
     handleSubmit = (event) => {
         this.props.editProfile(this.state.user).then(res => {
-            if (this.state.image) {
-                this.props.uploadProfilePicture(this.state.image).then(res => {
+            if(this.state.user.image) {
+                this.props.uploadProfilePicture(this.state.user.image).then(res => {
                     this.props.getUser().then(res => {
-                        this.setState({user: res.data});
+                        this.setState({ user: res.data });
                     })
                 })
             } else {
                 this.props.getUser().then(res => {
-                    this.setState({user: res.data});
+                    this.setState({ user: res.data });
                 })
             }
         })
     }
+
 
     render() {
         return (

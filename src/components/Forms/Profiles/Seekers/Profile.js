@@ -24,9 +24,26 @@ class Profile extends React.Component {
         this.setState({jobs: jobs})
     }
 
+    handleSubmit = (event) => {
+        this.props.editProfile(this.state.user).then(res => {
+            if(this.state.user.image) {
+                this.props.uploadProfilePicture(this.state.user.image).then(res => {
+                    this.props.getUser().then(res => {
+                        this.setState({ user: res.data });
+                    })
+                })
+            } else {
+                this.props.getUser().then(res => {
+                    this.setState({ user: res.data });
+                })
+            }
+        })
+    }
+
     render()  {
         const {user} = this.state;
-        const image = (user && user.image) ? "data:image/png;base64," + user.image : BlankProfile;
+        console.log(user);
+        const image = (user && user.profilePicture) ? "data:image/png;base64," + user.profilePicture : BlankProfile;
         return (
             <div className="container">
                 <form className="register-form">
@@ -46,11 +63,11 @@ class Profile extends React.Component {
                                             src={image}  />
                                     </div>
                                 </div>
-                                <div className="form-group p-2">
+                                <div className="form-group p-3">
                                     <label htmlFor="name-input">Foto e profilit: </label>
                                     <input type="file"
                                            id="name-input"
-                                           className="form-control p-1"
+                                           className="photo"
                                            placeholder="Image"
                                            onChange={(e) => {
                                                this.setState({ user: {...user, image: e.target.files && e.target.files[0] ? e.target.files[0] : null}})
@@ -179,6 +196,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     getUser: data => dispatch(getUser()),
+    editProfile: (data) => dispatch(editProfile(data)),
+    uploadProfilePicture: (data) => dispatch(uploadProfilePicture(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -122,10 +122,12 @@ export const confirm = data => {
 
 export const editProfile = data => {
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    const current_url = role === "ROLE_PROVIDER" ? "api/providers/" : "api/seekers/";
     return function(dispatch) {
         return axios({
             method: 'put',
-            url: url + "edit-profile",
+            url: url + current_url,
             data: data,
             headers: {
                 Authorization: "Bearer " + token
@@ -209,7 +211,7 @@ export const uploadProfilePicture = data => {
     return function(dispatch) {
         return axios({
             method: 'post',
-            url: url + "profile-picture",
+            url: url + "api/profile-picture",
             data: formData,
             headers: {
                 authorization: "Bearer " + token,
